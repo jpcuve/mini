@@ -4,12 +4,11 @@
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>mini-cli</artifactId>
+    <packaging>jar</packaging>
     <parent>
         <groupId>com.messio</groupId>
         <artifactId>mini</artifactId>
         <version>1.0</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-
-
 </project>
