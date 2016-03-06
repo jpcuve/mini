@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.messio</groupId>
+    <artifactId>mini</artifactId>
+    <version>1.0</version>
+
+    <packaging>pom</packaging>
+    <name>mini</name>
+
+    <url>http://www.messio.com</url>
+
+    <organization>
+        <name>messio</name>
+        <url>http://www.messio.com</url>
+    </organization>
+    <inceptionYear>2016</inceptionYear>
+
+    <modules>
+        <module>cli</module>
+        <module>web</module>
+    </modules>
+
+    <properties>
+        <tomee.dir>d:/C2/Tetris_Platform/apache-tomee-jaxrs-1.7.1</tomee.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <skipTests>true</skipTests>
+    </properties>
+
+
+</project>
