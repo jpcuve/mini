@@ -14,6 +14,14 @@ public class Patent extends Right {
     @Column(name = "application", length = 63)
     private String application;
 
+    public Patent() {
+    }
+
+    public Patent(Binder binder, boolean opponent, String application) {
+        super(binder, opponent);
+        this.application = application;
+    }
+
     @Override
     public String getDescriptor() {
         return String.format("%s", application);

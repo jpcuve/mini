@@ -26,6 +26,15 @@ public class Honor {
     @Column(name = "right_descriptor")
     private String rightDescriptor;
 
+    public Honor() {
+    }
+
+    public Honor(Decision decision, Right right, RightValidity rightValidity) {
+        this.decision = decision;
+        this.right = right;
+        this.rightValidity = rightValidity;
+    }
+
     public Long getId() {
         return id;
     }

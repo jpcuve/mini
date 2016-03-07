@@ -44,6 +44,17 @@ public class Decision {
     @JoinColumn(name = "docket_id")
     private Docket docket;
 
+    public Decision() {
+    }
+
+    public Decision(Docket docket, String reference, LocalDate judgmentDate, DecisionLevel level, RecordNature recordNature) {
+        this.docket = docket;
+        this.reference = reference;
+        setJudgmentDate(judgmentDate);
+        this.level = level;
+        this.recordNature = recordNature;
+    }
+
     public Long getId() {
         return id;
     }

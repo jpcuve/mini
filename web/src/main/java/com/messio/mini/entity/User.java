@@ -31,7 +31,7 @@ public class User {
     private String password = "";
     @Basic
     @Column(name = "locale", nullable = false, length = 16)
-    private String loc = "en";
+    private String loc;
     @Basic
     @Column(name = "expiry")
     private long expiry;
@@ -41,8 +41,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<UserRole> userRoles;
 
-    public User(String username) {
+    public User(String username, Locale locale) {
         this.username = username;
+        setLocale(locale);
     }
 
     public User() {

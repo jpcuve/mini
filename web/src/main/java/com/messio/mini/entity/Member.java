@@ -17,6 +17,13 @@ public class Member {
     @Column(name = "name", length = 255)
     private String name;
 
+    public Member() {
+    }
+
+    public Member(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }

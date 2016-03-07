@@ -21,6 +21,15 @@ public class BinderMember {
     @Basic
     private boolean opponent;
 
+    public BinderMember() {
+    }
+
+    public BinderMember(Binder binder, Member member, boolean opponent) {
+        this.binder = binder;
+        this.member = member;
+        this.opponent = opponent;
+    }
+
     public Long getId() {
         return id;
     }

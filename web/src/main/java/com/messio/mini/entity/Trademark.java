@@ -14,6 +14,14 @@ public class Trademark extends Right {
     @Column(name = "name", length = 255)
     private String name;
 
+    public Trademark() {
+    }
+
+    public Trademark(Binder binder, boolean opponent, String name) {
+        super(binder, opponent);
+        this.name = name;
+    }
+
     @Override
     public String getDescriptor() {
         return String.format("%s", name);

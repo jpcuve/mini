@@ -26,6 +26,15 @@ public class Docket {
     @JoinColumn(name = "binder_id")
     private Binder binder;
 
+    public Docket() {
+    }
+
+    public Docket(Binder binder, Court court, String reference) {
+        this.binder = binder;
+        this.court = court;
+        this.reference = reference;
+    }
+
     public Long getId() {
         return id;
     }

@@ -3,7 +3,6 @@ package com.messio.mini.session;
 import com.messio.mini.*;
 import com.messio.mini.entity.*;
 import com.messio.mini.util.Path;
-import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
@@ -19,7 +18,9 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by jpc on 01/04/14.
@@ -35,7 +36,7 @@ public class InitialData extends Crud {
     public void init() throws IOException, ParserConfigurationException, SAXException {
         User system = findByNamedQuery(User.class, User.USER_BY_USERNAME, Crud.Parameters.build("username", User.SYSTEM_NAME)).stream().findFirst().orElse(null);
         if (system == null){
-            system = create(new User(User.SYSTEM_NAME));
+            system = create(new User(User.SYSTEM_NAME, Locale.ENGLISH));
             final Preference systemRoot = create(new Preference(null, system.getId(), ""));
             final Preference folders = create(new Preference(systemRoot, system.getId(), "folders"));
             final Map<String, String> folderProperties = new HashMap<>();
@@ -46,7 +47,6 @@ public class InitialData extends Crud {
             folders.setProperties(folderProperties);
             update(folders);
 
-/*
             // build test data
             final File fResource = new File(getClass().getClassLoader().getResource("/").getFile());
             LOGGER.info("Resource folder: {}", fResource.getAbsolutePath());
@@ -66,18 +66,22 @@ public class InitialData extends Crud {
                 private Docket currentDocket = null;
                 private Decision currentDecision = null;
 
-                private void updateImageIds(long rightId, String[] refs){
-                    final String[] uuids = new String[refs.length];
-                    for (int i = 0; i < refs.length; i++) uuids[i] = imageMap.get(refs[i]);
-                    rightDao.updateImageIds(rightId, uuids);
+                private void updateImageIds(Right right, String[] refs){
+                    final List<String> uuids = new ArrayList<String>();
+                    for (String ref: refs){
+                        uuids.add(imageMap.get(ref));
+                    }
+                    right.setImageIds(uuids);
+                    update(right);
                 }
 
                 @Override
                 public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException {
                     switch(qName){
                         case "user":{
-                            currentUser = userDao.insert(attributes.getValue("username"), Locale.forLanguageTag(attributes.getValue("locale")));
-                            userDao.updatePassword(currentUser.getId(), attributes.getValue("password"));
+                            currentUser = create(new User(attributes.getValue("username"), Locale.forLanguageTag(attributes.getValue("locale"))));
+                            currentUser.setPassword(attributes.getValue("password"));
+                            update(currentUser);
                             roles.clear();
                             break;
                         }
@@ -86,11 +90,27 @@ public class InitialData extends Crud {
                             break;
                         }
                         case "court":{
-                            courtMap.put(attributes.getValue("ref"), courtDao.insert(new Path<>(attributes.getValue("path").split(","))));
+                            Court parent = null;
+                            for (final String courtName: new Path<>(attributes.getValue("path").split(",")).getPath()){
+                                Court court = findByNamedQuery(Court.class, Court.COURT_BY_PARENT_BY_NAME, Crud.Parameters.build("parent", parent, "name", courtName)).stream().findFirst().orElse(null);
+                                if (court == null){
+                                    court = create(new Court(parent, courtName));
+                                }
+                                parent = court;
+                            }
+                            courtMap.put(attributes.getValue("ref"), parent);
                             break;
                         }
                         case "pol":{
-                            polMap.put(attributes.getValue("ref"), polDao.insert(new Path<>(attributes.getValue("path").split(","))));
+                            Pol parent = null;
+                            for (final String polName: new Path<>(attributes.getValue("path").split(",")).getPath()){
+                                Pol pol = findByNamedQuery(Pol.class, Pol.POL_BY_PARENT_BY_NAME, Crud.Parameters.build("parent", parent, "name", polName)).stream().findFirst().orElse(null);
+                                if (pol == null){
+                                    pol = create(new Pol(pol, polName));
+                                }
+                                parent = pol;
+                            }
+                            polMap.put(attributes.getValue("ref"), parent);
                             break;
                         }
                         case "image":{
@@ -110,54 +130,72 @@ public class InitialData extends Crud {
                             break;
                         }
                         case "member":{
-                            memberMap.put(attributes.getValue("ref"), memberDao.insert(attributes.getValue("name")));
+                            memberMap.put(attributes.getValue("ref"), create(new Member(attributes.getValue("name"))));
                             break;
                         }
                         case "binder":{
-                            currentBinder = binderDao.insert(attributes.getValue("reference"), FirstAction.valueOf(attributes.getValue("firstAction")));
+                            currentBinder = create(new Binder(attributes.getValue("reference"), FirstAction.valueOf(attributes.getValue("firstAction"))));
                             break;
                         }
                         case "party":{
-                            if (currentBinder != null) binderMemberDao.insert(currentBinder.getId(), memberMap.get(attributes.getValue("member")).getId(), Boolean.parseBoolean(attributes.getValue("opponent")));
+                            if (currentBinder != null){
+                                create(new BinderMember(currentBinder, memberMap.get(attributes.getValue("member")), Boolean.parseBoolean(attributes.getValue("opponent"))));
+                            }
                             break;
                         }
                         case "docket":{
-                            if (currentBinder != null) currentDocket = docketDao.insert(currentBinder.getId(), courtMap.get(attributes.getValue("court")).getId(), attributes.getValue("reference"));
+                            if (currentBinder != null){
+                                currentDocket = create(new Docket(currentBinder, courtMap.get(attributes.getValue("court")), attributes.getValue("reference")));
+                            }
                             break;
                         }
                         case "decision":{
-                            if (currentDocket != null) currentDecision = decisionDao.insert(currentDocket.getId(), attributes.getValue("reference"), LocalDate.parse(attributes.getValue("judgmentDate")), DecisionLevel.valueOf(attributes.getValue("level")), RecordNature.valueOf(attributes.getValue("recordNature")));
+                            if (currentDocket != null){
+                                currentDecision = create(new Decision(currentDocket, attributes.getValue("reference"), LocalDate.parse(attributes.getValue("judgmentDate")), DecisionLevel.valueOf(attributes.getValue("level")), RecordNature.valueOf(attributes.getValue("recordNature"))));
+                            }
                             break;
                         }
                         case "document":{
-                            if (currentDecision != null) documentDao.insert(currentDecision.getId(), Locale.forLanguageTag(attributes.getValue("locale")), pdfMap.get(attributes.getValue("pdf")));
+                            if (currentDecision != null){
+                                create(new Document(currentDecision, Locale.forLanguageTag(attributes.getValue("locale")), pdfMap.get(attributes.getValue("pdf"))));
+                            }
                             break;
                         }
                         case "analysis":{
-                            if (currentDecision != null) analysisDao.insert(currentDecision.getId(), polMap.get(attributes.getValue("pol")).getId());
+                            if (currentDecision != null){
+                                create(new Analysis(currentDecision, polMap.get(attributes.getValue("pol"))));
+                            }
                             break;
                         }
                         case "trademark":{
                             if (currentBinder != null){
-                                final Trademark trademark = trademarkDao.insert(currentBinder.getId(), Boolean.parseBoolean(attributes.getValue("opponent")), attributes.getValue("name"));
-                                if (attributes.getValue("images") != null) updateImageIds(trademark.getId(), attributes.getValue("images").split(","));
+                                final Trademark trademark = create(new Trademark(currentBinder, Boolean.parseBoolean(attributes.getValue("opponent")), attributes.getValue("name")));
+                                if (attributes.getValue("images") != null){
+                                    updateImageIds(trademark, attributes.getValue("images").split(","));
+                                }
                                 final String ref = attributes.getValue("ref");
-                                if (ref != null) rightMap.put(String.format("%s-%s", currentBinder.getId(), ref), trademark);
+                                if (ref != null){
+                                    rightMap.put(String.format("%s-%s", currentBinder.getId(), ref), trademark);
+                                }
                             }
                             break;
                         }
                         case "patent":{
                             if (currentBinder != null){
-                                final Patent patent = patentDao.insert(currentBinder.getId(), Boolean.parseBoolean(attributes.getValue("opponent")), attributes.getValue("name"));
-                                if (attributes.getValue("images") != null) updateImageIds(patent.getId(), attributes.getValue("images").split(","));
+                                final Patent patent = create(new Patent(currentBinder, Boolean.parseBoolean(attributes.getValue("opponent")), attributes.getValue("name")));
+                                if (attributes.getValue("images") != null){
+                                    updateImageIds(patent, attributes.getValue("images").split(","));
+                                }
                                 final String ref = attributes.getValue("ref");
-                                if (ref != null) rightMap.put(String.format("%s-%s", currentBinder.getId(), ref), patent);
+                                if (ref != null){
+                                    rightMap.put(String.format("%s-%s", currentBinder.getId(), ref), patent);
+                                }
                             }
                             break;
                         }
                         case "honor":{
                             if (currentDecision != null && currentBinder != null){
-                                honorDao.insert(currentDecision.getId(), rightMap.get(String.format("%s-%s", currentBinder.getId(), attributes.getValue("right"))).getId(), RightValidity.valueOf(attributes.getValue("validity")));
+                                create(new Honor(currentDecision, rightMap.get(String.format("%s-%s", currentBinder.getId(), attributes.getValue("right"))), RightValidity.valueOf(attributes.getValue("validity"))));
                             }
                             break;
                         }
@@ -168,7 +206,10 @@ public class InitialData extends Crud {
                 public void endElement(String uri, String localName, String qName) throws SAXException {
                     switch (qName){
                         case "user":{
-                            if (currentUser != null) userDao.updateRoles(currentUser.getId(), roles);
+                            if (currentUser != null){
+                                currentUser.setUserRoles(roles.stream().map(role -> new UserRole(currentUser, role)).collect(Collectors.toSet()));
+                                update(currentUser);
+                            }
                             currentUser = null;
                             break;
                         }
@@ -191,8 +232,6 @@ public class InitialData extends Crud {
                 }
 
             });
-*/
         }
     }
-
 }

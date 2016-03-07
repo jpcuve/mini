@@ -9,8 +9,12 @@ import java.util.Collection;
  * Created by jpc on 10/14/14.
  */
 @Table(name = "pols", catalog = "mini", uniqueConstraints = @UniqueConstraint(columnNames = { "parent_id", "name" }))
+@NamedQueries({
+        @NamedQuery(name = Pol.POL_BY_PARENT_BY_NAME, query = "select p from Pol p where p.parent = :parent and p.name = :name")
+})
 @Entity
 public class Pol implements Node<Long, Pol> {
+    public static final String POL_BY_PARENT_BY_NAME = "pol.byParentByName";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +27,14 @@ public class Pol implements Node<Long, Pol> {
     private Pol parent;
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     private Collection<Pol> children;
+
+    public Pol() {
+    }
+
+    public Pol(Pol parent, String name) {
+        this.parent = parent;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

@@ -26,6 +26,15 @@ public class Document {
     @JoinColumn(name = "decision_id")
     private Decision decision;
 
+    public Document() {
+    }
+
+    public Document(Decision decision, Locale locale, String documentId) {
+        this.decision = decision;
+        setLocale(locale);
+        this.documentId = documentId;
+    }
+
     public Long getId() {
         return id;
     }

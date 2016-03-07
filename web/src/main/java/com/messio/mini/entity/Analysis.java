@@ -19,6 +19,14 @@ public class Analysis {
     @JoinColumn(name = "pol_id")
     private Pol pol;
 
+    public Analysis() {
+    }
+
+    public Analysis(Decision decision, Pol pol) {
+        this.decision = decision;
+        this.pol = pol;
+    }
+
     public Long getId() {
         return id;
     }

@@ -47,6 +47,14 @@ public abstract class Right {
     @Transient
     private Domain domain;
 
+    public Right() {
+    }
+
+    protected Right(Binder binder, boolean opponent) {
+        this.binder = binder;
+        this.opponent = opponent;
+    }
+
     public abstract String getDescriptor();
 
     public void setDescriptor(String descriptor){

@@ -41,6 +41,14 @@ public class Binder {
     @Column(name = "domain")
     private Set<Domain> domains;
 
+    public Binder() {
+    }
+
+    public Binder(String reference, FirstAction firstAction) {
+        this.reference = reference;
+        this.firstAction = firstAction;
+    }
+
     public Long getId() {
         return id;
     }
