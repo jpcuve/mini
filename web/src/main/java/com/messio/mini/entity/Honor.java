@@ -1,0 +1,68 @@
+package com.messio.mini.entity;
+
+import com.messio.mini.RightValidity;
+
+import javax.persistence.*;
+
+/**
+ * Created by jpc on 30/01/15.
+ */
+@Table(name = "honors", catalog = "mini", uniqueConstraints = @UniqueConstraint(columnNames = { "decision_id", "right_id" }))
+@Entity
+public class Honor {
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "decision_id")
+    private Decision decision;
+    @ManyToOne
+    @JoinColumn(name = "right_id")
+    private Right right;
+    @Column(name = "validity")
+    @Enumerated(EnumType.STRING)
+    private RightValidity rightValidity;
+    @Column(name = "right_descriptor")
+    private String rightDescriptor;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Decision getDecision() {
+        return decision;
+    }
+
+    public void setDecision(Decision decision) {
+        this.decision = decision;
+    }
+
+    public Right getRight() {
+        return right;
+    }
+
+    public void setRight(Right right) {
+        this.right = right;
+    }
+
+    public RightValidity getRightValidity() {
+        return rightValidity;
+    }
+
+    public void setRightValidity(RightValidity rightValidity) {
+        this.rightValidity = rightValidity;
+    }
+
+    public String getRightDescriptor() {
+        return rightDescriptor;
+    }
+
+    public void setRightDescriptor(String rightDescriptor) {
+        this.rightDescriptor = rightDescriptor;
+    }
+}

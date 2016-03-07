@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <Resource id="mini-managed-data-source" type="DataSource">
+        JdbcDriver=org.hsqldb.jdbc.JDBCDriver
+        JdbcUrl=jdbc:hsqldb:mem:mini
+        UserName=sa
+        Password=
+        JtaManaged=true
+        ValidationQuery=SELECT 1
+        TimeBetweenEvictionRunsMillis=30000
+        MinEvictableIdleTimeMillis=60000
+    </Resource>
+
+    <Resource id="mini-unmanaged-data-source" type="DataSource">
+        JdbcDriver=org.hsqldb.jdbc.JDBCDriver
+        JdbcUrl=jdbc:hsqldb:mem:mini
+        UserName=sa
+        Password=
+        JtaManaged=false
+        ValidationQuery=SELECT 1
+        TimeBetweenEvictionRunsMillis=30000
+        MinEvictableIdleTimeMillis=60000
+    </Resource>
+
+    <Resource id="mail/gmail" type="javax.mail.Session">
+        mail.transport.protocol=smtp
+        mail.smtp.socketFactory.class=javax.net.ssl.SSLSocketFactory
+        mail.smtp.socketFactory.fallback=false
+        mail.smtp.host=smtp.gmail.com
+        mail.smtp.port=465
+        mail.smtp.auth=true
+        mail.smtp.user=messiosprl@gmail.com
+        mail.from=messiosprl@gmail.com
+        password=gme33ereo
+    </Resource>
+
+    <Resource id="test" class-name="com.messio.mini.resource.TheBean">
+        Toto=One
+        Tutu=Two
+    </Resource>
+
+
+</resources>

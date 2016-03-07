@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<init>
+    <users>
+        <user username="jpc" password="jp33ere" locale="en">
+            <role name="ADMINISTRATOR"/>
+            <role name="DEVELOPER"/>
+        </user>
+    </users>
+    <courts>
+        <court ref="bru" path="World,Europe,Belgium,Brussels"/>
+        <court ref="ber" path="World,Europe,Germany,Berlin"/>
+        <court ref="was" path="World,America,United States,Washington"/>
+        <court ref="eur" path="World,Europe"/>
+    </courts>
+    <pols>
+        <pol ref="pol0" path="10,10.1,10.1.1,10.1.1.1"/>
+        <pol ref="pol1" path="10,10.1,10.1.2,10.1.1.2,10.1.1.2.1"/>
+        <pol ref="pol2" path="10,10.1,10.1.2,10.1.1.3,10.1.1.3.1,10.1.1.3.1.1"/>
+        <pol ref="pol3" path="11,11.1,11.1.1,11.1.1.1"/>
+        <pol ref="pol4" path="11,11.1,11.1.2,11.1.2.1"/>
+        <pol ref="pol5" path="12,12.1"/>
+        <pol ref="pol5" path="12,12.2"/>
+        <pol ref="pol6" path="12,12.3"/>
+    </pols>
+    <images>
+        <image ref="eye" asset="eye.svg" mime="image/svg+xml"/>
+        <image ref="paper-plane" asset="paper plane.svg" mime="image/svg+xml"/>
+        <image ref="backpack" asset="backpack.svg" mime="image/svg+xml"/>
+        <image ref="skull" asset="skull.svg" mime="image/svg+xml"/>
+        <image ref="rocket" asset="rocket.svg" mime="image/svg+xml"/>
+        <image ref="pizza" asset="pizza.svg" mime="image/svg+xml"/>
+        <image ref="muffin" asset="muffin.svg" mime="image/svg+xml"/>
+        <image ref="donut" asset="donut.svg" mime="image/svg+xml"/>
+    </images>
+    <pdfs>
+        <pdf ref="en" asset="en.pdf"/>
+        <pdf ref="fr" asset="fr.pdf"/>
+        <pdf ref="de" asset="de.pdf"/>
+    </pdfs>
+    <members>
+        <member ref="jpc" name="jean-pierre"/>
+        <member ref="fg" name="françois"/>
+        <member ref="evz" name="evrard"/>
+    </members>
+    <binders>
+        <binder reference="binder01" firstAction="OPPOSITION">
+            <party opponent="true" member="jpc"/>
+            <party opponent="false" member="fg"/>
+            <trademark opponent="true" name="trademark0101" images="paper-plane,eye"/>
+            <patent opponent="false" name="patent0102"/>
+            <docket reference="docket01" court="ber">
+                <decision reference="decision01" judgmentDate="2013-10-20" level="FIRST_INSTANCE" recordNature="EVIDENCE">
+                    <document locale="en" pdf="en"/>
+                    <document locale="de" pdf="de"/>
+                </decision>
+            </docket>
+        </binder>
+        <binder reference="binder02" firstAction="OPPOSITION">
+            <party opponent="false" member="jpc"/>
+            <party opponent="true" member="fg"/>
+            <patent opponent="true" name="patent0201" images="backpack"/>
+            <docket reference="docket02" court="bru">
+                <decision reference="decision02" judgmentDate="2012-05-19" level="FIRST_INSTANCE" recordNature="EVIDENCE">
+                    <document locale="fr" pdf="fr"/>
+                </decision>
+            </docket>
+        </binder>
+        <binder reference="binder03" firstAction="ADMINISTRATIVE_HEARINGS">
+            <party opponent="true" member="jpc"/>
+            <party opponent="false" member="fg"/>
+            <party opponent="false" member="evz"/>
+            <trademark opponent="true" name="coca cola"/>
+            <trademark opponent="false" name="ariel"/>
+            <docket reference="docket03" court="was">
+                <decision reference="decision03" judgmentDate="2014-10-20" level="FIRST_INSTANCE" recordNature="EVIDENCE">
+                    <document locale="en" pdf="en"/>
+                </decision>
+            </docket>
+        </binder>
+        <binder reference="binder04" firstAction="OPPOSITION">
+            <party opponent="true" member="jpc"/>
+            <patent ref="p1" opponent="true" name="opponent patent"/>
+            <patent ref="p2" opponent="false" name="applicant patent"/>
+            <docket reference="docket04" court="was">
+                <decision reference="decision04" judgmentDate="2014-10-22" level="JUDICIAL_REVIEW" recordNature="VERDICT">
+                    <document locale="en" pdf="en"/>
+                    <honor right="p1" validity="PARTIAL"/>
+                    <honor right="p2" validity="TOTAL"/>
+                </decision>
+            </docket>
+        </binder>
+        <binder reference="binder05" firstAction="ADMINISTRATIVE_HEARINGS">
+            <party opponent="false" member="jpc"/>
+            <party opponent="true" member="fg"/>
+            <party opponent="true" member="evz"/>
+            <patent opponent="true" name="patent0501"/>
+            <patent opponent="false" name="patent0502"/>
+            <trademark opponent="true" name="skull" images="skull"/>
+            <trademark opponent="false" name="rocket" images="rocket"/>
+            <trademark opponent="false" name="pizza" images="pizza,muffin,donut"/>
+            <docket reference="docket0501" court="was">
+                <decision reference="decision050101" judgmentDate="2014-10-22" level="PRELIMINARY_RULING" recordNature="HEARING">
+                    <document locale="en" pdf="en"/>
+                </decision>
+            </docket>
+            <docket reference="docket0502" court="eur">
+                <decision reference="decision050201" judgmentDate="2014-05-12" level="APPEAL" recordNature="COMPLAINT">
+                    <document locale="en" pdf="en"/>
+                    <document locale="fr" pdf="fr"/>
+                </decision>
+                <decision reference="decision050202" judgmentDate="2014-03-29" level="FIRST_INSTANCE" recordNature="EVIDENCE">
+                    <document locale="en" pdf="en"/>
+                    <document locale="de" pdf="de"/>
+                    <document locale="fr" pdf="fr"/>
+                    <analysis pol="pol0"/>
+                    <analysis pol="pol1"/>
+                    <analysis pol="pol2"/>
+                </decision>
+            </docket>
+        </binder>
+    </binders>
+</init>

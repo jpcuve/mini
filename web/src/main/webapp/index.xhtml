@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:components="http://java.sun.com/jsf/composite/components">
+<ui:composition template="/resources/templates/base.xhtml">
+    <ui:param name="tabIndex" value="0"/>
+    <ui:define name="body">
+
+        <p:fieldset legend="Query" toggleable="true" collapsed="true">
+            <h:panelGrid id="query" columns="2">
+                <p:outputLabel for="reference" value="Reference"/>
+                <p:inputText id="reference" value="#{index.queryModel.reference}"/>
+                <p:outputLabel for="tm1" value="Trademark 1"/>
+                <p:inputText id="tm1" value="#{index.queryModel.trademark1}"/>
+                <p:outputLabel for="tm2" value="Trademark 2"/>
+                <p:inputText id="tm2" value="#{index.queryModel.trademark2}"/>
+                <p:commandButton icon="icon-arrow-rotate-clockwise" action="#{index.reset}" value="Reset" update="query"/>
+                <h:panelGroup>
+                    <p:commandButton id="queryButton" icon="icon-cog" action="#{index.query}" value="Query" update="binders"/>
+                    <p:blockUI block="page" trigger="queryButton">
+                        <p:graphicImage value="/resources/img/ajax-loader.gif"/>
+                    </p:blockUI>
+                </h:panelGroup>
+            </h:panelGrid>
+        </p:fieldset>
+        <h:panelGroup id="binders">
+            <table cellspacing="0" class="ui-widget" style="width: 100%;">
+                <ui:repeat value="#{index.allBinderItems}" var="binderItem">
+                    <tr class="even">
+                        <td colspan="2">
+                            <ui:repeat value="#{binderItem.oppMembers}" var="member">
+                                <h:outputText value="#{member.name}"/>
+                                <br/>
+                            </ui:repeat>
+                        </td>
+                        <td colspan="2">
+                            <ui:repeat value="#{binderItem.oppTrademarkItems}" var="trademarkItem">
+                                <components:trademark-item-panel trademarkItem="#{trademarkItem}"/>
+                                <br/>
+                            </ui:repeat>
+                            <ui:repeat value="#{binderItem.oppPatentItems}" var="patentItem">
+                                <components:patent-item-panel patentItem="#{patentItem}"/>
+                                <br/>
+                            </ui:repeat>
+                        </td>
+                        <td colspan="2" rowspan="3">
+                            <h:outputText value="#{binderItem.binder.firstAction}"/>
+                        </td>
+                    </tr>
+                    <tr class="even">
+                        <td colspan="2">
+                            <h:outputText value="vs."/>
+                        </td>
+                        <td colspan="2">
+                            <h:outputText value="vs."/>
+                        </td>
+                    </tr>
+                    <tr class="even">
+                        <td colspan="2">
+                            <ui:repeat value="#{binderItem.appMembers}" var="member">
+                                <h:outputText value="#{member.name}"/>
+                                <br/>
+                            </ui:repeat>
+                        </td>
+                        <td colspan="2">
+                            <ui:repeat value="#{binderItem.appTrademarkItems}" var="trademarkItem">
+                                <components:trademark-item-panel trademarkItem="#{trademarkItem}"/>
+                                <br/>
+                            </ui:repeat>
+                            <ui:repeat value="#{binderItem.appPatentItems}" var="patentItem">
+                                <components:patent-item-panel patentItem="#{patentItem}"/>
+                                <br/>
+                            </ui:repeat>
+                        </td>
+                    </tr>
+                    <ui:repeat value="#{binderItem.decisionItems}" var="decisionItem">
+                        <tr class="odd">
+                            <td colspan="6">
+                                <h:outputText value="("/>
+                                <h:outputLink value="analysis/index.html#/binder/#{decisionItem.decision.docket.binder.id}" target="analysis">
+                                    <h:outputText value="#{decisionItem.decision.docket.binder.id}"/>
+                                </h:outputLink>
+                                <h:outputText value=" : "/>
+                                <h:outputLink value="analysis/index.html#/docket/#{decisionItem.decision.docket.id}" target="analysis">
+                                    <h:outputText value="#{decisionItem.decision.docket.id}"/>
+                                </h:outputLink>
+                                <h:outputText value=" : "/>
+                                <h:outputLink value="analysis/index.html#/decision/#{decisionItem.decision.id}" target="analysis">
+                                    <h:outputText value="#{decisionItem.decision.id}"/>
+                                </h:outputLink>
+                                <h:outputText value=")"/>
+                                <h:outputText style="margin-left: 1em;" value="#{decisionItem.decision.reference}"/>
+                            </td>
+                        </tr>
+                        <tr class="odd">
+                            <td colspan="2">
+                                <h:outputText value="#{decisionItem.decision.judgmentDate}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{decisionItem.decision.recordNature}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="#{decisionItem.decision.docket.court.name}"/>
+                                <br/>
+                                <h:outputText value="#{decisionItem.decision.level}"/>
+                            </td>
+                            <td>
+                                <h:outputText value="Pols:" rendered="#{not empty decisionItem.analysisItems}"/>
+                                <h:panelGroup style="display: inline-block;">
+                                    <ui:repeat value="#{decisionItem.analysisItems}" var="analysisItem">
+                                        <h:outputText style="margin-left: 0.5em;" value="#{analysisItem.analysis.pol.name}"/>
+                                        <br/>
+                                    </ui:repeat>
+                                </h:panelGroup>
+                                <br/>
+                                <h:outputText value="Winner: #{decisionItem.decision.winner}" rendered="#{not empty decisionItem.decision.winner}"/>
+                            </td>
+                            <td>
+                                <span>Documents:</span>
+                                <ui:repeat value="#{decisionItem.documentItems}" var="documentItem">
+                                    <h:outputLink style="margin-left: 0.5em;" value="asset?uuid=#{documentItem.document.documentId}">#{documentItem.document.locale}</h:outputLink>
+                                </ui:repeat>
+                                <br/>
+                                <h:outputText value="Honors:" rendered="#{not empty decisionItem.honorItems}"/>
+                                <h:panelGroup style="display: inline-block;">
+                                    <ui:repeat value="#{decisionItem.honorItems}" var="honorItem">
+                                        <h:outputText style="margin-left: 0.5em;" value="#{honorItem.honor.right.descriptor}: #{honorItem.honor.rightValidity}"/>
+                                        <br/>
+                                    </ui:repeat>
+                                </h:panelGroup>
+                            </td>
+                        </tr>
+                    </ui:repeat>
+                    <tr>
+                        <td colspan="6" style="height: 1em;"/>
+                    </tr>
+                </ui:repeat>
+            </table>
+        </h:panelGroup>
+
+    </ui:define>
+</ui:composition>
+</html>

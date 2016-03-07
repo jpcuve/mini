@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+    <persistence-unit name="mini" transaction-type="JTA">
+        <description>mini persistence unit</description>
+        <!-- datasources are defined in conf/tomee.xml of the server -->
+        <jta-data-source>mini-managed-data-source</jta-data-source>
+        <non-jta-data-source>mini-unmanaged-data-source</non-jta-data-source>
+        <properties>
+            <property name="javax.persistence.validation.mode" value="auto"/>
+            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(ForeignKeys=true)"/>
+            <!--<property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE"/>-->
+        </properties>
+    </persistence-unit>
+</persistence>
