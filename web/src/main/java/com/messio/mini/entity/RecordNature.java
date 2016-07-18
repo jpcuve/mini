@@ -1,4 +1,4 @@
-package com.messio.mini;
+package com.messio.mini.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.messio.mini.util.Node;

@@ -1,6 +1,5 @@
 package com.messio.mini.session;
 
-import com.messio.mini.*;
 import com.messio.mini.entity.*;
 import com.messio.mini.util.Path;
 import org.slf4j.Logger;
@@ -27,14 +26,14 @@ import java.util.stream.Collectors;
  */
 @Startup
 @Singleton(name = "mini/initial-data")
-public class InitialData extends Crud {
+public class InitialData extends DAO {
     private static final Logger LOGGER = LoggerFactory.getLogger(InitialData.class);
     @Inject
     private AssetManager assetManager;
 
     @PostConstruct
     public void init() throws IOException, ParserConfigurationException, SAXException {
-        User system = findByNamedQuery(User.class, User.USER_BY_USERNAME, Crud.Parameters.build("username", User.SYSTEM_NAME)).stream().findFirst().orElse(null);
+        User system = result(builder(User.class).named(User.USER_BY_USERNAME).param("username", User.SYSTEM_NAME));
         if (system == null){
             system = create(new User(User.SYSTEM_NAME, Locale.ENGLISH));
             final Preference systemRoot = create(new Preference(null, system.getId(), ""));
@@ -48,7 +47,7 @@ public class InitialData extends Crud {
             update(folders);
 
             // build test data
-            final File fResource = new File(getClass().getClassLoader().getResource("/").getFile());
+            final File fResource = new File(getClass().getClassLoader().getResource("../..").getFile());
             LOGGER.info("Resource folder: {}", fResource.getAbsolutePath());
             final File fAsset = new File(fResource, "assets");
             final SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
@@ -92,7 +91,7 @@ public class InitialData extends Crud {
                         case "court":{
                             Court parent = null;
                             for (final String courtName: new Path<>(attributes.getValue("path").split(",")).getPath()){
-                                Court court = findByNamedQuery(Court.class, Court.COURT_BY_PARENT_BY_NAME, Crud.Parameters.build("parent", parent, "name", courtName)).stream().findFirst().orElse(null);
+                                Court court = result(builder(Court.class).named(Court.COURT_BY_PARENT_BY_NAME).params("parent", parent, "name", courtName));
                                 if (court == null){
                                     court = create(new Court(parent, courtName));
                                 }
@@ -104,7 +103,7 @@ public class InitialData extends Crud {
                         case "pol":{
                             Pol parent = null;
                             for (final String polName: new Path<>(attributes.getValue("path").split(",")).getPath()){
-                                Pol pol = findByNamedQuery(Pol.class, Pol.POL_BY_PARENT_BY_NAME, Crud.Parameters.build("parent", parent, "name", polName)).stream().findFirst().orElse(null);
+                                Pol pol = result(builder(Pol.class).named(Pol.POL_BY_PARENT_BY_NAME).params("parent", parent, "name", polName));
                                 if (pol == null){
                                     pol = create(new Pol(pol, polName));
                                 }
@@ -139,7 +138,7 @@ public class InitialData extends Crud {
                         }
                         case "party":{
                             if (currentBinder != null){
-                                create(new BinderMember(currentBinder, memberMap.get(attributes.getValue("member")), Boolean.parseBoolean(attributes.getValue("opponent"))));
+                                create(new Party(currentBinder, memberMap.get(attributes.getValue("member")), Boolean.parseBoolean(attributes.getValue("opponent"))));
                             }
                             break;
                         }

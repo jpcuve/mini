@@ -1,7 +1,5 @@
 package com.messio.mini.entity;
 
-import com.messio.mini.FirstAction;
-
 import javax.persistence.*;
 import java.util.List;
 import java.util.Set;
@@ -11,10 +9,12 @@ import java.util.Set;
  */
 @Table(name = "binders", catalog = "mini")
 @Entity
-@NamedQueries(
-        @NamedQuery(name = "binder.bindersByTrademark", query = "select distinct b from Binder b join b.rights r join r.trademark t where t.name like :trademark")
-)
+@NamedQueries({
+        @NamedQuery(name = "binder.bindersByTrademark", query = "select distinct b from Binder b join b.rights r join r.trademark t where t.name like :trademark"),
+        @NamedQuery(name = Binder.BINDER_BY_IDS, query = "select distinct b from Binder b left join fetch b.rights left join fetch b.parties left join fetch b.dockets where b.id in (:ids)")
+})
 public class Binder {
+    public static final String BINDER_BY_IDS = "binder.byIds";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,7 +34,9 @@ public class Binder {
     @OneToMany(mappedBy = "binder")
     private List<Right> rights;
     @OneToMany(mappedBy = "binder")
-    private List<BinderMember> binderMembers;
+    private List<Party> parties;
+    @OneToMany(mappedBy = "binder")
+    private List<Docket> dockets;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "binder_domains", joinColumns = { @JoinColumn(name = "binder_id")})
     @Enumerated(EnumType.STRING)
@@ -97,12 +99,20 @@ public class Binder {
         this.rights = rights;
     }
 
-    public List<BinderMember> getBinderMembers() {
-        return binderMembers;
+    public List<Party> getParties() {
+        return parties;
     }
 
-    public void setBinderMembers(List<BinderMember> binderMembers) {
-        this.binderMembers = binderMembers;
+    public void setParties(List<Party> parties) {
+        this.parties = parties;
+    }
+
+    public List<Docket> getDockets() {
+        return dockets;
+    }
+
+    public void setDockets(List<Docket> dockets) {
+        this.dockets = dockets;
     }
 
     public Set<Domain> getDomains() {

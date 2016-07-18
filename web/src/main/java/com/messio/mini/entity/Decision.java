@@ -1,9 +1,6 @@
 package com.messio.mini.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.messio.mini.DecisionLevel;
-import com.messio.mini.DecisionWinner;
-import com.messio.mini.RecordNature;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,7 +26,7 @@ public class Decision {
     @Column(name = "judgment_date", nullable = false)
     private String judgmentDate;
     @Enumerated(EnumType.STRING)
-    @Column(name = "record_nature", nullable = false, length = 255)
+    @Column(name = "record_nature", nullable = false)
     private RecordNature recordNature;
     @Basic
     @Column(name = "refusal")

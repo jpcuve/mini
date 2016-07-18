@@ -3,98 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
-    <context-param>
-        <param-name>javax.faces.PROJECT_STAGE</param-name>
-        <param-value>Development</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-        <param-value>.xhtml</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-        <param-value>server</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
-        <param-value>false</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.PRETTY_HTML</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.ALLOW_JAVASCRIPT</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.DETECT_JAVASCRIPT</param-name>
-        <param-value>false</param-value>
-    </context-param>
-    <!--
-        <context-param>
-            <param-name>org.apache.myfaces.ADD_RESOURCE_CLASS</param-name>
-            <param-value>org.apache.myfaces.renderkit.html.util.DefaultAddResource</param-value>
-        </context-param>
-    -->
-    <context-param>
-        <param-name>org.apache.myfaces.SERIALIZE_STATE_IN_SESSION</param-name>
-        <param-value>false</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.COMPRESS_STATE_IN_SESSION</param-name>
-        <param-value>false</param-value>
-    </context-param>
-    <context-param>
-        <param-name>org.apache.myfaces.CHECK_EXTENSIONS_FILTER</param-name>
-        <param-value>true</param-value>
-    </context-param>
-    <context-param>
-        <description>Only applicable if state saving method is "server" (= default).
-            Defines the amount (default = 20) of the latest views are stored in session.
-        </description>
-        <param-name>org.apache.myfaces.NUMBER_OF_VIEWS_IN_SESSION</param-name>
-        <param-value>20</param-value>
-    </context-param>
-    <context-param>
-        <param-name>javax.faces.FACELETS_LIBRARIES</param-name>
-        <param-value>/WEB-INF/functions.taglib.xml</param-value>
-    </context-param>
-    <context-param>
-        <param-name>primefaces.THEME</param-name>
-        <param-value>base</param-value>
-    </context-param>
-    <context-param>
-        <param-name>primefaces.FONT_AWESOME</param-name>
-        <param-value>true</param-value>
-    </context-param>
-
-    <servlet>
-        <servlet-name>Faces Servlet</servlet-name>
-        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>*.xhtml</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
-    </servlet-mapping>
-
     <welcome-file-list>
-        <welcome-file>index.xhtml</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 
     <security-constraint>
         <web-resource-collection>
-            <web-resource-name>Administrator pages</web-resource-name>
-            <url-pattern>/admin/*</url-pattern>
+            <web-resource-name>restricted pages</web-resource-name>
+            <url-pattern>/restricted/*</url-pattern>
             <http-method>GET</http-method>
             <http-method>POST</http-method>
         </web-resource-collection>
@@ -102,24 +18,6 @@
             <role-name>ADMINISTRATOR</role-name>
             <role-name>DEVELOPER</role-name>
         </auth-constraint>
-
-        <user-data-constraint>
-            <!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
-            <transport-guarantee>NONE</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
-
-    <security-constraint>
-        <web-resource-collection>
-            <web-resource-name>Development pages</web-resource-name>
-            <url-pattern>/dev/*</url-pattern>
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>DEVELOPER</role-name>
-        </auth-constraint>
-
         <user-data-constraint>
             <!-- transport-guarantee can be CONFIDENTIAL, INTEGRAL, or NONE -->
             <transport-guarantee>NONE</transport-guarantee>

@@ -1,5 +1,7 @@
 package com.messio.mini.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 /**
@@ -7,7 +9,8 @@ import javax.persistence.*;
  */
 @Table(name = "binder_members", catalog = "mini")
 @Entity
-public class BinderMember {
+@JsonIgnoreProperties({"binder", "member"})
+public class Party {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +24,10 @@ public class BinderMember {
     @Basic
     private boolean opponent;
 
-    public BinderMember() {
+    public Party() {
     }
 
-    public BinderMember(Binder binder, Member member, boolean opponent) {
+    public Party(Binder binder, Member member, boolean opponent) {
         this.binder = binder;
         this.member = member;
         this.opponent = opponent;

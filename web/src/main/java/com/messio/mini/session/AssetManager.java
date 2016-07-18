@@ -20,7 +20,7 @@ import java.util.UUID;
 @Singleton
 public class AssetManager {
     private static final Logger LOGGER = LoggerFactory.getLogger(AssetManager.class);
-    public static final int BUFFER_SIZE = 1024 * 1024;
+    private static final int BUFFER_SIZE = 1024 * 1024;
     private final byte[] buffer = new byte[BUFFER_SIZE];
     private final Map<String, String> uuids = new TreeMap<>();
     private final Map<String, Long> positions = new HashMap<>();
@@ -53,7 +53,7 @@ public class AssetManager {
         wFile.writeUTF(name);
         wFile.writeUTF(contentType);
         wFile.writeLong(contentLength);
-        LOGGER.info("uuid: {}, name: {}, content type: {}, size: {}", new Object[]{ uuid, name, contentType, contentLength });
+        LOGGER.info("uuid: {}, name: {}, content type: {}, size: {}", uuid, name, contentType, contentLength);
         int read;
         while ((read = is.read(buffer)) != -1) wFile.write(buffer, 0, read);
         is.close();
@@ -77,7 +77,7 @@ public class AssetManager {
         final String contentType = rFile.readUTF();
         res.setContentType(contentType);
         long size = rFile.readLong();
-        LOGGER.info("uuid: {}, name: {}, content type: {}, size: {}", new Object[]{ uuid, name, contentType, size });
+        LOGGER.info("uuid: {}, name: {}, content type: {}, size: {}", uuid, name, contentType, size);
         final byte[] buf = new byte[BUFFER_SIZE];
         long read = 0;
         while (read < size){

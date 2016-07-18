@@ -1,4 +1,4 @@
-package com.messio.mini;
+package com.messio.mini.entity;
 
 /**
  * Created by jpc on 30/01/15.

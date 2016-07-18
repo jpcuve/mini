@@ -1,7 +1,5 @@
 package com.messio.mini.entity;
 
-import com.messio.mini.RightValidity;
-
 import javax.persistence.*;
 
 /**

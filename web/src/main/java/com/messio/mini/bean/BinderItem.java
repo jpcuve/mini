@@ -13,7 +13,7 @@ public class BinderItem {
     private List<RightItem> rightItems;
     private List<DecisionItem> decisionItems;
     private List<Domain> domains;
-    private List<BinderMember> binderMembers;
+    private List<Party> parties;
 
     public BinderItem() {
     }
@@ -24,13 +24,13 @@ public class BinderItem {
 
     public List<Member> getOppMembers(){
         final List<Member> list = new ArrayList<>();
-        for (final BinderMember binderMember: binderMembers) if (binderMember.isOpponent()) list.add(binderMember.getMember());
+        for (final Party party : parties) if (party.isOpponent()) list.add(party.getMember());
         return list;
     }
     
     public List<Member> getAppMembers(){
         final List<Member> list = new ArrayList<>();
-        for (final BinderMember binderMember: binderMembers) if (!binderMember.isOpponent()) list.add(binderMember.getMember());
+        for (final Party party : parties) if (!party.isOpponent()) list.add(party.getMember());
         return list;
     }
 
@@ -82,12 +82,12 @@ public class BinderItem {
         this.decisionItems = decisionItems;
     }
 
-    public List<BinderMember> getBinderMembers() {
-        return binderMembers;
+    public List<Party> getParties() {
+        return parties;
     }
 
-    public void setBinderMembers(List<BinderMember> binderMembers) {
-        this.binderMembers = binderMembers;
+    public void setParties(List<Party> parties) {
+        this.parties = parties;
     }
 
     public List<Domain> getDomains() {
