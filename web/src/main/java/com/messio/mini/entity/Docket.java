@@ -13,12 +13,14 @@ import java.util.List;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Docket.DOCKET_ALL, query = "select o from Docket o"),
-        @NamedQuery(name = Docket.DOCKET_BY_IDS, query = "select distinct o from Docket o left join fetch o.decisions where o.id in (:ids)")
+        @NamedQuery(name = Docket.DOCKET_BY_IDS, query = "select distinct o from Docket o where o.id in (:ids)"),
+        @NamedQuery(name = Docket.DOCKET_BY_BINDER_IDS, query = "select distinct o from Docket o where o.binder.id in (:ids)")
 })
 @JsonIgnoreProperties({"binder", "court"})
 public class Docket {
     public static final String DOCKET_ALL = "docket.all";
     public static final String DOCKET_BY_IDS = "docket.byIds";
+    public static final String DOCKET_BY_BINDER_IDS = "docket.byBinderIds";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,8 +34,12 @@ public class Docket {
     @ManyToOne
     @JoinColumn(name = "binder_id")
     private Binder binder;
-    @OneToMany(mappedBy = "docket")
-    private List<Decision> decisions;
+    @Basic
+    @Column(name = "court_id", insertable = false, updatable = false)
+    private Long courtId;
+    @Basic
+    @Column(name = "binder_id", insertable = false, updatable = false)
+    private Long binderId;
 
     public Docket() {
     }
@@ -76,11 +82,11 @@ public class Docket {
         this.binder = binder;
     }
 
-    public List<Decision> getDecisions() {
-        return decisions;
+    public Long getCourtId() {
+        return courtId;
     }
 
-    public void setDecisions(List<Decision> decisions) {
-        this.decisions = decisions;
+    public Long getBinderId() {
+        return binderId;
     }
 }

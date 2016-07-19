@@ -11,12 +11,14 @@ import java.util.Collection;
  */
 @Table(name = "courts", catalog = "mini", uniqueConstraints = @UniqueConstraint(columnNames = { "parent_id", "name" }))
 @NamedQueries({
-        @NamedQuery(name = Court.COURT_BY_PARENT_BY_NAME, query = "select c from Court c where c.parent = :parent and c.name = :name")
+        @NamedQuery(name = Court.COURT_BY_PARENT_BY_NAME, query = "select c from Court c where c.parent = :parent and c.name = :name"),
+        @NamedQuery(name = Court.COURT_BY_IDS, query = "select c from Court c where c.id in (:ids)")
 })
 @Entity
 @JsonIgnoreProperties({"parent", "children"})
 public class Court implements Node<Long, Court> {
     public static final String COURT_BY_PARENT_BY_NAME = "court.byParentByName";
+    public static final String COURT_BY_IDS = "court.byIds";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

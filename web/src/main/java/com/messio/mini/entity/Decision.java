@@ -10,8 +10,12 @@ import java.time.LocalDate;
  */
 @Table(name = "decisions", catalog = "mini", uniqueConstraints = @UniqueConstraint(columnNames = { "reference" }))
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Decision.DECISION_BY_DOCKET_IDS, query = "select d from Decision d where d.docket.id in (:ids)")
+})
 @JsonIgnoreProperties({"docket"})
 public class Decision {
+    public static final String DECISION_BY_DOCKET_IDS = "decision.byDocketIds";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +44,9 @@ public class Decision {
     @ManyToOne
     @JoinColumn(name = "docket_id")
     private Docket docket;
+    @Basic
+    @Column(name = "docket_id", insertable = false, updatable = false)
+    private Long docketId;
 
     public Decision() {
     }
@@ -122,5 +129,9 @@ public class Decision {
 
     public void setDocket(Docket docket) {
         this.docket = docket;
+    }
+
+    public Long getDocketId() {
+        return docketId;
     }
 }
