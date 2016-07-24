@@ -20,8 +20,7 @@
     <inceptionYear>2016</inceptionYear>
 
     <modules>
-        <module>mini-cli</module>
-        <module>mini-web</module>
+        <module>web</module>
     </modules>
 
     <properties>

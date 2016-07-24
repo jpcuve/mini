@@ -1,6 +1,7 @@
 package com.messio.mini.session;
 
 
+import com.messio.mini.bean.model.BinderQueryModel;
 import com.messio.mini.entity.Binder;
 import com.messio.mini.entity.Court;
 import com.messio.mini.entity.Decision;
@@ -40,13 +41,6 @@ public class RESTService {
     }
 
     @GET
-    @Path("/dockets/{ids}")
-    public List<Docket> dockets(@PathParam("ids") String idsAsCommaSeparatedList){
-        List<Docket> dockets = facade.results(DAO.builder(Docket.class).named(Docket.DOCKET_BY_IDS).param("ids", computeIds(idsAsCommaSeparatedList)));
-        return dockets;
-    }
-
-    @GET
     @Path("/binders/{ids}")
     public Map<String, Object> binders(@PathParam("ids") String idsAsCommaSeparatedList){
         final Map<String, Object> map = new HashMap<>();
@@ -62,6 +56,13 @@ public class RESTService {
         map.put("decisions", decisions);
         map.put("courts", courts);
         return map;
+    }
+
+    @POST
+    @Path("/binders/query")
+    public List<Long> queryBinders(BinderQueryModel model){
+        LOGGER.debug("model: {}", model);
+        return Collections.singletonList(1L);
     }
 
 }
