@@ -62,7 +62,13 @@ public class RESTService {
     @Path("/binders/query")
     public List<Long> queryBinders(BinderQueryModel model){
         LOGGER.debug("model: {}", model);
-        return Collections.singletonList(1L);
+        final List<Long> binderIds = new ArrayList<>();
+        binderIds.add(1L);
+        binderIds.add(2L);
+        binderIds.add(3L);
+        binderIds.add(4L);
+        binderIds.add(6L);
+        return binderIds;
     }
 
 }

@@ -18,20 +18,53 @@ angular
         .module("client", ["ngResource"])
         .constant("config", {
             value: 12,
-            api: "/api"
+            endPoint: "http://localhost:8080/mini/api/rest"
         })
         .config(["$resourceProvider", function($resourceProvider){
+            "use strict";
             $resourceProvider.defaults.stripTrailingSlashes = false;
         }])
-        .controller("indexController", ["$log", "$scope", "$resource", function($log, $scope, $resource){
-            var queryResource = $resource("http://localhost:8080/mini/api/rest/binders/query", {}, {
-                'query': { method: "POST", isArray: true }
+        .controller("indexController", ["$log", "$scope", "$resource", "config", function($log, $scope, $resource, config){
+            "use strict";
+            var queryResource = $resource(config.endPoint + "/binders/query", {}, {
+                "query": { method: "POST", isArray: true }
             });
             $scope.binderQuery = {};
 
             $scope.query = function(){
                 $log.log("querying:", angular.toJson($scope.binderQuery));
-                queryResource.query($scope.binderQuery);
+                $scope.results = queryResource.query($scope.binderQuery);
+            };
+        }])
+        .directive("binderPanel", ["$log", "$resource", "config", function($log, $resource, config){
+            "use strict";
+            var binderResource = $resource(config.endPoint + "/binders/:binderId");
+            return {
+                restrict: "E",
+                scope: {
+                    binderId: "="
+                },
+                templateUrl: "partials/binder-panel.html",
+                controller: ["$scope", function($scope){
+                    "use strict";
+                    $scope.$watch("binderId", function(){
+                        $scope.model = binderResource.get({binderId: $scope.binderId}, function(model){
+                            $scope.binder = model.binders[0];
+                        });
+                    });
+
+                    $scope.docketMatch = function(binder){
+                        return function(docket){
+                            return docket.binderId === binder.id;
+                        };
+                    };
+
+                    $scope.decisionMatch = function(docket){
+                        return function(decision){
+                            return decision.docketId === docket.id;
+                        }
+                    }
+                }]
             };
         }])
 
@@ -43,6 +76,10 @@ coucou {{coucou}}
 <input type="text" data-ng-model="binderQuery.reference" placeholder="Reference"/>
 <br/>
 <button data-ng-click="query()">Query</button>
+<br/>
+results: {{results}}
+<div data-ng-repeat="binderId in results">
+    <binder-panel binder-id="binderId"></binder-panel>
+</div>
 
-</body>
 </html>

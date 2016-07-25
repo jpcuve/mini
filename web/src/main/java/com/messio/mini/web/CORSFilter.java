@@ -24,7 +24,7 @@ public class CORSFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         if (response instanceof HttpServletResponse){
             final HttpServletResponse res = (HttpServletResponse) response;
-            res.setHeader("Access-Control-Allow-Origin", "http://localhost:63343");
+            res.setHeader("Access-Control-Allow-Origin", "http://localhost");
             res.setHeader("Access-Control-Allow-Origin", "*");
             res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
             res.setHeader("Access-Control-Allow-Credentials", "false");
