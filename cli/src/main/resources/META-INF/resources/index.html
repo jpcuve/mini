@@ -43,17 +43,20 @@ angular
                             map["b" + binder.id] = binder;
                             binder.dockets = [];
                         });
+                        angular.forEach(model.courts, function(court){
+                            map["c" + court.id] = court;
+                        });
                         angular.forEach(model.dockets, function(docket){
                             map["o" + docket.id] = docket;
                             docket.decisions = [];
+                            docket.court = map["c" + docket.courtId];
                             map["b" + docket.binderId].dockets.push(docket);
                         });
                         angular.forEach(model.decisions, function(decision){
                             map["d" + decision.id] = decision;
                             map["o" + decision.docketId].decisions.push(decision);
 
-                        })
-
+                        });
                     });
                 });
             };
@@ -88,8 +91,16 @@ angular
                 templateUrl: "partials/decision-panel.html"
             };
         }])
-
-
+        .directive("courtPanel", ["$log", function($log){
+            "use strict";
+            return {
+                restrict: "E",
+                scope: {
+                    court: "="
+                },
+                templateUrl: "partials/court-panel.html"
+            };
+        }])
     </script>
 </head>
 <body data-ng-app="client" data-ng-controller="indexController">
