@@ -36,27 +36,29 @@ angular
                 $log.log("querying:", angular.toJson($scope.binderQuery));
                 $scope.results = queryResource.query($scope.binderQuery, function(results){
                     binderResource.get({binderIds: results.join(",")}, function(model){
-                        var binderMap = {}, docketMap = {};
+                        var map = {};
                         // process model
                         $scope.binders = model.binders;
                         angular.forEach(model.binders, function(binder){
-                            binderMap[binder.id] = binder;
+                            map["b" + binder.id] = binder;
                             binder.dockets = [];
                         });
                         angular.forEach(model.dockets, function(docket){
-                            $log.log("binder id:", docket.binderId);
-                            var binder;
-                            docketMap[docket.id] = docket;
+                            map["o" + docket.id] = docket;
                             docket.decisions = [];
-                            binder = binderMap[docket.binderId];
-                            binder.dockets.push(docket);
+                            map["b" + docket.binderId].dockets.push(docket);
                         });
+                        angular.forEach(model.decisions, function(decision){
+                            map["d" + decision.id] = decision;
+                            map["o" + decision.docketId].decisions.push(decision);
+
+                        })
 
                     });
                 });
             };
         }])
-        .directive("binderPanel", ["$log", "$resource", "config", function($log, $resource, config){
+        .directive("binderPanel", ["$log", function($log){
             "use strict";
             return {
                 restrict: "E",
@@ -64,6 +66,26 @@ angular
                     binder: "="
                 },
                 templateUrl: "partials/binder-panel.html"
+            };
+        }])
+        .directive("docketPanel", ["$log", function($log){
+            "use strict";
+            return {
+                restrict: "E",
+                scope: {
+                    docket: "="
+                },
+                templateUrl: "partials/docket-panel.html"
+            };
+        }])
+        .directive("decisionPanel", ["$log", function($log){
+            "use strict";
+            return {
+                restrict: "E",
+                scope: {
+                    decision: "="
+                },
+                templateUrl: "partials/decision-panel.html"
             };
         }])
 
