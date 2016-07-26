@@ -17,7 +17,6 @@
 angular
         .module("client", ["ngResource"])
         .constant("config", {
-            value: 12,
             endPoint: "http://localhost:8080/mini/api/rest"
         })
         .config(["$resourceProvider", function($resourceProvider){
@@ -37,7 +36,7 @@ angular
                 $scope.results = queryResource.query($scope.binderQuery, function(results){
                     binderResource.get({binderIds: results.join(",")}, function(model){
                         var map = {};
-                        // process model
+                        // process model, rebuild relationships
                         $scope.binders = model.binders;
                         angular.forEach(model.binders, function(binder){
                             map["b" + binder.id] = binder;
