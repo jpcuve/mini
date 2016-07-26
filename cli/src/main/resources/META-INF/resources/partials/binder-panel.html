@@ -1,10 +1,6 @@
 <span>
-    <span data-ng-repeat="binder in model.binders">
+    <span>
         b: {{binder}}
-        <span data-ng-repeat="docket in model.dockets | filter: docketMatch(binder)">
-            <br/>
-            <docket-panel docket="docket"></docket-panel>
-        </span>
     </span>
 
 </span>
