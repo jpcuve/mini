@@ -59,14 +59,45 @@ angular
                         };
                     };
 
-                    $scope.decisionMatch = function(docket){
-                        return function(decision){
-                            return decision.docketId === docket.id;
-                        }
-                    }
                 }]
             };
         }])
+        .directive("docketPanel", ["$log", function($log){
+            "use strict";
+            return {
+                restrict: "E",
+                scope: {
+                    docket: "="
+                },
+                templateUrl: "partials/docket-panel.html",
+                controller: ["$scope", function($scope){
+                    "use strict";
+
+                    $scope.decisionMatch = function(docket){
+                        return function(decision){
+                            return decision.docketId === docket.id;
+                        };
+                    };
+
+                }]
+            };
+
+        }])
+        .directive("decisionPanel", ["$log", function($log){
+            "use strict";
+            return {
+                restrict: "E",
+                scope: {
+                    decision: "="
+                },
+                templateUrl: "partials/decision-panel.html",
+                controller: ["$scope", function($scope){
+                    "use strict";
+                }]
+            };
+
+        }])
+
 
 
     </script>

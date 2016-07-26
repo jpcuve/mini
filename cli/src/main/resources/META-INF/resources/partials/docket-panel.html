@@ -1,0 +1,7 @@
+<span>
+    o: {{docket}}
+    <span data-ng-repeat="decision in model.decisions | filter: decisionMatch(docket)">
+        <br/>
+        <decision-panel decision="decision"></decision-panel>
+    </span>
+</span>
