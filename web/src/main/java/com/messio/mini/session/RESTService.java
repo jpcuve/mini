@@ -62,13 +62,8 @@ public class RESTService {
     @Path("/binders/query")
     public List<Long> queryBinders(BinderQueryModel model){
         LOGGER.debug("model: {}", model);
-        final List<Long> binderIds = new ArrayList<>();
-        binderIds.add(1L);
-        binderIds.add(2L);
-        binderIds.add(3L);
-        binderIds.add(4L);
-        binderIds.add(6L);
+        List<Long> binderIds = facade.queryBinders(model);
+        LOGGER.debug("binder ids found: {}", binderIds);
         return binderIds;
     }
-
 }

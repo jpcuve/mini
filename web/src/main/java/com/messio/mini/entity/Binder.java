@@ -10,11 +10,12 @@ import java.util.Set;
 @Table(name = "binders", catalog = "mini")
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "binder.bindersByTrademark", query = "select distinct b from Binder b join b.rights r join r.trademark t where t.name like :trademark"),
+        @NamedQuery(name = Binder.BINDER_IDS_BY_ANY_REFERENCE, query = "select distinct d.docket.binder.id from Decision d where d.reference like :reference or d.docket.reference like :reference or d.docket.binder.reference like :reference"),
         @NamedQuery(name = Binder.BINDER_BY_IDS, query = "select distinct b from Binder b where b.id in (:ids)")
 })
 public class Binder {
     public static final String BINDER_BY_IDS = "binder.byIds";
+    public static final String BINDER_IDS_BY_ANY_REFERENCE = "binder.idsByAnyReference";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
