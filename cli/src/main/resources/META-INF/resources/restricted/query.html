@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="css/cli.css"/>
+    <link rel="stylesheet" href="../css/cli.css"/>
     <!--<link rel="stylesheet" href="bower_components/primeui/themes/delta/theme.css" />-->
-    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/jquery-ui/themes/base/jquery-ui.css" />
-    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="bower_components/jquery-ui/jquery-ui.js"></script>
-    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-    <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
+    <link rel="stylesheet" type="text/css" href="../bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/jquery-ui/themes/base/jquery-ui.css" />
+    <script type="text/javascript" src="../bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="../bower_components/jquery-ui/jquery-ui.js"></script>
+    <script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="../bower_components/angular-resource/angular-resource.js"></script>
     <script type="text/javascript">
 /*global angular*/
 /*global $*/
@@ -68,7 +68,7 @@ angular
                 scope: {
                     binder: "="
                 },
-                templateUrl: "partials/binder-panel.html"
+                templateUrl: "../partials/binder-panel.html"
             };
         }])
         .directive("docketPanel", ["$log", function($log){
@@ -78,7 +78,7 @@ angular
                 scope: {
                     docket: "="
                 },
-                templateUrl: "partials/docket-panel.html"
+                templateUrl: "../partials/docket-panel.html"
             };
         }])
         .directive("decisionPanel", ["$log", function($log){
@@ -88,7 +88,7 @@ angular
                 scope: {
                     decision: "="
                 },
-                templateUrl: "partials/decision-panel.html"
+                templateUrl: "../partials/decision-panel.html"
             };
         }])
         .directive("courtPanel", ["$log", function($log){
@@ -98,7 +98,7 @@ angular
                 scope: {
                     court: "="
                 },
-                templateUrl: "partials/court-panel.html"
+                templateUrl: "../partials/court-panel.html"
             };
         }])
     </script>

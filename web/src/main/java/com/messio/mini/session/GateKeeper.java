@@ -1,7 +1,8 @@
 package com.messio.mini.session;
 
-import org.apache.oltu.oauth2.as.issuer.OAuthIssuer;
-import org.apache.oltu.oauth2.common.exception.OAuthSystemException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 
@@ -9,19 +10,22 @@ import javax.ejb.Stateless;
  * Created by jpc on 7/27/16.
  */
 @Stateless
-public class GateKeeper implements OAuthIssuer {
-    @Override
-    public String accessToken() throws OAuthSystemException {
-        return null;
+public class GateKeeper  {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GateKeeper.class);
+
+    public boolean checkClientId(String clientId){
+        return true;
     }
 
-    @Override
-    public String authorizationCode() throws OAuthSystemException {
-        return null;
+    public boolean checkClientSecret(String clientSecret){
+        return true;
     }
 
-    @Override
-    public String refreshToken() throws OAuthSystemException {
-        return null;
+    public boolean checkAuthorizationCode(String authorizationCode){
+        return true;
+    }
+
+    public boolean checkPassword(String username, String password){
+        return true;
     }
 }

@@ -40,9 +40,6 @@ public class InitialData extends DAO {
             final Preference folders = create(new Preference(systemRoot, system.getId(), "folders"));
             final Map<String, String> folderProperties = new HashMap<>();
             folderProperties.put("base", System.getProperty("java.io.tmpdir"));
-            folderProperties.put("incoming", ".");
-            folderProperties.put("invoices", ".");
-            folderProperties.put("uploaded", ".");
             folders.setProperties(folderProperties);
             update(folders);
 

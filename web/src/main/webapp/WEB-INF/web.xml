@@ -30,4 +30,7 @@
     <security-role>
         <role-name>DEVELOPER</role-name>
     </security-role>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
 </web-app>
