@@ -1,6 +1,5 @@
 package com.messio.mini;
 
-import com.messio.mini.session.OAuthService;
 import com.messio.mini.session.RESTService;
 
 import javax.ws.rs.ApplicationPath;
@@ -15,6 +14,6 @@ import java.util.Set;
 @ApplicationPath("/api")
 public class ApplicationConfiguration extends Application {
     public Set<Class<?>> getClasses(){
-        return new HashSet<>(Arrays.asList(RESTService.class, OAuthService.class));
+        return new HashSet<>(Arrays.asList(RESTService.class));
     }
 }
