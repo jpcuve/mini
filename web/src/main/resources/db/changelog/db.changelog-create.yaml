@@ -1,0 +1,269 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: jpc
+      changes:
+        - createTable:
+            tableName: actors
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+        - createTable:
+            tableName: binder
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: reference
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: first_action
+                  type: varchar(255)
+              - column:
+                  name: withdrawal
+                  type: boolean
+              - column:
+                  name: settled
+                  type: boolean
+        - createTable:
+            tableName: binder_domains
+            columns:
+              - column:
+                  name: binder_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: domain
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: courts
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: parent_id
+                  type: int
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: rights
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: discriminator
+                  type: varchar(2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: opponent
+                  type: boolean
+              - column:
+                  name: image_ids
+                  type: varchar(1024)
+              - column:
+                  name: target_id
+                  type: int
+        - createTable:
+            tableName: trademarks
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+        - createTable:
+            tableName: patents
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: application
+                  type: varchar(63)
+        - createTable:
+            tableName: pols
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: parent_id
+                  type: int
+        - createTable:
+            tableName: dockets
+            columns:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: reference
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: court_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: binder_id
+                  type: int
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: decisions
+            columns:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: reference
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: judgment_date
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: record_nature
+                  type: varchar(255)
+              - column:
+                  name: refusal
+                  type: boolean
+              - column:
+                  name: citable
+                  type: boolean
+              - column:
+                  name: winner
+                  type: varchar(255)
+              - column:
+                  name: docket_id
+                  type: int
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: documents
+            columns:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: reference
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lang
+                  type: varchar(32)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: decision_id
+                  type: int
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: honors
+            columns:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: validity
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: document_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: decision_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: right_id
+                  type: int
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: analyses
+            columns:
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: decision_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: pol_id
+                  type: int
+                  constraints:
+                    nullable: false

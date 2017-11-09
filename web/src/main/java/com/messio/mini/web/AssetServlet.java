@@ -1,7 +1,7 @@
 package com.messio.mini.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.messio.mini.session.AssetManager;
+import com.messio.mini.bean.AssetManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

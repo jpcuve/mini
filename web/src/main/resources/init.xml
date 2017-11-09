@@ -1,11 +1,5 @@
 <?xml version="1.0"?>
 <init>
-    <users>
-        <user username="jpc" password="jp33ere" locale="en">
-            <role name="ADMINISTRATOR"/>
-            <role name="DEVELOPER"/>
-        </user>
-    </users>
     <courts>
         <court ref="bru" path="World,Europe,Belgium,Brussels"/>
         <court ref="ber" path="World,Europe,Germany,Berlin"/>
@@ -37,15 +31,15 @@
         <pdf ref="fr" asset="fr.pdf"/>
         <pdf ref="de" asset="de.pdf"/>
     </pdfs>
-    <members>
-        <member ref="jpc" name="jean-pierre"/>
-        <member ref="fg" name="françois"/>
-        <member ref="evz" name="evrard"/>
-    </members>
+    <actors>
+        <actor ref="jpc" name="jean-pierre"/>
+        <actor ref="fg" name="françois"/>
+        <actor ref="evz" name="evrard"/>
+    </actors>
     <binders>
         <binder reference="binder01" firstAction="OPPOSITION">
-            <party opponent="true" member="jpc"/>
-            <party opponent="false" member="fg"/>
+            <party opponent="true" actor="jpc"/>
+            <party opponent="false" actor="fg"/>
             <trademark opponent="true" name="trademark0101" images="paper-plane,eye"/>
             <patent opponent="false" name="patent0102"/>
             <docket reference="docket01" court="ber">
@@ -56,8 +50,8 @@
             </docket>
         </binder>
         <binder reference="binder02" firstAction="OPPOSITION">
-            <party opponent="false" member="jpc"/>
-            <party opponent="true" member="fg"/>
+            <party opponent="false" actor="jpc"/>
+            <party opponent="true" actor="fg"/>
             <patent opponent="true" name="patent0201" images="backpack"/>
             <docket reference="docket02" court="bru">
                 <decision reference="decision02" judgmentDate="2012-05-19" level="FIRST_INSTANCE" recordNature="EVIDENCE">
@@ -66,9 +60,9 @@
             </docket>
         </binder>
         <binder reference="binder03" firstAction="ADMINISTRATIVE_HEARINGS">
-            <party opponent="true" member="jpc"/>
-            <party opponent="false" member="fg"/>
-            <party opponent="false" member="evz"/>
+            <party opponent="true" actor="jpc"/>
+            <party opponent="false" actor="fg"/>
+            <party opponent="false" actor="evz"/>
             <trademark opponent="true" name="coca cola"/>
             <trademark opponent="false" name="ariel"/>
             <docket reference="docket03" court="was">
@@ -78,7 +72,7 @@
             </docket>
         </binder>
         <binder reference="binder04" firstAction="OPPOSITION">
-            <party opponent="true" member="jpc"/>
+            <party opponent="true" actor="jpc"/>
             <patent ref="p1" opponent="true" name="opponent patent"/>
             <patent ref="p2" opponent="false" name="applicant patent"/>
             <docket reference="docket04" court="was">
@@ -90,9 +84,9 @@
             </docket>
         </binder>
         <binder reference="binder05" firstAction="ADMINISTRATIVE_HEARINGS">
-            <party opponent="false" member="jpc"/>
-            <party opponent="true" member="fg"/>
-            <party opponent="true" member="evz"/>
+            <party opponent="false" actor="jpc"/>
+            <party opponent="true" actor="fg"/>
+            <party opponent="true" actor="evz"/>
             <patent opponent="true" name="patent0501"/>
             <patent opponent="false" name="patent0502"/>
             <trademark opponent="true" name="skull" images="skull"/>
