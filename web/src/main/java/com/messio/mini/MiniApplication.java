@@ -4,6 +4,7 @@ import com.messio.mini.bean.AssetManager;
 import com.messio.mini.domain.*;
 import com.messio.mini.util.Path;
 import com.messio.mini.web.AssetServlet;
+import org.h2.server.web.WebServlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,6 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.core.io.support.ResourcePatternResolver;
-import org.springframework.stereotype.Service;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -219,8 +218,13 @@ public class MiniApplication extends SpringBootServletInitializer {
     @Bean
     public ServletRegistrationBean assetServlet(){
         final ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new AssetServlet(), "/asset");
-        servletRegistrationBean.setName("Asset Servlet");
         return servletRegistrationBean;
+    }
+
+    @Bean
+    ServletRegistrationBean h2servletRegistration(){
+        final ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet(), "/h2-console/*");
+        return registrationBean;
     }
 
     public static void main(String[] args) {
