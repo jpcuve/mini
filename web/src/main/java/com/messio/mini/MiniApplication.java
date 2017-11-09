@@ -192,17 +192,17 @@ public class MiniApplication extends SpringBootServletInitializer {
                     public void endElement(String uri, String localName, String qName) throws SAXException {
                         switch (qName){
                             case "binder":{
-                                LOGGER.info("binder created: {}", currentBinder.getReference());
+                                LOGGER.debug("binder created: {}", currentBinder.getReference());
                                 currentBinder = null;
                                 break;
                             }
                             case "docket":{
-                                LOGGER.info("docket created: {}", currentDocket.getReference());
+                                LOGGER.debug("docket created: {}", currentDocket.getReference());
                                 currentDocket = null;
                                 break;
                             }
                             case "decision":{
-                                LOGGER.info("decision created: {}", currentDecision.getReference());
+                                LOGGER.debug("decision created: {}", currentDecision.getReference());
                                 currentDecision = null;
                                 break;
                             }

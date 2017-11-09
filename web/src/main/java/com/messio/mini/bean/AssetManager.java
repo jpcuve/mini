@@ -42,7 +42,7 @@ public class AssetManager {
     }
 
     public String saveData(String contentType, long contentLength, InputStream is, String name) throws IOException {
-        LOGGER.info("writing data");
+        LOGGER.debug("writing data");
         final RandomAccessFile wFile = new RandomAccessFile(file, "rw");
         long position = wFile.length();
         wFile.seek(position);
@@ -51,21 +51,21 @@ public class AssetManager {
         wFile.writeUTF(name);
         wFile.writeUTF(contentType);
         wFile.writeLong(contentLength);
-        LOGGER.info("uuid: {}, name: {}, content type: {}, size: {}", uuid, name, contentType, contentLength);
+        LOGGER.debug("uuid: {}, name: {}, content type: {}, size: {}", uuid, name, contentType, contentLength);
         int read;
         while ((read = is.read(buffer)) != -1) wFile.write(buffer, 0, read);
         is.close();
         wFile.close();
         positions.put(uuid, position);
         uuids.put(uuid, String.format("%s %s %s %s", uuid, name, contentType, contentLength));
-        LOGGER.info("data written at position: {}", position);
+        LOGGER.debug("data written at position: {}", position);
         return uuid;
     }
 
     public void loadData(String uuid, HttpServletResponse res) throws IOException {
         Long position = positions.get(uuid);
         if (position == null) throw new IOException("data not found: " + uuid);
-        LOGGER.info("reading data at: {}", position);
+        LOGGER.debug("reading data at: {}", position);
         final RandomAccessFile rFile = new RandomAccessFile(file, "r");
         rFile.seek(position);
         final String uuid1 = rFile.readUTF();
@@ -74,7 +74,7 @@ public class AssetManager {
         final String contentType = rFile.readUTF();
         res.setContentType(contentType);
         long size = rFile.readLong();
-        LOGGER.info("uuid: {}, name: {}, content type: {}, size: {}", uuid, name, contentType, size);
+        LOGGER.debug("uuid: {}, name: {}, content type: {}, size: {}", uuid, name, contentType, size);
         final byte[] buf = new byte[BUFFER_SIZE];
         long read = 0;
         while (read < size){
