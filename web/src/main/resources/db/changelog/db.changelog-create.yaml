@@ -52,6 +52,25 @@ databaseChangeLog:
                   constraints:
                     nullable: false
         - createTable:
+            tableName: parties
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: binder_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: actor_id
+                  type: int
+                  constraints:
+                    nullable: false
+        - createTable:
             tableName: courts
             columns:
               - column:
@@ -213,6 +232,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: document_id
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
                   name: decision_id
                   type: int
                   constraints:
@@ -229,11 +253,6 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: validity
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: document_id
                   type: varchar(255)
                   constraints:
                     nullable: false

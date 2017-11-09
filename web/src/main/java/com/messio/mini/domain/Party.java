@@ -7,7 +7,7 @@ import javax.persistence.*;
 /**
  * Created by jpc on 1/20/15.
  */
-@Table(name = "binder_actors")
+@Table(name = "parties")
 @Entity
 @JsonIgnoreProperties({"binder", "actor"})
 public class Party {
