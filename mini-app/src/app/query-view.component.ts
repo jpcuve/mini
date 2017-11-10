@@ -1,13 +1,14 @@
 
 import {Component, OnInit} from "@angular/core";
-import {BindersViewModel, RemoteService} from "./remote.service";
+import {RemoteService} from "./remote.service";
 import {Binder, Docket} from "./domain";
+import {QueryViewModel} from "./model";
 
 @Component({
-    templateUrl: './binders-view.component.html'
+    templateUrl: './query-view.component.html'
 })
-export class BindersViewComponent implements OnInit {
-    model: BindersViewModel = { binders:[], dockets:[], decisions:[], courts:[]};
+export class QueryViewComponent implements OnInit {
+    model: QueryViewModel = { binders:[], dockets:[], decisions:[], courts:[]};
 
     constructor(private remoteService: RemoteService){
         console.log('Main component starting now');
@@ -17,10 +18,10 @@ export class BindersViewComponent implements OnInit {
         return JSON.stringify(arg);
     }
 
-    ngOnInit(): void {
-        this.remoteService.getBindersViewModel("1,2,3").subscribe(m => {
+    query(): void {
+        this.remoteService.getQueryViewModel('1,2,3').subscribe(m => {
             this.model = m;
-            let map: {[key: string]: any} = {};
+            const map: {[key: string]: any} = {};
             m.binders.forEach(binder => {
                 binder.dockets = [];
                 map['b' + binder.id] = binder;
@@ -39,5 +40,11 @@ export class BindersViewComponent implements OnInit {
                 (map['o' + decision.docketId] as Docket).decisions.push(decision);
             });
         });
+
+    }
+
+    ngOnInit(): void {
+        this.query();
     }
 }
+

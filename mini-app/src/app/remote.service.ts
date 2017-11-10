@@ -6,15 +6,8 @@ import {Observable} from "rxjs/Observable";
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import {Binder, Court, Decision, Docket} from "./domain";
+import {QueryViewModel} from "./model";
 
-
-export interface BindersViewModel {
-    binders: Binder[];
-    dockets: Docket[];
-    decisions: Decision[];
-    courts: Court[];
-}
 
 @Injectable()
 export class RemoteService {
@@ -27,7 +20,7 @@ export class RemoteService {
         console.info('base:', this.base);
     }
 
-    getBindersViewModel(commaSeparatedIds: string): Observable<BindersViewModel> {
-        return this.http.get(this.base + '/binders/' + commaSeparatedIds).map(m => m.json() as BindersViewModel);
+    getQueryViewModel(commaSeparatedIds: string): Observable<QueryViewModel> {
+        return this.http.get(this.base + '/binders/' + commaSeparatedIds).map(m => m.json() as QueryViewModel);
     }
 }

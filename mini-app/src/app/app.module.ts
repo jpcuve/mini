@@ -3,22 +3,26 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {RouterModule, Routes} from "@angular/router";
-import {BindersViewComponent} from "./binders-view.component";
+import {QueryViewComponent} from "./query-view.component";
 import {RemoteService} from "./remote.service";
 import {HttpModule} from "@angular/http";
-import {BinderPanelComponent, DecisionPanelComponent, DocketPanelComponent} from "./panel.component";
+import {
+    BinderPanelComponent, CourtPanelComponent, DecisionPanelComponent,
+    DocketPanelComponent
+} from "./panel.component";
 
 const routes: Routes = [
-    {path: '**', component: BindersViewComponent}
+    {path: '**', component: QueryViewComponent}
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
-        BindersViewComponent,
+        QueryViewComponent,
         BinderPanelComponent,
         DocketPanelComponent,
-        DecisionPanelComponent
+        DecisionPanelComponent,
+        CourtPanelComponent
     ],
     imports: [
         BrowserModule,
