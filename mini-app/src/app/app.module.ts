@@ -7,45 +7,47 @@ import {QueryViewComponent} from "./query-view.component";
 import {RemoteService} from "./remote.service";
 import {HttpModule} from "@angular/http";
 import {
-    BinderPanelComponent, CourtPanelComponent, DecisionPanelComponent,
-    DocketPanelComponent
+  BinderPanelComponent, CourtPanelComponent, DecisionPanelComponent,
+  DocketPanelComponent
 } from "./panel.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
 import {BinderQueryFormComponent} from "./form.component";
-import {PanelModule} from "primeng/primeng";
+import {ButtonModule, InputTextModule, PanelModule} from "primeng/primeng";
 
 const routes: Routes = [
-    {path: '**', component: QueryViewComponent}
+  {path: '**', component: QueryViewComponent}
 ];
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        QueryViewComponent,
+  declarations: [
+    AppComponent,
+    QueryViewComponent,
 
-        BinderPanelComponent,
-        DocketPanelComponent,
-        DecisionPanelComponent,
-        CourtPanelComponent,
+    BinderPanelComponent,
+    DocketPanelComponent,
+    DecisionPanelComponent,
+    CourtPanelComponent,
 
-        BinderQueryFormComponent,
+    BinderQueryFormComponent,
 
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        RouterModule.forRoot(routes),
-        HttpModule,
-        FormsModule,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    RouterModule.forRoot(routes),
+    HttpModule,
+    FormsModule,
 
-        PanelModule,
+    PanelModule,
+    ButtonModule,
+    InputTextModule
 
-    ],
-    providers: [
-        RemoteService
-    ],
-    bootstrap: [AppComponent]
+  ],
+  providers: [
+    RemoteService
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }

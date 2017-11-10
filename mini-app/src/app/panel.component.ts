@@ -2,17 +2,15 @@ import {Component, Input} from "@angular/core";
 import {Binder, Court, Decision, Docket} from "./domain";
 
 @Component({
-    selector: 'binder-panel',
+    selector: 'app-binder-panel',
     template: `
-        <span>b{{binder.id}}: {{binder.reference}}</span>
-        <p-panel header="Title">
-            Content
-        </p-panel>
-        <ul>
+        <p-panel header="b{{binder.id}}: {{binder.reference}}" toggleable="[true]" collapsed="[true]">
+          <ul>
             <li *ngFor="let docket of binder.dockets">
-                <docket-panel [docket]="docket"></docket-panel>
+              <app-docket-panel [docket]="docket"></app-docket-panel>
             </li>
-        </ul>
+          </ul>
+        </p-panel>
     `
 })
 export class BinderPanelComponent {
@@ -21,12 +19,12 @@ export class BinderPanelComponent {
 }
 
 @Component({
-    selector: 'docket-panel',
+    selector: 'app-docket-panel',
     template: `
-        <span>o{{docket.id}}: {{docket.reference}} (<court-panel [court]="docket.court"></court-panel>)</span>
+        <span>o{{docket.id}}: {{docket.reference}} (<app-court-panel [court]="docket.court"></app-court-panel>)</span>
         <ul>
             <li *ngFor="let decision of docket.decisions">
-                <decision-panel [decision]="decision"></decision-panel>
+                <app-decision-panel [decision]="decision"></app-decision-panel>
             </li>
         </ul>
     `
@@ -37,7 +35,7 @@ export class DocketPanelComponent {
 }
 
 @Component({
-    selector: 'decision-panel',
+    selector: 'app-decision-panel',
     template: `
         <span>d{{decision.id}}: {{decision.reference}}</span>
     `
@@ -48,7 +46,7 @@ export class DecisionPanelComponent {
 }
 
 @Component({
-    selector: 'court-panel',
+    selector: 'app-court-panel',
     template: `
         <span>c{{court.id}}: {{court.name}}</span>
     `

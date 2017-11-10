@@ -1,8 +1,6 @@
-<binder-query-form (handler)="queryFormHandler($event)"></binder-query-form>
+<app-binder-query-form (handler)="queryFormHandler($event)"></app-binder-query-form>
 <br/>
 {{json(query)}}
-<ul>
-    <li *ngFor="let binder of model.binders">
-        <binder-panel [binder]="binder"></binder-panel>
-    </li>
-</ul>
+<div *ngFor="let binder of model.binders">
+  <app-binder-panel [binder]="binder"></app-binder-panel>
+</div>

@@ -1,43 +1,41 @@
-import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {BinderQueryModel} from "./form";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {BinderQueryModel} from './form';
 
 @Component({
-    selector: 'binder-query-form',
-    template: `
-        <form #queryForm="ngForm" #formSpy>
-            {{diagnostic}}
-            <br/>
-            {{formSpy.className}}
-            <div class="form-group">
-                <label for="name" class="control-label">Reference</label>
-                <input [(ngModel)]="model.reference" #spy type="text" class="form-control" id="name" name="name" required="required"/>
-                <br/>
-                {{spy.className}}
-            </div>
-            <div class="form-group">
-                <label for="sex" class="control-label">Sex</label>
-                <select [(ngModel)]="model.sex" class="form-control" id="sex" name="sex" required="required">
-                    <option *ngFor="let s of sexes" [value]="s">{{s}}</option>
-                </select>
-            </div>
-            <div class="has-warning">
-                This is a warning
-            </div>
-            <button type="submit" class="btn btn-success" *ngIf="queryForm.valid" (click)="emit()">Search</button>
-        </form>
-    `
+  selector: 'app-binder-query-form',
+  template: `
+    <form #queryForm="ngForm" #formSpy>
+      {{diagnostic}}
+      <br/>
+      {{formSpy.className}}
+      <div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-4">
+          <span class="ui-float-label">
+            <input id="float-input" type="text" size="30" pInputText [(ngModel)]="model.reference"/> 
+            <label for="float-input">Reference</label>
+          </span>
+        </div>
+        <div class="ui-g-12 ui-md-4">
+          <button pButton="" type="button" label="Clear" icon="fa-cog" class="ui-button-secondary"></button>
+          <button pButton="" type="button" *ngIf="queryForm.valid" (click)="emit()" label="Search"
+                  icon="fa-search"></button>
+        </div>
+      </div>
+      <br/>
+    </form>
+  `
 })
 export class BinderQueryFormComponent {
-    model: BinderQueryModel = new BinderQueryModel('dec', 'male');
-    @Output('handler')
-    handler: EventEmitter<BinderQueryModel> = new EventEmitter();
-    sexes: string[] = ['male', 'female'];
+  model: BinderQueryModel = new BinderQueryModel('dec', 'male');
+  @Output('handler')
+  handler: EventEmitter<BinderQueryModel> = new EventEmitter();
+  sexes: string[] = ['male', 'female'];
 
-    emit(): void {
-        this.handler.emit(this.model);
-    }
+  emit(): void {
+    this.handler.emit(this.model);
+  }
 
-    get diagnostic(): string {
-        return JSON.stringify(this.model);
-    }
+  get diagnostic(): string {
+    return JSON.stringify(this.model);
+  }
 }
