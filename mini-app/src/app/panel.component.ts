@@ -5,6 +5,9 @@ import {Binder, Court, Decision, Docket} from "./domain";
     selector: 'binder-panel',
     template: `
         <span>b{{binder.id}}: {{binder.reference}}</span>
+        <p-panel header="Title">
+            Content
+        </p-panel>
         <ul>
             <li *ngFor="let docket of binder.dockets">
                 <docket-panel [docket]="docket"></docket-panel>
