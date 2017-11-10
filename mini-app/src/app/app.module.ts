@@ -10,6 +10,8 @@ import {
     BinderPanelComponent, CourtPanelComponent, DecisionPanelComponent,
     DocketPanelComponent
 } from "./panel.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FormsModule} from "@angular/forms";
 
 const routes: Routes = [
     {path: '**', component: QueryViewComponent}
@@ -19,15 +21,19 @@ const routes: Routes = [
     declarations: [
         AppComponent,
         QueryViewComponent,
+
         BinderPanelComponent,
         DocketPanelComponent,
         DecisionPanelComponent,
-        CourtPanelComponent
+        CourtPanelComponent,
+
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         RouterModule.forRoot(routes),
         HttpModule,
+        FormsModule,
 
 
     ],

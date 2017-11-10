@@ -1,3 +1,25 @@
+<form #queryForm="ngForm" #formSpy>
+    {{diagnostic}}
+    <br/>
+    {{formSpy.className}}
+    <div class="form-group">
+        <label for="name" class="control-label">Reference</label>
+        <input [(ngModel)]="query.reference" #spy type="text" class="form-control" id="name" name="name" required="required"/>
+        <br/>
+        {{spy.className}}
+    </div>
+    <div class="form-group">
+        <label for="sex" class="control-label">Sex</label>
+        <select [(ngModel)]="query.sex" class="form-control" id="sex" name="sex" required="required">
+            <option *ngFor="let s of sexes" [value]="s">{{s}}</option>
+        </select>
+    </div>
+    <div class="has-warning">
+        This is a warning
+    </div>
+    <button type="submit" class="btn btn-success" *ngIf="queryForm.valid" (click)="find()">Search</button>
+</form>
+
 <br/>
 <ul>
     <li *ngFor="let binder of model.binders">

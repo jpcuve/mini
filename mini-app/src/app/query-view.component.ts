@@ -3,12 +3,16 @@ import {Component, OnInit} from "@angular/core";
 import {RemoteService} from "./remote.service";
 import {Binder, Docket} from "./domain";
 import {QueryViewModel} from "./model";
+import {QueryFormModel} from "./form";
 
 @Component({
     templateUrl: './query-view.component.html'
 })
 export class QueryViewComponent implements OnInit {
     model: QueryViewModel = { binders:[], dockets:[], decisions:[], courts:[]};
+    query: QueryFormModel = new QueryFormModel("1", "male");
+    sexes: string[] = ['male', 'female'];
+
 
     constructor(private remoteService: RemoteService){
         console.log('Main component starting now');
@@ -18,8 +22,9 @@ export class QueryViewComponent implements OnInit {
         return JSON.stringify(arg);
     }
 
-    query(): void {
-        this.remoteService.getQueryViewModel('1,2,3').subscribe(m => {
+    find(): void {
+        console.log(JSON.stringify(this.query));
+        this.remoteService.getQueryViewModel(this.query.reference).subscribe(m => {
             this.model = m;
             const map: {[key: string]: any} = {};
             m.binders.forEach(binder => {
@@ -43,8 +48,12 @@ export class QueryViewComponent implements OnInit {
 
     }
 
+    get diagnostic(): string {
+        return JSON.stringify(this.query);
+    }
+
     ngOnInit(): void {
-        this.query();
+        this.find();
     }
 }
 
