@@ -10,9 +10,7 @@ import {QueryFormModel} from "./form";
 })
 export class QueryViewComponent implements OnInit {
     model: QueryViewModel = { binders:[], dockets:[], decisions:[], courts:[]};
-    query: QueryFormModel = new QueryFormModel("1", "male");
-    sexes: string[] = ['male', 'female'];
-
+    query: QueryFormModel;
 
     constructor(private remoteService: RemoteService){
         console.log('Main component starting now');
@@ -22,9 +20,8 @@ export class QueryViewComponent implements OnInit {
         return JSON.stringify(arg);
     }
 
-    find(): void {
-        console.log(JSON.stringify(this.query));
-        this.remoteService.getQueryViewModel(this.query.reference).subscribe(m => {
+    queryFormHandler(query: QueryFormModel): void {
+        this.remoteService.getQueryViewModel(query.reference).subscribe(m => {
             this.model = m;
             const map: {[key: string]: any} = {};
             m.binders.forEach(binder => {
@@ -44,16 +41,11 @@ export class QueryViewComponent implements OnInit {
                 map['d' + decision.id] = decision;
                 (map['o' + decision.docketId] as Docket).decisions.push(decision);
             });
+            this.query = query;
         });
-
-    }
-
-    get diagnostic(): string {
-        return JSON.stringify(this.query);
     }
 
     ngOnInit(): void {
-        this.find();
     }
 }
 
