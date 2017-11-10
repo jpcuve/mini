@@ -10,6 +10,7 @@ export interface Binder {
   withdrawal: boolean;
   settled: boolean;
   domains: string[];
+  dockets: Docket[];
 }
 
 export interface Party {
@@ -47,7 +48,10 @@ export interface Pol {
 export interface Docket {
   id: number;
   binderId: number;
+  courtId: number;
   reference: string;
+  court: Court;
+  decisions: Decision[];
 }
 
 export interface Decision {
