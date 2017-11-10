@@ -54,7 +54,7 @@ public class ApiController {
     }
 
     @PostMapping("/binders/query")
-    public List<Long> queryBinders(BinderQueryModel model){
+    public List<Long> queryBinders(@RequestBody BinderQueryModel model){
         LOGGER.debug("model: {}", model);
         List<Long> binderIds = facade.queryBinders(model);
         LOGGER.debug("binder ids found: {}", binderIds);

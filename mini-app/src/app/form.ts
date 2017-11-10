@@ -1,4 +1,4 @@
-export class QueryFormModel{
+export class BinderQueryModel{
     constructor(reference: string, sex: string){
         this.reference = reference;
         this.sex = sex;

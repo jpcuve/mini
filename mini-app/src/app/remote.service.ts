@@ -7,6 +7,7 @@ import {Http} from "@angular/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {QueryViewModel} from "./model";
+import {BinderQueryModel} from "./form";
 
 
 @Injectable()
@@ -18,6 +19,10 @@ export class RemoteService {
         const cs: string[] = (parseInt(w.location.port) < 8080 ? ['http://', w.location.hostname, ':8080'] : []);
         this.base = cs.concat(['/api']).join('');
         console.info('base:', this.base);
+    }
+
+    queryBinders(model: BinderQueryModel): Observable<number[]> {
+        return this.http.post(this.base + '/binders/query', model).map(m => m.json() as number[]);
     }
 
     getQueryViewModel(commaSeparatedIds: string): Observable<QueryViewModel> {

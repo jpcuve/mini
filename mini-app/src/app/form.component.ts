@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
-import {QueryFormModel} from "./form";
+import {BinderQueryModel} from "./form";
 
 @Component({
-    selector: 'query-form',
+    selector: 'binder-query-form',
     template: `
         <form #queryForm="ngForm" #formSpy>
             {{diagnostic}}
@@ -27,10 +27,10 @@ import {QueryFormModel} from "./form";
         </form>
     `
 })
-export class QueryFormComponent {
-    model: QueryFormModel = new QueryFormModel('1,2,3', 'male');
+export class BinderQueryFormComponent {
+    model: BinderQueryModel = new BinderQueryModel('1,2,3', 'male');
     @Output('handler')
-    handler: EventEmitter<QueryFormModel> = new EventEmitter();
+    handler: EventEmitter<BinderQueryModel> = new EventEmitter();
     sexes: string[] = ['male', 'female'];
 
     emit(): void {
