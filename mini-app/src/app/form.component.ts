@@ -4,20 +4,20 @@ import {BinderQueryModel} from './form.type';
 @Component({
   selector: 'app-binder-query-form',
   template: `
-    <form #queryForm="ngForm" #formSpy name="binderQueryForm">
-      {{diagnostic}}
-      <br/>
-      {{formSpy.className}}
-      <div class="ui-g ui-fluid">
-        <div class="ui-g-12 ui-md-4">
+    <form class="ui-widget" #queryForm="ngForm" #formSpy name="binderQueryForm">
+      <div class="ui-g">
+          <div class="ui-g-12">
+              <span>{{diagnostic}}</span>
+          </div>
+        <div class="ui-g-12">
           <span class="ui-float-label">
-            <input id="float-input" type="text" size="30" pInputText [(ngModel)]="model.reference"/> 
+            <input name="reference" type="text" size="30" pInputText [(ngModel)]="model.reference"/> 
             <label for="float-input">Reference</label>
           </span>
         </div>
-        <div class="ui-g-12 ui-md-4">
-          <button pButton="" type="button" label="Clear" icon="fa-cog" class="ui-button-secondary"></button>
-          <button pButton="" type="button" *ngIf="queryForm.valid" (click)="emit()" label="Search"
+        <div class="ui-g-12">
+          <button pButton type="button" label="Clear" icon="fa-cog" class="ui-button-secondary" (click)="clear()"></button>
+          <button pButton type="button" *ngIf="queryForm.valid" (click)="emit()" label="Search"
                   icon="fa-search"></button>
         </div>
       </div>
@@ -30,6 +30,10 @@ export class BinderQueryFormComponent {
   @Output('handler')
   handler: EventEmitter<BinderQueryModel> = new EventEmitter();
   sexes: string[] = ['male', 'female'];
+
+  clear(): void {
+      this.model.clear();
+  }
 
   emit(): void {
     this.handler.emit(this.model);

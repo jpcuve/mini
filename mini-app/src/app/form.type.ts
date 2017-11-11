@@ -5,4 +5,9 @@ export class BinderQueryModel {
     }
     reference: string;
     sex: string;
+
+    clear() {
+        delete this.reference;
+        delete this.sex;
+    }
 }
