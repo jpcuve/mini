@@ -1,9 +1,9 @@
 
 import {Component, OnInit} from "@angular/core";
 import {RemoteService} from "./remote.service";
-import {Binder, Docket} from "./domain";
-import {QueryViewModel} from "./model";
-import {BinderQueryModel} from "./form";
+import {Binder, Docket} from "./domain.type";
+import {QueryViewModel} from "./model.type";
+import {BinderQueryModel} from "./form.type";
 
 @Component({
     templateUrl: './query-view.component.html'

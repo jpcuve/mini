@@ -1,5 +1,5 @@
 
-import {Binder, Court, Decision, Docket} from "./domain";
+import {Binder, Court, Decision, Docket} from "./domain.type";
 
 export interface QueryViewModel {
     binders: Binder[];

@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {Binder, Court, Decision, Docket} from "./domain";
+import {Binder, Court, Decision, Docket} from "./domain.type";
 
 @Component({
     selector: 'app-binder-panel',

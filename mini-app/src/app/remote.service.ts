@@ -6,8 +6,8 @@ import {Observable} from "rxjs/Observable";
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import {QueryViewModel} from "./model";
-import {BinderQueryModel} from "./form";
+import {QueryViewModel} from "./model.type";
+import {BinderQueryModel} from "./form.type";
 
 
 @Injectable()

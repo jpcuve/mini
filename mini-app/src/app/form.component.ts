@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {BinderQueryModel} from './form';
+import {BinderQueryModel} from './form.type';
 
 @Component({
   selector: 'app-binder-query-form',
   template: `
-    <form #queryForm="ngForm" #formSpy>
+    <form #queryForm="ngForm" #formSpy name="binderQueryForm">
       {{diagnostic}}
       <br/>
       {{formSpy.className}}
