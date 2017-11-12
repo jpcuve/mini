@@ -108,7 +108,7 @@ export class CourtPanelComponent {
 @Component({
     selector: 'app-images-panel',
     template: `
-        <img *ngFor="let id of ids" src="http://localhost:8080/asset?uuid={{id}}"/>
+        <img *ngFor="let id of ids" src="http://localhost:8080/asset?uuid={{id}}"/> <!-- TODO url -->
     `
 })
 export class ImagesPanelComponent {
