@@ -29,8 +29,12 @@ public class AssetManager {
 
     @PostConstruct
     public void init() throws IOException {
-        this.file = File.createTempFile("temporary", "bin");
-        file.deleteOnExit();
+        try{
+            this.file = File.createTempFile("temporary", "bin");
+            file.deleteOnExit();
+        } catch (IOException e){
+            LOGGER.error("Cannot initialize asset manager", e);
+        }
     }
 
     public String saveData(Part part) throws IOException {

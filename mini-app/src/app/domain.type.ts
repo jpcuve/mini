@@ -12,12 +12,13 @@ export interface Binder {
   domains: string[];
   dockets: Docket[];
   parties: Party[];
+  rights: Right[]
 }
 
 export interface Party {
   actorId: number;
   binderId: number;
-  defendant: boolean;
+  plaintiff: boolean;
   actor: Actor;
 }
 
@@ -29,9 +30,10 @@ export interface Court {
 
 export interface Right {
   id: number;
+  binderId: number;
   discriminator: string;
-  opponent: boolean;
-  imageIds: number[];
+  plaintiff: boolean;
+  imageIds: string;
 }
 
 export interface Trademark extends Right {

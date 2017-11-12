@@ -13,9 +13,15 @@ import java.util.stream.Collectors;
  */
 @Table(name = "rights")
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Right.RIGHT_BY_IDS, query = "select distinct r.id, r from Right r where r.id in (:ids)"),
+        @NamedQuery(name = Right.RIGHT_BY_BINDER_IDS, query = "select distinct r.id, r from Right r where r.binder.id in (:ids)")
+})
 @DiscriminatorColumn(name = "discriminator", length = 2)
 @JsonIgnoreProperties({"binder", "patent", "trademark"})
 public abstract class Right {
+    public static final String RIGHT_BY_BINDER_IDS = "rightByBinderIds";
+    public static final String RIGHT_BY_IDS = "rightByIds";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +30,8 @@ public abstract class Right {
     @Column(name = "discriminator", insertable = false, updatable = false)
     private String discriminator;
     @Basic
-    @Column(name = "opponent")
-    private boolean opponent;
+    @Column(name = "plaintiff")
+    private boolean plaintiff;
     @Basic
     @Column(name = "image_ids", length = 1024)
     private String imageIds;
@@ -50,9 +56,9 @@ public abstract class Right {
     public Right() {
     }
 
-    protected Right(Binder binder, boolean opponent) {
+    protected Right(Binder binder, boolean plaintiff) {
         this.binder = binder;
-        this.opponent = opponent;
+        this.plaintiff = plaintiff;
     }
 
     public abstract String getDescriptor();
@@ -83,12 +89,12 @@ public abstract class Right {
         this.discriminator = discriminator;
     }
 
-    public boolean isOpponent() {
-        return opponent;
+    public boolean isPlaintiff() {
+        return plaintiff;
     }
 
-    public void setOpponent(boolean opponent) {
-        this.opponent = opponent;
+    public void setPlaintiff(boolean opponent) {
+        this.plaintiff = opponent;
     }
 
     public List<String> getImageIds(){

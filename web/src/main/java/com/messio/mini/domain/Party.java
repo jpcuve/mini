@@ -26,8 +26,8 @@ public class Party {
     @JoinColumn(name = "actor_id")
     private Actor actor;
     @Basic
-    @Column(name = "defendant")
-    private boolean defendant;
+    @Column(name = "plaintiff")
+    private boolean plaintiff;
     @Basic
     @Column(name = "binder_id", insertable = false, updatable = false)
     private Long binderId;
@@ -38,10 +38,10 @@ public class Party {
     public Party() {
     }
 
-    public Party(Binder binder, Actor actor, boolean defendant) {
+    public Party(Binder binder, Actor actor, boolean plaintiff) {
         this.binder = binder;
         this.actor = actor;
-        this.defendant = defendant;
+        this.plaintiff = plaintiff;
     }
 
     public Long getId() {
@@ -68,12 +68,12 @@ public class Party {
         this.actor = actor;
     }
 
-    public boolean isDefendant() {
-        return defendant;
+    public boolean isPlaintiff() {
+        return plaintiff;
     }
 
-    public void setDefendant(boolean opponent) {
-        this.defendant = opponent;
+    public void setPlaintiff(boolean opponent) {
+        this.plaintiff = opponent;
     }
 
     public Long getBinderId() {

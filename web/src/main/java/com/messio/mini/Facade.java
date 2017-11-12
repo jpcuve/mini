@@ -115,6 +115,22 @@ public class Facade {
                 .collect(Collectors.toMap(os -> (Long) os[0], os -> (Actor) os[1]));
     }
 
+    public Map<Long, Right> findRightsByBinderIds(Collection<Long> binderIds){
+        return em.createNamedQuery(Right.RIGHT_BY_BINDER_IDS, Object[].class)
+                .setParameter("ids", binderIds)
+                .getResultList()
+                .stream()
+                .collect(Collectors.toMap(os -> (Long) os[0], os -> (Right) os[1]));
+    }
+
+    public Map<Long, Right> findRights(Collection<Long> ids){
+        return em.createNamedQuery(Right.RIGHT_BY_IDS, Object[].class)
+                .setParameter("ids", ids)
+                .getResultList()
+                .stream()
+                .collect(Collectors.toMap(os -> (Long) os[0], os -> (Right) os[1]));
+    }
+
     public List<Long> queryBinders(BinderQueryModel model){
         // build query
         final String ref = String.format("%%%s%%", model.getReference());

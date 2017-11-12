@@ -38,10 +38,10 @@
     </actors>
     <binders>
         <binder reference="binder01" firstAction="OPPOSITION">
-            <party opponent="true" actor="jpc"/>
-            <party opponent="false" actor="fg"/>
-            <trademark opponent="true" name="trademark0101" images="paper-plane,eye"/>
-            <patent opponent="false" name="patent0102"/>
+            <party plaintiff="true" actor="jpc"/>
+            <party plaintiff="false" actor="fg"/>
+            <trademark plaintiff="true" name="trademark0101" images="paper-plane,eye"/>
+            <patent plaintiff="false" name="patent0102"/>
             <docket reference="docket01" court="ber">
                 <decision reference="decision01" judgmentDate="2013-10-20" level="FIRST_INSTANCE" recordNature="EVIDENCE">
                     <document locale="en" pdf="en"/>
@@ -50,9 +50,9 @@
             </docket>
         </binder>
         <binder reference="binder02" firstAction="OPPOSITION">
-            <party opponent="false" actor="jpc"/>
-            <party opponent="true" actor="fg"/>
-            <patent opponent="true" name="patent0201" images="backpack"/>
+            <party plaintiff="false" actor="jpc"/>
+            <party plaintiff="true" actor="fg"/>
+            <patent plaintiff="true" name="patent0201" images="backpack"/>
             <docket reference="docket02" court="bru">
                 <decision reference="decision02" judgmentDate="2012-05-19" level="FIRST_INSTANCE" recordNature="EVIDENCE">
                     <document locale="fr" pdf="fr"/>
@@ -60,11 +60,11 @@
             </docket>
         </binder>
         <binder reference="binder03" firstAction="ADMINISTRATIVE_HEARINGS">
-            <party opponent="true" actor="jpc"/>
-            <party opponent="false" actor="fg"/>
-            <party opponent="false" actor="evz"/>
-            <trademark opponent="true" name="coca cola"/>
-            <trademark opponent="false" name="ariel"/>
+            <party plaintiff="true" actor="jpc"/>
+            <party plaintiff="false" actor="fg"/>
+            <party plaintiff="false" actor="evz"/>
+            <trademark plaintiff="true" name="coca cola"/>
+            <trademark plaintiff="false" name="ariel"/>
             <docket reference="docket03" court="was">
                 <decision reference="decision03" judgmentDate="2014-10-20" level="FIRST_INSTANCE" recordNature="EVIDENCE">
                     <document locale="en" pdf="en"/>
@@ -72,9 +72,9 @@
             </docket>
         </binder>
         <binder reference="binder04" firstAction="OPPOSITION">
-            <party opponent="true" actor="jpc"/>
-            <patent ref="p1" opponent="true" name="opponent patent"/>
-            <patent ref="p2" opponent="false" name="applicant patent"/>
+            <party plaintiff="true" actor="jpc"/>
+            <patent ref="p1" plaintiff="true" name="plaintiff patent"/>
+            <patent ref="p2" plaintiff="false" name="applicant patent"/>
             <docket reference="docket04" court="was">
                 <decision reference="decision04" judgmentDate="2014-10-22" level="JUDICIAL_REVIEW" recordNature="VERDICT">
                     <document locale="en" pdf="en"/>
@@ -84,14 +84,14 @@
             </docket>
         </binder>
         <binder reference="binder05" firstAction="ADMINISTRATIVE_HEARINGS">
-            <party opponent="false" actor="jpc"/>
-            <party opponent="true" actor="fg"/>
-            <party opponent="true" actor="evz"/>
-            <patent opponent="true" name="patent0501"/>
-            <patent opponent="false" name="patent0502"/>
-            <trademark opponent="true" name="skull" images="skull"/>
-            <trademark opponent="false" name="rocket" images="rocket"/>
-            <trademark opponent="false" name="pizza" images="pizza,muffin,donut"/>
+            <party plaintiff="false" actor="jpc"/>
+            <party plaintiff="true" actor="fg"/>
+            <party plaintiff="true" actor="evz"/>
+            <patent plaintiff="true" name="patent0501"/>
+            <patent plaintiff="false" name="patent0502"/>
+            <trademark plaintiff="true" name="skull" images="skull"/>
+            <trademark plaintiff="false" name="rocket" images="rocket"/>
+            <trademark plaintiff="false" name="pizza" images="pizza,muffin,donut"/>
             <docket reference="docket0501" court="was">
                 <decision reference="decision050101" judgmentDate="2014-10-22" level="PRELIMINARY_RULING" recordNature="HEARING">
                     <document locale="en" pdf="en"/>

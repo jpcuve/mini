@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {Actor, Binder, Court, Decision, Docket, Party} from "./domain.type";
+import {Actor, Binder, Court, Decision, Docket, Party, Right} from "./domain.type";
 
 @Component({
     selector: 'app-binder-panel',
@@ -8,6 +8,11 @@ import {Actor, Binder, Court, Decision, Docket, Party} from "./domain.type";
             <ul>
                 <li *ngFor="let party of binder.parties">
                     <app-party-panel [party]="party"></app-party-panel>
+                </li>
+            </ul>
+            <ul>
+                <li *ngFor="let right of binder.rights">
+                    <app-right-panel [right]="right"></app-right-panel>
                 </li>
             </ul>
             <ul>
@@ -26,13 +31,30 @@ export class BinderPanelComponent {
 @Component({
     selector: 'app-party-panel',
     template: `
-        <span>{{party.defendant}}:  <app-actor-panel [actor]="party.actor"></app-actor-panel></span>
+        <app-actor-panel [actor]="party.actor"></app-actor-panel>
+        <span *ngIf="party.plaintiff">(Plaintiff)</span>
+        <span *ngIf="!party.plaintiff">(Defendant)</span>
     `
 })
 export class PartyPanelComponent {
     @Input('party')
     party: Party;
 }
+
+@Component({
+    selector: 'app-right-panel',
+    template: `
+        <span>{{right.discriminator}}</span>
+        <span>{{right.imageIds}}</span>
+        <span *ngIf="right.plaintiff">(Plaintiff)</span>
+        <span *ngIf="!right.plaintiff">(Defendant)</span>
+    `
+})
+export class RightPanelComponent {
+    @Input('right')
+    right: Right;
+}
+
 
 @Component({
     selector: 'app-actor-panel',

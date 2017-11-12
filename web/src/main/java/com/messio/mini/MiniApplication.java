@@ -123,7 +123,7 @@ public class MiniApplication extends SpringBootServletInitializer {
                             }
                             case "party":{
                                 if (currentBinder != null){
-                                    facade.create(new Party(currentBinder, actorMap.get(attributes.getValue("actor")), Boolean.parseBoolean(attributes.getValue("opponent"))));
+                                    facade.create(new Party(currentBinder, actorMap.get(attributes.getValue("actor")), Boolean.parseBoolean(attributes.getValue("plaintiff"))));
                                 }
                                 break;
                             }
@@ -153,7 +153,7 @@ public class MiniApplication extends SpringBootServletInitializer {
                             }
                             case "trademark":{
                                 if (currentBinder != null){
-                                    final Trademark trademark = facade.create(new Trademark(currentBinder, Boolean.parseBoolean(attributes.getValue("opponent")), attributes.getValue("name")));
+                                    final Trademark trademark = facade.create(new Trademark(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name")));
                                     if (attributes.getValue("images") != null){
                                         updateImageIds(trademark, attributes.getValue("images").split(","));
                                     }
@@ -166,7 +166,7 @@ public class MiniApplication extends SpringBootServletInitializer {
                             }
                             case "patent":{
                                 if (currentBinder != null){
-                                    final Patent patent = facade.create(new Patent(currentBinder, Boolean.parseBoolean(attributes.getValue("opponent")), attributes.getValue("name")));
+                                    final Patent patent = facade.create(new Patent(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name")));
                                     if (attributes.getValue("images") != null){
                                         updateImageIds(patent, attributes.getValue("images").split(","));
                                     }
