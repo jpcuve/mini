@@ -11,11 +11,14 @@ export interface Binder {
   settled: boolean;
   domains: string[];
   dockets: Docket[];
+  parties: Party[];
 }
 
 export interface Party {
   actorId: number;
   binderId: number;
+  defendant: boolean;
+  actor: Actor;
 }
 
 export interface Court {

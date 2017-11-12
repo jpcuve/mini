@@ -1,7 +1,7 @@
 
 import {Component, OnInit} from "@angular/core";
 import {RemoteService} from "./remote.service";
-import {Binder, Decision, Docket} from "./domain.type";
+import {Binder, Decision, Docket, Party} from "./domain.type";
 import {QueryViewModel} from "./model.type";
 import {BinderQueryModel} from "./form.type";
 
@@ -30,6 +30,7 @@ export class QueryViewComponent implements OnInit {
                 for (let id in m.binders){
                     let binder: Binder = m.binders[id];
                     binder.dockets = [];
+                    binder.parties = [];
                     this.binders.push(binder);
                 }
                 for (let id in m.dockets){
@@ -41,6 +42,11 @@ export class QueryViewComponent implements OnInit {
                 for (let id in m.decisions){
                     let decision: Decision = m.decisions[id];
                     m.dockets[decision.docketId].decisions.push(decision);
+                }
+                for (let id in m.parties){
+                    let party: Party = m.parties[id];
+                    party.actor = m.actors[party.actorId];
+                    m.binders[party.binderId].parties.push(party);
                 }
                 this.query = query;
             });

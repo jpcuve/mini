@@ -7,8 +7,9 @@ import {QueryViewComponent} from "./query-view.component";
 import {RemoteService} from "./remote.service";
 import {HttpModule} from "@angular/http";
 import {
+    ActorPanelComponent,
     BinderPanelComponent, CourtPanelComponent, DecisionPanelComponent,
-    DocketPanelComponent
+    DocketPanelComponent, PartyPanelComponent
 } from "./panel.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
@@ -28,6 +29,8 @@ const routes: Routes = [
         DocketPanelComponent,
         DecisionPanelComponent,
         CourtPanelComponent,
+        PartyPanelComponent,
+        ActorPanelComponent,
 
         BinderQueryFormComponent,
 

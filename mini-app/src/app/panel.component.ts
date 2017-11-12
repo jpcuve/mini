@@ -1,21 +1,48 @@
 import {Component, Input} from "@angular/core";
-import {Binder, Court, Decision, Docket} from "./domain.type";
+import {Actor, Binder, Court, Decision, Docket, Party} from "./domain.type";
 
 @Component({
     selector: 'app-binder-panel',
     template: `
         <p-panel header="b{{binder.id}}: {{binder.reference}}" toggleable="[true]" collapsed="[true]">
-          <ul>
-            <li *ngFor="let docket of binder.dockets">
-              <app-docket-panel [docket]="docket"></app-docket-panel>
-            </li>
-          </ul>
+            <ul>
+                <li *ngFor="let party of binder.parties">
+                    <app-party-panel [party]="party"></app-party-panel>
+                </li>
+            </ul>
+            <ul>
+                <li *ngFor="let docket of binder.dockets">
+                    <app-docket-panel [docket]="docket"></app-docket-panel>
+                </li>
+            </ul>
         </p-panel>
     `
 })
 export class BinderPanelComponent {
     @Input('binder')
     binder: Binder;
+}
+
+@Component({
+    selector: 'app-party-panel',
+    template: `
+        <span>{{party.defendant}}:  <app-actor-panel [actor]="party.actor"></app-actor-panel></span>
+    `
+})
+export class PartyPanelComponent {
+    @Input('party')
+    party: Party;
+}
+
+@Component({
+    selector: 'app-actor-panel',
+    template: `
+        <span>a{{actor.id}}: {{actor.name}}</span>
+    `
+})
+export class ActorPanelComponent {
+    @Input('actor')
+    actor: Actor;
 }
 
 @Component({
