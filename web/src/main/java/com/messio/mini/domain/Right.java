@@ -47,6 +47,9 @@ public abstract class Right {
     @OneToOne
     @JoinColumn(name = "target_id", insertable = false, updatable = false)
     private Patent patent;
+    @Basic
+    @Column(name = "binder_id", insertable = false, updatable = false)
+    private Long binderId;
 
     @Transient
     private String descriptor;
@@ -142,5 +145,13 @@ public abstract class Right {
 
     public void setPatent(Patent patent) {
         this.patent = patent;
+    }
+
+    public Long getBinderId() {
+        return binderId;
+    }
+
+    public void setBinderId(Long binderId) {
+        this.binderId = binderId;
     }
 }

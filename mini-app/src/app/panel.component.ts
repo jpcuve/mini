@@ -45,7 +45,7 @@ export class PartyPanelComponent {
     selector: 'app-right-panel',
     template: `
         <span>{{right.discriminator}}</span>
-        <span>{{right.imageIds}}</span>
+        <app-images-panel [ids]="right.imageIds"></app-images-panel>
         <span *ngIf="right.plaintiff">(Plaintiff)</span>
         <span *ngIf="!right.plaintiff">(Defendant)</span>
     `
@@ -105,3 +105,13 @@ export class CourtPanelComponent {
     court: Court;
 }
 
+@Component({
+    selector: 'app-images-panel',
+    template: `
+        <img *ngFor="let id of ids" src="http://localhost:8080/asset?uuid={{id}}"/>
+    `
+})
+export class ImagesPanelComponent {
+    @Input('ids')
+    ids: string[];
+}

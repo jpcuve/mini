@@ -216,7 +216,7 @@ public class MiniApplication extends SpringBootServletInitializer {
 
     @Bean
     public ServletRegistrationBean assetServlet(){
-        final ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new AssetServlet(), "/asset");
+        final ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new AssetServlet(assetManager), "/asset");
         return servletRegistrationBean;
     }
 

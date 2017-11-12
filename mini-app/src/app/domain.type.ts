@@ -33,7 +33,7 @@ export interface Right {
   binderId: number;
   discriminator: string;
   plaintiff: boolean;
-  imageIds: string;
+  imageIds: string[];
 }
 
 export interface Trademark extends Right {

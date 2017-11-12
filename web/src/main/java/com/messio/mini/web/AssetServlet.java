@@ -4,11 +4,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.messio.mini.bean.AssetManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import javax.ejb.EJB;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,12 +22,14 @@ import java.util.Map;
 /**
  * Created by jpc on 10/29/14.
  */
-@WebServlet(urlPatterns = { "/asset" })
-@MultipartConfig
+@Service
 public class AssetServlet extends HttpServlet {
     private static final Logger LOGGER = LoggerFactory.getLogger(AssetServlet.class);
-    @EJB
-    private AssetManager assetManager;
+    private final AssetManager assetManager;
+
+    public AssetServlet(AssetManager assetManager) {
+        this.assetManager = assetManager;
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
