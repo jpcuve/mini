@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Binder.BINDER_IDS_BY_ANY_REFERENCE, query = "select distinct d.docket.binder.id from Decision d where d.reference like :reference or d.docket.reference like :reference or d.docket.binder.reference like :reference"),
-        @NamedQuery(name = Binder.BINDER_BY_IDS, query = "select distinct b from Binder b where b.id in (:ids)"),
+        @NamedQuery(name = Binder.BINDER_BY_IDS, query = "select distinct b.id, b from Binder b where b.id in (:ids)"),
         @NamedQuery(name = Binder.BINDER_COUNT_IDS, query = "select count(b.id) from Binder b")
 })
 public class Binder {

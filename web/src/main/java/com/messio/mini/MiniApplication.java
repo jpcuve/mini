@@ -123,7 +123,7 @@ public class MiniApplication extends SpringBootServletInitializer {
                             }
                             case "party":{
                                 if (currentBinder != null){
-                                    facade.create(new Party(currentBinder, actorMap.get(attributes.getValue("member")), Boolean.parseBoolean(attributes.getValue("opponent"))));
+                                    facade.create(new Party(currentBinder, actorMap.get(attributes.getValue("actor")), Boolean.parseBoolean(attributes.getValue("opponent"))));
                                 }
                                 break;
                             }

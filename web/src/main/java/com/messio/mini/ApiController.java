@@ -2,10 +2,7 @@ package com.messio.mini;
 
 
 import com.messio.mini.bean.model.BinderQueryModel;
-import com.messio.mini.domain.Binder;
-import com.messio.mini.domain.Court;
-import com.messio.mini.domain.Decision;
-import com.messio.mini.domain.Docket;
+import com.messio.mini.domain.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,16 +37,21 @@ public class ApiController {
     public Map<String, Object> binders(@PathVariable("ids") String idsAsCommaSeparatedList){
         final Map<String, Object> map = new HashMap<>();
         final List<Long> binderIds = computeIds(idsAsCommaSeparatedList);
-        final List<Binder> binders = facade.findBinders(binderIds);
-        final List<Docket> dockets = facade.findDocketsByBinderIds(binderIds);
-        final List<Long> docketIds = dockets.stream().map(Docket::getId).collect(Collectors.toList());
-        final List<Decision> decisions = facade.findDecisionsByDocketIds(docketIds);
-        final List<Long> courtIds = dockets.stream().map(Docket::getCourtId).collect(Collectors.toList());
-        final List<Court> courts = facade.findCourts(courtIds);
+        final Map<Long, Binder> binders = facade.findBinders(binderIds);
+        final Map<Long, Docket> dockets = facade.findDocketsByBinderIds(binderIds);
+        final Map<Long, Decision> decisions = facade.findDecisionsByDocketIds(dockets.keySet());
+        final Set<Long> courtIds = dockets.values().stream().map(Docket::getCourtId).collect(Collectors.toSet());
+        final Map<Long, Court> courts = facade.findCourts(courtIds);
+        final Map<Long, Party> parties = facade.findPartiesByBinderIds(binderIds);
+        final Set<Long> actorIds = parties.values().stream().map(Party::getActorId).collect(Collectors.toSet());
+        final Map<Long, Actor> actors = facade.findActors(actorIds);
+
         map.put("binders", binders);
         map.put("dockets", dockets);
         map.put("decisions", decisions);
         map.put("courts", courts);
+        map.put("parties", parties);
+        map.put("actors", actors);
         return map;
     }
 

@@ -12,8 +12,8 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Docket.DOCKET_ALL, query = "select o from Docket o"),
-        @NamedQuery(name = Docket.DOCKET_BY_IDS, query = "select distinct o from Docket o where o.id in (:ids)"),
-        @NamedQuery(name = Docket.DOCKET_BY_BINDER_IDS, query = "select distinct o from Docket o where o.binder.id in (:ids)")
+        @NamedQuery(name = Docket.DOCKET_BY_IDS, query = "select distinct o.id, o from Docket o where o.id in (:ids)"),
+        @NamedQuery(name = Docket.DOCKET_BY_BINDER_IDS, query = "select distinct o.id, o from Docket o where o.binder.id in (:ids)")
 })
 @JsonIgnoreProperties({"binder", "court"})
 public class Docket {

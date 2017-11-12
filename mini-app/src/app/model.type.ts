@@ -2,8 +2,8 @@
 import {Binder, Court, Decision, Docket} from "./domain.type";
 
 export interface QueryViewModel {
-    binders: Binder[];
-    dockets: Docket[];
-    decisions: Decision[];
-    courts: Court[];
+    binders: {[id: string]: Binder};
+    dockets: {[id: string]: Docket};
+    decisions: {[id: string]: Decision};
+    courts: {[id: string]: Court};
 }

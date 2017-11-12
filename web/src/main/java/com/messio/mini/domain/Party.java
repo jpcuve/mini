@@ -9,8 +9,12 @@ import javax.persistence.*;
  */
 @Table(name = "parties")
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Party.PARTY_BY_BINDER_IDS, query = "select distinct p.id, p from Party p where p.binder.id in (:ids)")
+})
 @JsonIgnoreProperties({"binder", "actor"})
 public class Party {
+    public static final String PARTY_BY_BINDER_IDS = "partyByBinderIds";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +27,12 @@ public class Party {
     private Actor actor;
     @Basic
     private boolean opponent;
+    @Basic
+    @Column(name = "binder_id", insertable = false, updatable = false)
+    private Long binderId;
+    @Basic
+    @Column(name = "actor_id", insertable = false, updatable = false)
+    private Long actorId;
 
     public Party() {
     }
@@ -63,5 +73,21 @@ public class Party {
 
     public void setOpponent(boolean opponent) {
         this.opponent = opponent;
+    }
+
+    public Long getBinderId() {
+        return binderId;
+    }
+
+    public void setBinderId(Long binderId) {
+        this.binderId = binderId;
+    }
+
+    public Long getActorId() {
+        return actorId;
+    }
+
+    public void setActorId(Long actorId) {
+        this.actorId = actorId;
     }
 }

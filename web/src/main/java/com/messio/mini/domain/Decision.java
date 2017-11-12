@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Table(name = "decisions", uniqueConstraints = @UniqueConstraint(columnNames = { "reference" }))
 @Entity
 @NamedQueries({
-        @NamedQuery(name = Decision.DECISION_BY_DOCKET_IDS, query = "select d from Decision d where d.docket.id in (:ids)")
+        @NamedQuery(name = Decision.DECISION_BY_DOCKET_IDS, query = "select d.id, d from Decision d where d.docket.id in (:ids)")
 })
 @JsonIgnoreProperties({"docket"})
 public class Decision {

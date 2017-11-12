@@ -10,7 +10,9 @@ import javax.persistence.PersistenceContext;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Created by jpc on 13-07-16.
@@ -57,20 +59,36 @@ public class Facade {
         return em.createNamedQuery(Binder.BINDER_COUNT_IDS, Long.class).getSingleResult();
     }
 
-    public List<Binder> findBinders(Collection<Long> ids){
-        return em.createNamedQuery(Binder.BINDER_BY_IDS, Binder.class).setParameter("ids", ids).getResultList();
+    public Map<Long, Binder> findBinders(Collection<Long> ids){
+        return em.createNamedQuery(Binder.BINDER_BY_IDS, Object[].class)
+                .setParameter("ids", ids)
+                .getResultList()
+                .stream()
+                .collect(Collectors.toMap(os -> (Long) os[0], os -> (Binder) os[1]));
     }
 
-    public List<Docket> findDocketsByBinderIds(Collection<Long> binderIds){
-        return em.createNamedQuery(Docket.DOCKET_BY_BINDER_IDS, Docket.class).setParameter("ids", binderIds).getResultList();
+    public Map<Long, Docket> findDocketsByBinderIds(Collection<Long> binderIds){
+        return em.createNamedQuery(Docket.DOCKET_BY_BINDER_IDS, Object[].class)
+                .setParameter("ids", binderIds)
+                .getResultList()
+                .stream()
+                .collect(Collectors.toMap(os -> (Long) os[0], os -> (Docket) os[1]));
     }
 
-    public List<Decision> findDecisionsByDocketIds(Collection<Long> docketIds){
-        return em.createNamedQuery(Decision.DECISION_BY_DOCKET_IDS, Decision.class).setParameter("ids", docketIds).getResultList();
+    public Map<Long, Decision> findDecisionsByDocketIds(Collection<Long> docketIds){
+        return em.createNamedQuery(Decision.DECISION_BY_DOCKET_IDS, Object[].class)
+                .setParameter("ids", docketIds)
+                .getResultList()
+                .stream()
+                .collect(Collectors.toMap(os -> (Long) os[0], os -> (Decision) os[1]));
     }
 
-    public List<Court> findCourts(Collection<Long> ids){
-        return em.createNamedQuery(Court.COURT_BY_IDS, Court.class).setParameter("ids", ids).getResultList();
+    public Map<Long, Court> findCourts(Collection<Long> ids){
+        return em.createNamedQuery(Court.COURT_BY_IDS, Object[].class)
+                .setParameter("ids", ids)
+                .getResultList()
+                .stream()
+                .collect(Collectors.toMap(os -> (Long) os[0], os -> (Court) os[1]));
     }
 
     public List<Court> findCourtsByParentByName(Court parent, String name){
@@ -79,6 +97,22 @@ public class Facade {
 
     public List<Pol> findPolsByParentByName(Pol parent, String name){
         return em.createNamedQuery(Pol.POL_BY_PARENT_BY_NAME, Pol.class).setParameter("parent", parent).setParameter("name", name).getResultList();
+    }
+
+    public Map<Long, Party> findPartiesByBinderIds(Collection<Long> binderIds){
+        return em.createNamedQuery(Party.PARTY_BY_BINDER_IDS, Object[].class)
+                .setParameter("ids", binderIds)
+                .getResultList()
+                .stream()
+                .collect(Collectors.toMap(os -> (Long) os[0], os -> (Party) os[1]));
+    }
+
+    public Map<Long, Actor> findActors(Collection<Long> ids){
+        return em.createNamedQuery(Actor.ACTOR_BY_IDS, Object[].class)
+                .setParameter("ids", ids)
+                .getResultList()
+                .stream()
+                .collect(Collectors.toMap(os -> (Long) os[0], os -> (Actor) os[1]));
     }
 
     public List<Long> queryBinders(BinderQueryModel model){

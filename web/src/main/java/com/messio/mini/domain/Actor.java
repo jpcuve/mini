@@ -8,7 +8,11 @@ import javax.persistence.*;
  */
 @Table(name = "actors")
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Actor.ACTOR_BY_IDS, query = "select distinct a.id, a from Actor a where a.id in (:ids)"),
+})
 public class Actor {
+    public static final String ACTOR_BY_IDS = "actorByIds";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,7 +12,7 @@ import java.util.Collection;
 @Table(name = "courts", uniqueConstraints = @UniqueConstraint(columnNames = { "parent_id", "name" }))
 @NamedQueries({
         @NamedQuery(name = Court.COURT_BY_PARENT_BY_NAME, query = "select c from Court c where c.parent = :parent and c.name = :name"),
-        @NamedQuery(name = Court.COURT_BY_IDS, query = "select c from Court c where c.id in (:ids)")
+        @NamedQuery(name = Court.COURT_BY_IDS, query = "select c.id, c from Court c where c.id in (:ids)")
 })
 @Entity
 @JsonIgnoreProperties({"parent", "children"})
