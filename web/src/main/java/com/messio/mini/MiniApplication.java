@@ -192,6 +192,19 @@ public class MiniApplication extends SpringBootServletInitializer {
                                 }
                                 break;
                             }
+                            case "design-model":{
+                                if (currentBinder != null){
+                                    final DesignModel designModel = facade.create(new DesignModel(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name")));
+                                    if (attributes.getValue("images") != null){
+                                        updateImageIds(designModel, attributes.getValue("images").split(","));
+                                    }
+                                    final String ref = attributes.getValue("ref");
+                                    if (ref != null){
+                                        rightMap.put(String.format("%s-%s", currentBinder.getId(), ref), designModel);
+                                    }
+                                }
+                                break;
+                            }
                             case "honor":{
                                 if (currentDecision != null && currentBinder != null){
                                     facade.create(new Honor(currentDecision, rightMap.get(String.format("%s-%s", currentBinder.getId(), attributes.getValue("right"))), RightValidity.valueOf(attributes.getValue("validity"))));

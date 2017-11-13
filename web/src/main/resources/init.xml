@@ -7,9 +7,12 @@
         <court ref="eur" path="World,Europe"/>
         <court ref="c05" path="World,China,Shanghai,Pudong District Court"/>
         <court ref="c06" path="World,China,Shanghai,Shanghai IP Court"/>
-        <court ref="c07" path="Europe,Finland,Markkinaoikeus"/>
-        <court ref="c08" path="Europe,Finland,Viestintävirasto"/>
-        <court ref="c09" path="Europe,Finland,Korkein hallinto-oikeus"/>
+        <court ref="c07" path="World,Europe,Finland,Markkinaoikeus"/>
+        <court ref="c08" path="World,Europe,Finland,Viestintävirasto"/>
+        <court ref="c09" path="World,Europe,Finland,Korkein hallinto-oikeus"/>
+        <court ref="c10" path="World,Europe,France,Paris,Cour d'Appel de Paris"/>
+        <court ref="c11" path="World,Europe,France,Cour de Cassation"/>
+        <court ref="c12" path="World,Europe,France,Paris,TGI de Paris"/>
     </courts>
     <pols>
         <pol ref="pol0" path="10,10.1,10.1.1,10.1.1.1"/>
@@ -30,6 +33,16 @@
         <image ref="pizza" asset="pizza.svg" mime="image/svg+xml"/>
         <image ref="muffin" asset="muffin.svg" mime="image/svg+xml"/>
         <image ref="donut" asset="donut.svg" mime="image/svg+xml"/>
+        <image ref="918661" asset="918661.png" mime="image/png"/>
+        <image ref="918662" asset="918662.png" mime="image/png"/>
+        <image ref="918663" asset="918663.png" mime="image/png"/>
+        <image ref="918664" asset="918664.png" mime="image/png"/>
+        <image ref="918665" asset="918665.png" mime="image/png"/>
+        <image ref="918666" asset="918666.png" mime="image/png"/>
+        <image ref="918667" asset="918667.png" mime="image/png"/>
+        <image ref="918668" asset="918668.png" mime="image/png"/>
+        <image ref="918669" asset="918669.png" mime="image/png"/>
+        <image ref="918670" asset="918670.png" mime="image/png"/>
     </images>
     <pdfs>
         <pdf ref="en" asset="en.pdf"/>
@@ -41,6 +54,12 @@
         <pdf ref="darts-069-429-E-fi" asset="darts-069-429-E-fi.pdf"/>
         <pdf ref="darts-181-557-E-en" asset="darts-181-557-E-en.pdf"/>
         <pdf ref="darts-251-839-E-fi" asset="darts-251-839-E-fi.pdf"/>
+        <pdf ref="darts-181-736-A-fr-2" asset="darts-181-736-A-fr-2.pdf"/>
+        <pdf ref="darts-352-833-A-fr" asset="darts-352-833-A-fr.pdf"/>
+        <pdf ref="darts-802-938-A-fr" asset="darts-802-938-A-fr.pdf"/>
+        <pdf ref="darts-085-224-A-fr-2" asset="darts-085-224-A-fr-2.pdf"/>
+        <pdf ref="darts-527-348-A-fr-2" asset="darts-527-348-A-fr-2.pdf"/>
+        <pdf ref="darts-741-307-B-fr" asset="darts-741-307-B-fr.pdf"/>
     </pdfs>
     <actors>
         <actor ref="jpc" name="jean-pierre"/>
@@ -51,6 +70,8 @@
         <actor ref="a03" name="上海壹佰米网络科技"/>
         <actor ref="a04" name="Laaksot Oy"/>
         <actor ref="a05" name="Asianajotoimisto Toni Laakso"/>
+        <actor ref="a06" name="J.M. WESTON S.a.s."/>
+        <actor ref="a07" name="Capuce S.A."/>
     </actors>
     <binders>
         <binder reference="binder01" firstAction="OPPOSITION" area="EUROPE" domains="TRADEMARK,PATENT">
@@ -164,15 +185,47 @@
                 <decision reference="fi-kho-20170803_Complaints_IS" judgmentDate="2017-08-03" level="JUDICIAL_REVIEW" recordNature="COMPLAINT">
                     <document locale="fi" pdf="darts-181-557-E-en"/>
                 </decision>
-
             </docket>
             <docket reference="fi-kho-2017-4907" court="c09">
                 <decision reference="fi-kho-2017-4907" judgmentDate="2017-10-04" level="JUDICIAL_REVIEW" recordNature="ON_THE_MERITS">
                     <document locale="fi" pdf="darts-251-839-E-fi"/>
                 </decision>
-
             </docket>
         </binder>
 
+        <binder reference="Design &amp; model binder 2,525,424" area="EUROPE" domains="DESIGN_MODEL" firstAction="INFRINGEMENT">
+            <party plaintiff="true" actor="a06"/>
+            <party plaintiff="false" actor="a07"/>
+            <design-model plaintiff="true" name="Mohican Moccasins" images="918661,918662,918663,918664,918665,918666,918667,918668,918669,918670"/>
+            <design-model plaintiff="false" name="Manet Moccasins"/>
+            <docket reference="07/16702" court="c10">
+                <decision reference="fr-07-16702_20090401" judgmentDate="2009-04-01" level="APPEAL" recordNature="ON_THE_MERITS">
+                    <document locale="fr" pdf="darts-181-736-A-fr-2"/>
+                </decision>
+            </docket>
+            <docket reference="D09-67107" court="c11">
+                <decision reference="fr-D09-67107_20101026" judgmentDate="2010-10-26" level="JUDICIAL_REVIEW" recordNature="ON_THE_MERITS">
+                    <document locale="fr" pdf="darts-352-833-A-fr"/>
+                </decision>
+            </docket>
+            <docket reference="10/22963" court="c10">
+                <decision reference="fr-10-22963_20130123" judgmentDate="2013-01-23" level="APPEAL" recordNature="ON_THE_MERITS">
+                    <document locale="fr" pdf="darts-802-938-A-fr"/>
+                </decision>
+            </docket>
+            <docket reference="06/01159" court="c12">
+                <decision reference="fr-06-01159_20070905" judgmentDate="2007-09-05" level="FIRST_INSTANCE" recordNature="ON_THE_MERITS">
+                    <document locale="fr" pdf="darts-085-224-A-fr-2"/>
+                </decision>
+                <decision reference="fr-06-01159_20070321" judgmentDate="2007-03-21" level="FIRST_INSTANCE" recordNature="OTHER_DECISIONS">
+                    <document locale="fr" pdf="darts-527-348-A-fr-2"/>
+                </decision>
+            </docket>
+            <docket reference="K13-12067" court="c11">
+                <decision reference="fr-K13-12067_20140624" judgmentDate="2014-06-24" level="JUDICIAL_REVIEW" recordNature="ON_THE_MERITS">
+                    <document locale="fr" pdf="darts-741-307-B-fr"/>
+                </decision>
+            </docket>
+        </binder>
     </binders>
 </init>

@@ -49,6 +49,7 @@ public class ApiController {
         final Map<Long, Right> trademarks = rights.entrySet().stream().filter(e -> "TM".equals(e.getValue().getDiscriminator())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         final Map<Long, Right> domainNames = rights.entrySet().stream().filter(e -> "DN".equals(e.getValue().getDiscriminator())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         final Map<Long, Right> patents = rights.entrySet().stream().filter(e -> "PT".equals(e.getValue().getDiscriminator())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        final Map<Long, Right> designModels = rights.entrySet().stream().filter(e -> "DM".equals(e.getValue().getDiscriminator())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         map.put("binders", binders);
         map.put("dockets", dockets);
@@ -60,6 +61,7 @@ public class ApiController {
         map.put("trademarks", trademarks);
         map.put("domainNames", domainNames);
         map.put("patents", patents);
+        map.put("designModels", designModels);
         return map;
     }
 

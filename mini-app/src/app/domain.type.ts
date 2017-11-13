@@ -49,6 +49,10 @@ export interface Patent extends Right {
   application: string;
 }
 
+export interface DesignModel extends Right {
+  name: string;
+}
+
 export interface Pol {
   id: number;
   name: string;
