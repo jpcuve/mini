@@ -12,11 +12,13 @@ import {BinderQueryModel} from "./form.type";
 
 @Injectable()
 export class RemoteService {
+    server: string;
     base: string;
 
     constructor(private http: Http) {
         const w: Window = <Window> window;
         const cs: string[] = (parseInt(w.location.port) < 8080 ? ['http://', w.location.hostname, ':8080'] : []);
+        this.server = cs.join('');
         this.base = cs.concat(['/api']).join('');
         console.info('base:', this.base);
     }

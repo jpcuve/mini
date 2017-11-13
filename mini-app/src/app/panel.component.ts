@@ -1,5 +1,6 @@
 import {Component, Input} from "@angular/core";
 import {Actor, Binder, Court, Decision, Docket, Party, Right} from "./domain.type";
+import {RemoteService} from "./remote.service";
 
 @Component({
     selector: 'app-binder-panel',
@@ -108,10 +109,14 @@ export class CourtPanelComponent {
 @Component({
     selector: 'app-images-panel',
     template: `
-        <img *ngFor="let id of ids" src="http://localhost:8080/asset?uuid={{id}}"/> <!-- TODO url -->
+        <img *ngFor="let id of ids" src="{{remoteService.server}}/asset?uuid={{id}}"/> <!-- TODO url -->
     `
 })
 export class ImagesPanelComponent {
+    constructor(public remoteService: RemoteService){
+
+    }
+
     @Input('ids')
     ids: string[];
 }
