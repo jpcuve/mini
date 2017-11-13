@@ -8,10 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -60,6 +57,7 @@ public class Facade {
     }
 
     public Map<Long, Binder> findBinders(Collection<Long> ids){
+        if (ids == null || ids.size() == 0) return Collections.emptyMap();
         return em.createNamedQuery(Binder.BINDER_BY_IDS, Object[].class)
                 .setParameter("ids", ids)
                 .getResultList()
@@ -68,6 +66,7 @@ public class Facade {
     }
 
     public Map<Long, Docket> findDocketsByBinderIds(Collection<Long> binderIds){
+        if (binderIds == null || binderIds.size() == 0) return Collections.emptyMap();
         return em.createNamedQuery(Docket.DOCKET_BY_BINDER_IDS, Object[].class)
                 .setParameter("ids", binderIds)
                 .getResultList()
@@ -76,6 +75,7 @@ public class Facade {
     }
 
     public Map<Long, Decision> findDecisionsByDocketIds(Collection<Long> docketIds){
+        if (docketIds == null || docketIds.size() == 0) return Collections.emptyMap();
         return em.createNamedQuery(Decision.DECISION_BY_DOCKET_IDS, Object[].class)
                 .setParameter("ids", docketIds)
                 .getResultList()
@@ -84,6 +84,7 @@ public class Facade {
     }
 
     public Map<Long, Court> findCourts(Collection<Long> ids){
+        if (ids == null || ids.size() == 0) return Collections.emptyMap();
         return em.createNamedQuery(Court.COURT_BY_IDS, Object[].class)
                 .setParameter("ids", ids)
                 .getResultList()
@@ -100,6 +101,7 @@ public class Facade {
     }
 
     public Map<Long, Party> findPartiesByBinderIds(Collection<Long> binderIds){
+        if (binderIds == null || binderIds.size() == 0) return Collections.emptyMap();
         return em.createNamedQuery(Party.PARTY_BY_BINDER_IDS, Object[].class)
                 .setParameter("ids", binderIds)
                 .getResultList()
@@ -108,6 +110,7 @@ public class Facade {
     }
 
     public Map<Long, Actor> findActors(Collection<Long> ids){
+        if (ids == null || ids.size() == 0) return Collections.emptyMap();
         return em.createNamedQuery(Actor.ACTOR_BY_IDS, Object[].class)
                 .setParameter("ids", ids)
                 .getResultList()
@@ -116,6 +119,7 @@ public class Facade {
     }
 
     public Map<Long, Right> findRightsByBinderIds(Collection<Long> binderIds){
+        if (binderIds == null || binderIds.size() == 0) return Collections.emptyMap();
         return em.createNamedQuery(Right.RIGHT_BY_BINDER_IDS, Object[].class)
                 .setParameter("ids", binderIds)
                 .getResultList()
@@ -124,6 +128,7 @@ public class Facade {
     }
 
     public Map<Long, Right> findRights(Collection<Long> ids){
+        if (ids == null || ids.size() == 0) return Collections.emptyMap();
         return em.createNamedQuery(Right.RIGHT_BY_IDS, Object[].class)
                 .setParameter("ids", ids)
                 .getResultList()

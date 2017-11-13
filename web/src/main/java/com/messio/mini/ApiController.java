@@ -47,6 +47,7 @@ public class ApiController {
         final Map<Long, Actor> actors = facade.findActors(actorIds);
         final Map<Long, Right> rights = facade.findRightsByBinderIds(binderIds);
         final Map<Long, Right> trademarks = rights.entrySet().stream().filter(e -> "TM".equals(e.getValue().getDiscriminator())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        final Map<Long, Right> domainNames = rights.entrySet().stream().filter(e -> "DN".equals(e.getValue().getDiscriminator())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
         final Map<Long, Right> patents = rights.entrySet().stream().filter(e -> "PT".equals(e.getValue().getDiscriminator())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
         map.put("binders", binders);
@@ -57,6 +58,7 @@ public class ApiController {
         map.put("actors", actors);
         map.put("rights", rights);
         map.put("trademarks", trademarks);
+        map.put("domainNames", domainNames);
         map.put("patents", patents);
         return map;
     }

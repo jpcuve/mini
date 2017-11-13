@@ -1,6 +1,7 @@
 package com.messio.mini.domain;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -25,8 +26,14 @@ public class Binder {
     @Column(name = "reference", nullable = false)
     private String reference;
     @Enumerated(EnumType.STRING)
+    @Column(name = "area")
+    private Area area;
+    @Enumerated(EnumType.STRING)
     @Column(name = "first_action")
     private FirstAction firstAction;
+    @Basic
+    @Column(name = "first_action_date")
+    private String firstActionDate;
     @Basic
     @Column(name = "withdrawal")
     private boolean withdrawal;
@@ -42,9 +49,10 @@ public class Binder {
     public Binder() {
     }
 
-    public Binder(String reference, FirstAction firstAction) {
+    public Binder(String reference, Area area, Set<Domain> domains) {
         this.reference = reference;
-        this.firstAction = firstAction;
+        this.area = area;
+        this.domains = domains;
     }
 
     public Long getId() {
@@ -63,12 +71,28 @@ public class Binder {
         this.reference = reference;
     }
 
+    public Area getArea() {
+        return area;
+    }
+
+    public void setArea(Area area) {
+        this.area = area;
+    }
+
     public FirstAction getFirstAction() {
         return firstAction;
     }
 
     public void setFirstAction(FirstAction firstAction) {
         this.firstAction = firstAction;
+    }
+
+    public LocalDate getFirstActionDate() {
+        return firstActionDate == null ? null : LocalDate.parse(firstActionDate);
+    }
+
+    public void setFirstActionDate(LocalDate firstActionDate) {
+        this.firstActionDate = firstActionDate == null ? null : firstActionDate.toString();
     }
 
     public boolean isWithdrawal() {

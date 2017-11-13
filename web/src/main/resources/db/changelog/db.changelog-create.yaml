@@ -147,6 +147,18 @@ databaseChangeLog:
               name: name
               type: varchar(255)
       - createTable:
+          tableName: domain_names
+          columns:
+          - column:
+              name: id
+              type: int
+              constraints:
+                primaryKey: true
+                nullable: false
+          - column:
+              name: name
+              type: varchar(255)
+      - createTable:
           tableName: patents
           columns:
           - column:

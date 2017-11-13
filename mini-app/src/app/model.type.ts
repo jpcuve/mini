@@ -1,5 +1,5 @@
 
-import {Actor, Binder, Court, Decision, Docket, Party, Patent, Right, Trademark} from "./domain.type";
+import {Actor, Binder, Court, Decision, Docket, DomainName, Party, Patent, Right, Trademark} from "./domain.type";
 
 export interface QueryViewModel {
     binders: {[id: string]: Binder};
@@ -10,5 +10,6 @@ export interface QueryViewModel {
     actors: {[id: string]: Actor};
     rights: {[id: string]: Right};
     trademarks: {[id: string]: Trademark};
+    domainNames: {[id: string]: DomainName};
     patents: {[id: string]: Patent};
 }

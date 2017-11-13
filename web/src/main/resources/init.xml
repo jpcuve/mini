@@ -5,6 +5,11 @@
         <court ref="ber" path="World,Europe,Germany,Berlin"/>
         <court ref="was" path="World,America,United States,Washington"/>
         <court ref="eur" path="World,Europe"/>
+        <court ref="c05" path="World,China,Shanghai,Pudong District Court"/>
+        <court ref="c06" path="World,China,Shanghai,Shanghai IP Court"/>
+        <court ref="c07" path="Europe,Finland,Markkinaoikeus"/>
+        <court ref="c08" path="Europe,Finland,Viestintävirasto"/>
+        <court ref="c09" path="Europe,Finland,Korkein hallinto-oikeus"/>
     </courts>
     <pols>
         <pol ref="pol0" path="10,10.1,10.1.1,10.1.1.1"/>
@@ -30,14 +35,25 @@
         <pdf ref="en" asset="en.pdf"/>
         <pdf ref="fr" asset="fr.pdf"/>
         <pdf ref="de" asset="de.pdf"/>
+        <pdf ref="darts-105-578-E-zh" asset="darts-105-578-E-zh.pdf"/>
+        <pdf ref="darts-105-580-E-zh" asset="darts-105-580-E-zh.pdf"/>
+        <pdf ref="darts-069-266-E-fi" asset="darts-069-266-E-fi.pdf"/>
+        <pdf ref="darts-069-429-E-fi" asset="darts-069-429-E-fi.pdf"/>
+        <pdf ref="darts-181-557-E-en" asset="darts-181-557-E-en.pdf"/>
+        <pdf ref="darts-251-839-E-fi" asset="darts-251-839-E-fi.pdf"/>
     </pdfs>
     <actors>
         <actor ref="jpc" name="jean-pierre"/>
         <actor ref="fg" name="françois"/>
         <actor ref="evz" name="evrard"/>
+        <actor ref="a01" name="艾影(上海)商贸"/>
+        <actor ref="a02" name="上海丫丫信息科技"/>
+        <actor ref="a03" name="上海壹佰米网络科技"/>
+        <actor ref="a04" name="Laaksot Oy"/>
+        <actor ref="a05" name="Asianajotoimisto Toni Laakso"/>
     </actors>
     <binders>
-        <binder reference="binder01" firstAction="OPPOSITION">
+        <binder reference="binder01" firstAction="OPPOSITION" area="EUROPE" domains="TRADEMARK,PATENT">
             <party plaintiff="true" actor="jpc"/>
             <party plaintiff="false" actor="fg"/>
             <trademark plaintiff="true" name="trademark0101" images="paper-plane,eye"/>
@@ -49,7 +65,7 @@
                 </decision>
             </docket>
         </binder>
-        <binder reference="binder02" firstAction="OPPOSITION">
+        <binder reference="binder02" firstAction="OPPOSITION" area="EUROPE" domains="PATENT">
             <party plaintiff="false" actor="jpc"/>
             <party plaintiff="true" actor="fg"/>
             <patent plaintiff="true" name="patent0201" images="backpack"/>
@@ -59,7 +75,7 @@
                 </decision>
             </docket>
         </binder>
-        <binder reference="binder03" firstAction="ADMINISTRATIVE_HEARINGS">
+        <binder reference="binder03" firstAction="ADMINISTRATIVE_HEARINGS" area="EUROPE" domains="TRADEMARK">
             <party plaintiff="true" actor="jpc"/>
             <party plaintiff="false" actor="fg"/>
             <party plaintiff="false" actor="evz"/>
@@ -71,7 +87,7 @@
                 </decision>
             </docket>
         </binder>
-        <binder reference="binder04" firstAction="OPPOSITION">
+        <binder reference="binder04" firstAction="OPPOSITION" area="EUROPE" domains="PATENT">
             <party plaintiff="true" actor="jpc"/>
             <patent ref="p1" plaintiff="true" name="plaintiff patent"/>
             <patent ref="p2" plaintiff="false" name="applicant patent"/>
@@ -83,7 +99,7 @@
                 </decision>
             </docket>
         </binder>
-        <binder reference="binder05" firstAction="ADMINISTRATIVE_HEARINGS">
+        <binder reference="binder05" firstAction="ADMINISTRATIVE_HEARINGS" area="EUROPE" domains="TRADEMARK,PATENT">
             <party plaintiff="false" actor="jpc"/>
             <party plaintiff="true" actor="fg"/>
             <party plaintiff="true" actor="evz"/>
@@ -112,5 +128,51 @@
                 </decision>
             </docket>
         </binder>
+
+        <binder reference="Copyright binder 4,209,819" firstAction="INFRINGEMENT" firstActionDate="2014-10-21" area="CHINA" domains="COPYRIGHT">
+            <party plaintiff="true" actor="a01"/>
+            <party plaintiff="false" actor="a02"/>
+            <party plaintiff="false" actor="a03"/>
+            <docket reference="cn-(2014)浦民三(知)初字第1097号" court="c05">
+                <decision reference="cn-(2014)浦民三(知)初字第1097号" judgmentDate="2015-02-09" level="FIRST_INSTANCE" recordNature="ON_THE_MERITS">
+                    <document locale="zh" pdf="darts-105-578-E-zh"/>
+                </decision>
+            </docket>
+            <docket reference="cn-(2015)沪知民终字第614号" court="c06">
+                <decision reference="cn-(2015)沪知民终字第614号" judgmentDate="2015-08-12" level="APPEAL" recordNature="OTHER_DECISIONS">
+                    <document locale="zh" pdf="darts-105-580-E-zh"/>
+                </decision>
+            </docket>
+        </binder>
+
+        <binder reference="Domain name binder 4,181,147" area="EUROPE" domains="DOMAIN_NAME">
+            <party plaintiff="true" actor="a04"/>
+            <party plaintiff="false" actor="a05"/>
+            <domain-name plaintiff="true" name="Laaksot Oy"/>
+            <domain-name plaintiff="false" name="laaksot.fi "/>
+            <docket reference="fi-mko-2017-362" court="c07">
+                <decision reference="fi-mko-2017-362" judgmentDate="2017-06-20" level="APPEAL" recordNature="ON_THE_MERITS">
+                    <document locale="fi" pdf="darts-069-266-E-fi"/>
+                </decision>
+            </docket>
+            <docket reference="fi-vie-2016-850" court="c08">
+                <decision reference="fi-vie-2016-850" judgmentDate="2016-11-02" level="FIRST_INSTANCE" recordNature="ON_THE_MERITS">
+                    <document locale="fi" pdf="darts-069-429-E-fi"/>
+                </decision>
+            </docket>
+            <docket reference="fi-kho-20170803" court="c09">
+                <decision reference="fi-kho-20170803_Complaints_IS" judgmentDate="2017-08-03" level="JUDICIAL_REVIEW" recordNature="COMPLAINT">
+                    <document locale="fi" pdf="darts-181-557-E-en"/>
+                </decision>
+
+            </docket>
+            <docket reference="fi-kho-2017-4907" court="c09">
+                <decision reference="fi-kho-2017-4907" judgmentDate="2017-10-04" level="JUDICIAL_REVIEW" recordNature="ON_THE_MERITS">
+                    <document locale="fi" pdf="darts-251-839-E-fi"/>
+                </decision>
+
+            </docket>
+        </binder>
+
     </binders>
 </init>

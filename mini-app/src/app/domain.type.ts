@@ -6,6 +6,7 @@ export interface Actor {
 export interface Binder {
   id: number;
   reference: string;
+  area: string;
   first_action?: string;
   withdrawal: boolean;
   settled: boolean;
@@ -37,6 +38,10 @@ export interface Right {
 }
 
 export interface Trademark extends Right {
+  name: string;
+}
+
+export interface DomainName extends Right {
   name: string;
 }
 

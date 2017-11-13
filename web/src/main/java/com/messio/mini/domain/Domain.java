@@ -5,5 +5,9 @@ package com.messio.mini.domain;
  */
 public enum Domain {
     TRADEMARK,
-    PATENT;
+    DOMAIN_NAME,
+    PATENT,
+    DESIGN_MODEL,
+    COPYRIGHT,
+    UNFAIR_COMPETITION;
 }

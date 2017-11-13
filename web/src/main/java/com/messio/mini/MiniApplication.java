@@ -27,6 +27,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @SpringBootApplication
 @ServletComponentScan
@@ -118,7 +119,11 @@ public class MiniApplication extends SpringBootServletInitializer {
                                 break;
                             }
                             case "binder":{
-                                currentBinder = facade.create(new Binder(attributes.getValue("reference"), FirstAction.valueOf(attributes.getValue("firstAction"))));
+                                Set<Domain> domains = Arrays.stream(attributes.getValue("domains").split(",")).map(Domain::valueOf).collect(Collectors.toSet());
+                                currentBinder = facade.create(new Binder(attributes.getValue("reference"), Area.valueOf(attributes.getValue("area")), domains));
+                                if (attributes.getValue("firstAction") != null) currentBinder.setFirstAction(FirstAction.valueOf(attributes.getValue("firstAction")));
+                                if (attributes.getValue("firstActionDate") != null) currentBinder.setFirstActionDate(LocalDate.parse(attributes.getValue("firstActionDate")));
+                                currentBinder = facade.update(currentBinder);
                                 break;
                             }
                             case "party":{
@@ -160,6 +165,16 @@ public class MiniApplication extends SpringBootServletInitializer {
                                     final String ref = attributes.getValue("ref");
                                     if (ref != null){
                                         rightMap.put(String.format("%s-%s", currentBinder.getId(), ref), trademark);
+                                    }
+                                }
+                                break;
+                            }
+                            case "domain-name":{
+                                if (currentBinder != null){
+                                    final DomainName domainName = facade.create(new DomainName(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name")));
+                                    final String ref = attributes.getValue("ref");
+                                    if (ref != null){
+                                        rightMap.put(String.format("%s-%s", currentBinder.getId(), ref), domainName);
                                     }
                                 }
                                 break;
