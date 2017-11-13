@@ -60,6 +60,8 @@
         <pdf ref="darts-085-224-A-fr-2" asset="darts-085-224-A-fr-2.pdf"/>
         <pdf ref="darts-527-348-A-fr-2" asset="darts-527-348-A-fr-2.pdf"/>
         <pdf ref="darts-741-307-B-fr" asset="darts-741-307-B-fr.pdf"/>
+        <pdf ref="darts-285-298-D-fr-2" asset="darts-285-298-D-fr-2.pdf"/>
+        <pdf ref="darts-855-985-D-fr" asset="darts-855-985-D-fr.pdf"/>
     </pdfs>
     <actors>
         <actor ref="jpc" name="jean-pierre"/>
@@ -72,6 +74,11 @@
         <actor ref="a05" name="Asianajotoimisto Toni Laakso"/>
         <actor ref="a06" name="J.M. WESTON S.a.s."/>
         <actor ref="a07" name="Capuce S.A."/>
+        <actor ref="a08" name="Lucas Automotive GmbH"/>
+        <actor ref="a09" name="TRW Ltd"/>
+        <actor ref="a10" name="TRW Automotive Czech s.r.o."/>
+        <actor ref="a11" name="Trw Systèmes de Freinage S.a.s."/>
+        <actor ref="a12" name="Foundation Brakes France S.a.s."/>
     </actors>
     <binders>
         <binder reference="binder01" firstAction="OPPOSITION" area="EUROPE" domains="TRADEMARK,PATENT">
@@ -193,9 +200,9 @@
             </docket>
         </binder>
 
-        <binder reference="Design &amp; model binder 2,525,424" area="EUROPE" domains="DESIGN_MODEL" firstAction="INFRINGEMENT">
+        <binder reference="Design &amp; model binder 2,525,424" area="EUROPE" domains="PATENT" firstAction="INFRINGEMENT">
             <party plaintiff="true" actor="a06"/>
-            <party plaintiff="false" actor="a07"/>
+            <party plaintiff="true" actor="a07"/>
             <design-model plaintiff="true" name="Mohican Moccasins" images="918661,918662,918663,918664,918665,918666,918667,918668,918669,918670"/>
             <design-model plaintiff="false" name="Manet Moccasins"/>
             <docket reference="07/16702" court="c10">
@@ -227,5 +234,29 @@
                 </decision>
             </docket>
         </binder>
+
+        <binder reference="Patent binder 3,600,114" area="EUROPE" domains="PATENT" firstAction="INFRINGEMENT">
+            <party plaintiff="true" actor="a08"/>
+            <party plaintiff="true" actor="a09"/>
+            <party plaintiff="true" actor="a10"/>
+            <party plaintiff="true" actor="a11"/>
+            <party plaintiff="false" actor="a12"/>
+            <patent plaintiff="true" application="EP98938698(A)"/>
+            <docket reference="fr-14/07779" court="c12">
+                <decision reference="fr-14-07779_20160226" judgmentDate="2016-02-26" level="FIRST_INSTANCE" recordNature="ON_THE_MERITS">
+                    <document locale="fr" pdf="darts-285-298-D-fr-2"/>
+                </decision>
+            </docket>
+            <docket reference="16/06701" court="c10">
+                <decision reference="fr-16-06701_20160630" judgmentDate="2016-06-30" level="APPEAL" recordNature="ON_THE_MERITS">
+                    <document locale="fr" pdf="darts-855-985-D-fr"/>
+                </decision>
+            </docket>
+        </binder>
+
+        <binder reference="Trademark binder 4,013,729" area="EUROPE" domains="TRADEMARK" firstAction="OPPOSITION">
+
+        </binder>
+
     </binders>
 </init>
