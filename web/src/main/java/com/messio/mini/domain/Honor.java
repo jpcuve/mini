@@ -21,8 +21,6 @@ public class Honor {
     @Column(name = "validity")
     @Enumerated(EnumType.STRING)
     private RightValidity rightValidity;
-    @Column(name = "right_descriptor")
-    private String rightDescriptor;
 
     public Honor() {
     }
@@ -65,11 +63,4 @@ public class Honor {
         this.rightValidity = rightValidity;
     }
 
-    public String getRightDescriptor() {
-        return rightDescriptor;
-    }
-
-    public void setRightDescriptor(String rightDescriptor) {
-        this.rightDescriptor = rightDescriptor;
-    }
 }

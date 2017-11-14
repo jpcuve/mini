@@ -7,8 +7,6 @@ import javax.persistence.*;
  */
 @Table(name = "patents")
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorValue("PT")
 public class Patent extends Right {
     @Basic
     @Column(name = "application", length = 63)
@@ -18,7 +16,7 @@ public class Patent extends Right {
     }
 
     public Patent(Binder binder, boolean opponent, String application) {
-        super(binder, opponent);
+        super(binder, Domain.PATENT, opponent);
         this.application = application;
     }
 

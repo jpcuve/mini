@@ -7,8 +7,6 @@ import javax.persistence.*;
  */
 @Table(name = "trademarks")
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorValue("TM")
 public class Trademark extends Right {
     @Basic
     @Column(name = "name", length = 255)
@@ -18,7 +16,7 @@ public class Trademark extends Right {
     }
 
     public Trademark(Binder binder, boolean opponent, String name) {
-        super(binder, opponent);
+        super(binder, Domain.TRADEMARK, opponent);
         this.name = name;
     }
 

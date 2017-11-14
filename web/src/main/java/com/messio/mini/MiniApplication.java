@@ -61,7 +61,7 @@ public class MiniApplication extends SpringBootServletInitializer {
                     private Decision currentDecision = null;
 
                     private void updateImageIds(Right right, String[] refs){
-                        final List<String> uuids = new ArrayList<>();
+                        final Set<String> uuids = new HashSet<>();
                         for (String ref: refs){
                             uuids.add(imageMap.get(ref));
                         }

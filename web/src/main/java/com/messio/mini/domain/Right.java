@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
         @NamedQuery(name = Right.RIGHT_BY_IDS, query = "select distinct r.id, r from Right r where r.id in (:ids)"),
         @NamedQuery(name = Right.RIGHT_BY_BINDER_IDS, query = "select distinct r.id, r from Right r where r.binder.id in (:ids)")
 })
-@DiscriminatorColumn(name = "discriminator", length = 2)
+@Inheritance(strategy = InheritanceType.JOINED)
 @JsonIgnoreProperties({"binder", "patent", "trademark"})
 public abstract class Right {
     public static final String RIGHT_BY_BINDER_IDS = "rightByBinderIds";
@@ -27,40 +28,32 @@ public abstract class Right {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Basic
-    @Column(name = "discriminator", insertable = false, updatable = false)
-    private String discriminator;
+    @Column(name = "domain")
+    @Enumerated(EnumType.STRING)
+    private Domain domain;
     @Basic
     @Column(name = "plaintiff")
     private boolean plaintiff;
-    @Basic
-    @Column(name = "image_ids", length = 1024)
-    private String imageIds;
     @ManyToOne
     @JoinColumn(name = "binder_id")
     private Binder binder;
     @Basic
-    @Column(name = "target_id")
-    private Long targetId;
-    @OneToOne
-    @JoinColumn(name = "target_id", insertable = false, updatable = false)
-    private Trademark trademark;
-    @OneToOne
-    @JoinColumn(name = "target_id", insertable = false, updatable = false)
-    private Patent patent;
-    @Basic
     @Column(name = "binder_id", insertable = false, updatable = false)
     private Long binderId;
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "right_images", joinColumns = { @JoinColumn(name = "right_id")})
+    @Column(name = "image_id")
+    private Set<String> imageIds;
 
     @Transient
     private String descriptor;
-    @Transient
-    private Domain domain;
 
     public Right() {
     }
 
-    protected Right(Binder binder, boolean plaintiff) {
+    protected Right(Binder binder, Domain domain, boolean plaintiff) {
         this.binder = binder;
+        this.domain = domain;
         this.plaintiff = plaintiff;
     }
 
@@ -84,35 +77,12 @@ public abstract class Right {
         this.id = id;
     }
 
-    public String getDiscriminator() {
-        return discriminator;
-    }
-
-    public void setDiscriminator(String discriminator) {
-        this.discriminator = discriminator;
-    }
-
     public boolean isPlaintiff() {
         return plaintiff;
     }
 
     public void setPlaintiff(boolean opponent) {
         this.plaintiff = opponent;
-    }
-
-    public List<String> getImageIds(){
-        final List<String> list = new ArrayList<>();
-        if (this.imageIds != null){
-            final StringTokenizer st = new StringTokenizer(imageIds, "|");
-            while (st.hasMoreTokens()){
-                list.add(st.nextToken());
-            }
-        }
-        return list;
-    }
-
-    public void setImageIds(List<String> imageIds){
-        this.imageIds = imageIds == null ? null : imageIds.stream().collect(Collectors.joining("|"));
     }
 
     public Binder getBinder() {
@@ -123,35 +93,19 @@ public abstract class Right {
         this.binder = binder;
     }
 
-    public Long getTargetId() {
-        return targetId;
-    }
-
-    public void setTargetId(Long targetId) {
-        this.targetId = targetId;
-    }
-
-    public Trademark getTrademark() {
-        return trademark;
-    }
-
-    public void setTrademark(Trademark trademark) {
-        this.trademark = trademark;
-    }
-
-    public Patent getPatent() {
-        return patent;
-    }
-
-    public void setPatent(Patent patent) {
-        this.patent = patent;
-    }
-
     public Long getBinderId() {
         return binderId;
     }
 
     public void setBinderId(Long binderId) {
         this.binderId = binderId;
+    }
+
+    public Set<String> getImageIds() {
+        return imageIds;
+    }
+
+    public void setImageIds(Set<String> imageIds) {
+        this.imageIds = imageIds;
     }
 }

@@ -14,9 +14,6 @@ public class Document {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Basic
-    @Column(name = "reference", nullable = true, length = 127)
-    private String reference;
-    @Basic
     @Column(name = "lang", nullable = false, length = 127)
     private String lang;
     @Basic
@@ -49,14 +46,6 @@ public class Document {
 
     public Locale getLocale(){
         return lang == null ? null : Locale.forLanguageTag(lang);
-    }
-
-    public String getReference() {
-        return reference;
-    }
-
-    public void setReference(String reference) {
-        this.reference = reference;
     }
 
     public String getDocumentId() {

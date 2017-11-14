@@ -7,8 +7,6 @@ import javax.persistence.*;
  */
 @Table(name = "design_models")
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorValue("DM")
 public class DesignModel extends Right {
     @Basic
     @Column(name = "name", length = 255)
@@ -18,7 +16,7 @@ public class DesignModel extends Right {
     }
 
     public DesignModel(Binder binder, boolean opponent, String name) {
-        super(binder, opponent);
+        super(binder, Domain.DESIGN_MODEL, opponent);
         this.name = name;
     }
 

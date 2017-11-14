@@ -7,8 +7,6 @@ import javax.persistence.*;
  */
 @Table(name = "domain_names")
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorValue("DN")
 public class DomainName extends Right {
     @Basic
     @Column(name = "name", length = 255)
@@ -18,7 +16,7 @@ public class DomainName extends Right {
     }
 
     public DomainName(Binder binder, boolean opponent, String name) {
-        super(binder, opponent);
+        super(binder, Domain.DOMAIN_NAME, opponent);
         this.name = name;
     }
 
