@@ -20,12 +20,16 @@ public class Actor {
     @Basic
     @Column(name = "name")
     private String name;
+    @Basic
+    @Column(name = "person")
+    private boolean person;
 
     public Actor() {
     }
 
-    public Actor(String name) {
+    public Actor(String name, boolean person) {
         this.name = name;
+        this.person = person;
     }
 
     public Long getId() {
@@ -42,5 +46,13 @@ public class Actor {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public boolean isPerson() {
+        return person;
+    }
+
+    public void setPerson(boolean person) {
+        this.person = person;
     }
 }

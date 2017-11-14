@@ -115,7 +115,7 @@ public class MiniApplication extends SpringBootServletInitializer {
                                 break;
                             }
                             case "actor":{
-                                actorMap.put(attributes.getValue("ref"), facade.create(new Actor(attributes.getValue("name"))));
+                                actorMap.put(attributes.getValue("ref"), facade.create(new Actor(attributes.getValue("name"), Boolean.parseBoolean(attributes.getValue("person")))));
                                 break;
                             }
                             case "binder":{

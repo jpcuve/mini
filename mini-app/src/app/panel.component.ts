@@ -45,7 +45,14 @@ export class PartyPanelComponent {
 @Component({
     selector: 'app-right-panel',
     template: `
-        <span>{{right.discriminator}}</span>
+      <span>
+        <i *ngIf="right.discriminator === 'TM'" class="fa fa-trademark"></i>
+        <i *ngIf="right.discriminator === 'DN'" class="fa fa-at"></i>
+        <i *ngIf="right.discriminator === 'PT'" class="fa fa-lightbulb-o"></i>
+        <i *ngIf="right.discriminator === 'DM'" class="fa fa-cube"></i>
+        <i *ngIf="right.discriminator === 'CR'" class="fa fa-copyright"></i>
+        <i *ngIf="right.discriminator === 'UC'" class="fa fa-compress"></i>
+      </span>
         <app-images-panel [ids]="right.imageIds"></app-images-panel>
         <span *ngIf="right.plaintiff">(Plaintiff)</span>
         <span *ngIf="!right.plaintiff">(Defendant)</span>
@@ -60,7 +67,11 @@ export class RightPanelComponent {
 @Component({
     selector: 'app-actor-panel',
     template: `
-        <span>a{{actor.id}}: {{actor.name}}</span>
+        <span title="{{actor.id}}">
+          <i *ngIf="actor.person" class="fa fa-user"></i>
+          <i *ngIf="!actor.person" class="fa fa-industry"></i>
+          {{actor.name}}
+        </span>
     `
 })
 export class ActorPanelComponent {
@@ -98,7 +109,10 @@ export class DecisionPanelComponent {
 @Component({
     selector: 'app-court-panel',
     template: `
-        <span>c{{court.id}}: {{court.name}}</span>
+        <span title="{{court.id}}">
+          <i class="fa fa-institution"></i>
+          {{court.name}}
+        </span>
     `
 })
 export class CourtPanelComponent {

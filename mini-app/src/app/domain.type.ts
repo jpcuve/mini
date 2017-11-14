@@ -1,6 +1,7 @@
 export interface Actor {
   id: number;
   name: string;
+  person: boolean;
 }
 
 export interface Binder {

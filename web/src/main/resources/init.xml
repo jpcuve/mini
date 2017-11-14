@@ -13,6 +13,8 @@
         <court ref="c10" path="World,Europe,France,Paris,Cour d'Appel de Paris"/>
         <court ref="c11" path="World,Europe,France,Cour de Cassation"/>
         <court ref="c12" path="World,Europe,France,Paris,TGI de Paris"/>
+        <court ref="c13" path="World,Europe,United Kingdom,UKIPO,Hearing Officer"/>
+        <court ref="c14" path="World,Europe,United Kingdom,UKIPO,Appointed Persons"/>
     </courts>
     <pols>
         <pol ref="pol0" path="10,10.1,10.1.1,10.1.1.1"/>
@@ -43,6 +45,7 @@
         <image ref="918668" asset="918668.png" mime="image/png"/>
         <image ref="918669" asset="918669.png" mime="image/png"/>
         <image ref="918670" asset="918670.png" mime="image/png"/>
+        <image ref="1794162" asset="1794162.png" mime="image/png"/>
     </images>
     <pdfs>
         <pdf ref="en" asset="en.pdf"/>
@@ -62,23 +65,27 @@
         <pdf ref="darts-741-307-B-fr" asset="darts-741-307-B-fr.pdf"/>
         <pdf ref="darts-285-298-D-fr-2" asset="darts-285-298-D-fr-2.pdf"/>
         <pdf ref="darts-855-985-D-fr" asset="darts-855-985-D-fr.pdf"/>
+        <pdf ref="darts-842-516-D-en" asset="darts-842-516-D-en.pdf"/>
+        <pdf ref="darts-011-253-E-en" asset="darts-011-253-E-en.pdf"/>
     </pdfs>
     <actors>
-        <actor ref="jpc" name="jean-pierre"/>
-        <actor ref="fg" name="françois"/>
-        <actor ref="evz" name="evrard"/>
-        <actor ref="a01" name="艾影(上海)商贸"/>
-        <actor ref="a02" name="上海丫丫信息科技"/>
-        <actor ref="a03" name="上海壹佰米网络科技"/>
-        <actor ref="a04" name="Laaksot Oy"/>
-        <actor ref="a05" name="Asianajotoimisto Toni Laakso"/>
-        <actor ref="a06" name="J.M. WESTON S.a.s."/>
-        <actor ref="a07" name="Capuce S.A."/>
-        <actor ref="a08" name="Lucas Automotive GmbH"/>
-        <actor ref="a09" name="TRW Ltd"/>
-        <actor ref="a10" name="TRW Automotive Czech s.r.o."/>
-        <actor ref="a11" name="Trw Systèmes de Freinage S.a.s."/>
-        <actor ref="a12" name="Foundation Brakes France S.a.s."/>
+        <actor ref="jpc" name="jean-pierre" person="true"/>
+        <actor ref="fg" name="françois" person="true"/>
+        <actor ref="evz" name="evrard" person="true"/>
+        <actor ref="a01" name="艾影(上海)商贸" person="false"/>
+        <actor ref="a02" name="上海丫丫信息科技" person="false"/>
+        <actor ref="a03" name="上海壹佰米网络科技" person="false"/>
+        <actor ref="a04" name="Laaksot Oy" person="false"/>
+        <actor ref="a05" name="Asianajotoimisto Toni Laakso" person="true"/>
+        <actor ref="a06" name="J.M. WESTON S.a.s." person="false"/>
+        <actor ref="a07" name="Capuce S.A." person="false"/>
+        <actor ref="a08" name="Lucas Automotive GmbH" person="false"/>
+        <actor ref="a09" name="TRW Ltd" person="false"/>
+        <actor ref="a10" name="TRW Automotive Czech s.r.o." person="false"/>
+        <actor ref="a11" name="Trw Systèmes de Freinage S.a.s." person="false"/>
+        <actor ref="a12" name="Foundation Brakes France S.a.s." person="false"/>
+        <actor ref="a13" name="Gareth Richard Evans" person="true"/>
+        <actor ref="a14" name="Subli Blanks Ltd." person="false"/>
     </actors>
     <binders>
         <binder reference="binder01" firstAction="OPPOSITION" area="EUROPE" domains="TRADEMARK,PATENT">
@@ -255,6 +262,22 @@
         </binder>
 
         <binder reference="Trademark binder 4,013,729" area="EUROPE" domains="TRADEMARK" firstAction="OPPOSITION">
+            <party plaintiff="true" actor="a13"/>
+            <party plaintiff="false" actor="a14"/>
+            <trademark name="galaxy PRINT FINISHING" images="1794162"/>
+            <trademark name="Galaxy"/>
+            <docket reference="uk-ipo-O-159-17" court="c13">
+                <decision reference="uk-ipo-O-159-17" judgmentDate="2017-03-30" level="FIRST_INSTANCE" recordNature="ON_THE_MERITS">
+                    <document locale="en" pdf="darts-842-516-D-en"/>
+                </decision>
+
+            </docket>
+            <docket reference="Opp:600000471" court="c14">
+                <decision reference="uk-Opp-600000471_20171016_Hearing_IS" judgmentDate="2017-10-16" level="APPEAL" recordNature="HEARING">
+                    <document locale="en" pdf="darts-011-253-E-en"/>
+                </decision>
+
+            </docket>
 
         </binder>
 
