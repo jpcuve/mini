@@ -33,7 +33,7 @@ export interface Court {
 export interface Right {
   id: number;
   binderId: number;
-  discriminator: string;
+  domain: string;
   plaintiff: boolean;
   imageIds: string[];
 }

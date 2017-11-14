@@ -5,7 +5,11 @@ import {RemoteService} from "./remote.service";
 @Component({
     selector: 'app-binder-panel',
     template: `
-        <p-panel header="b{{binder.id}}: {{binder.reference}}" toggleable="[true]" collapsed="[true]">
+        <p-panel toggleable="[true]" collapsed="[true]">
+          <p-header>
+            <i class="fa fa-book"></i>
+            <span>{{binder.reference}}</span>
+          </p-header>
             <ul>
                 <li *ngFor="let party of binder.parties">
                     <app-party-panel [party]="party"></app-party-panel>
@@ -32,9 +36,9 @@ export class BinderPanelComponent {
 @Component({
     selector: 'app-party-panel',
     template: `
+      <i *ngIf="party.plaintiff" class="fa fa-forward" style="color: firebrick;"></i>
+      <i *ngIf="!party.plaintiff" class="fa fa-backward" style="color: forestgreen;"></i>
         <app-actor-panel [actor]="party.actor"></app-actor-panel>
-        <span *ngIf="party.plaintiff">(Plaintiff)</span>
-        <span *ngIf="!party.plaintiff">(Defendant)</span>
     `
 })
 export class PartyPanelComponent {
@@ -46,16 +50,16 @@ export class PartyPanelComponent {
     selector: 'app-right-panel',
     template: `
       <span>
-        <i *ngIf="right.discriminator === 'TM'" class="fa fa-trademark"></i>
-        <i *ngIf="right.discriminator === 'DN'" class="fa fa-at"></i>
-        <i *ngIf="right.discriminator === 'PT'" class="fa fa-lightbulb-o"></i>
-        <i *ngIf="right.discriminator === 'DM'" class="fa fa-cube"></i>
-        <i *ngIf="right.discriminator === 'CR'" class="fa fa-copyright"></i>
-        <i *ngIf="right.discriminator === 'UC'" class="fa fa-compress"></i>
+        <i *ngIf="right.plaintiff" class="fa fa-forward" style="color: firebrick;"></i>
+        <i *ngIf="!right.plaintiff" class="fa fa-backward" style="color: forestgreen;"></i>
+        <i *ngIf="right.domain === 'TRADEMARK'" class="fa fa-trademark"></i>
+        <i *ngIf="right.domain === 'DOMAIN_NAME'" class="fa fa-at"></i>
+        <i *ngIf="right.domain === 'PATENT'" class="fa fa-lightbulb-o"></i>
+        <i *ngIf="right.domain === 'DESIGN_MODEL'" class="fa fa-cube"></i>
+        <i *ngIf="right.domain === 'COPYRIGHT'" class="fa fa-copyright"></i>
+        <i *ngIf="right.domain === 'UNFAIR_COMPETITION'" class="fa fa-compress"></i>
       </span>
         <app-images-panel [ids]="right.imageIds"></app-images-panel>
-        <span *ngIf="right.plaintiff">(Plaintiff)</span>
-        <span *ngIf="!right.plaintiff">(Defendant)</span>
     `
 })
 export class RightPanelComponent {
@@ -82,7 +86,10 @@ export class ActorPanelComponent {
 @Component({
     selector: 'app-docket-panel',
     template: `
-        <span>o{{docket.id}}: {{docket.reference}} (<app-court-panel [court]="docket.court"></app-court-panel>)</span>
+        <span title="{{docket.id}}">
+          <i class="fa fa-tag"></i>
+          {{docket.reference}} (<app-court-panel [court]="docket.court"></app-court-panel>)
+        </span>
         <ul>
             <li *ngFor="let decision of docket.decisions">
                 <app-decision-panel [decision]="decision"></app-decision-panel>
@@ -98,7 +105,10 @@ export class DocketPanelComponent {
 @Component({
     selector: 'app-decision-panel',
     template: `
-        <span>d{{decision.id}}: {{decision.reference}}</span>
+        <span title="{{decision.id}}">
+          <i class="fa fa-balance-scale"></i>
+          {{decision.reference}}
+        </span>
     `
 })
 export class DecisionPanelComponent {
