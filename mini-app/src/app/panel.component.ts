@@ -9,6 +9,13 @@ import {RemoteService} from "./remote.service";
           <p-header>
             <i class="fa fa-book"></i>
             <span>{{binder.reference}}</span>
+              <i *ngIf="binder.domains.indexOf('TRADEMARK') >= 0" class="fa fa-trademark"></i>
+              <i *ngIf="binder.domains.indexOf('DOMAIN_NAME') >= 0" class="fa fa-at"></i>
+              <i *ngIf="binder.domains.indexOf('PATENT') >= 0" class="fa fa-lightbulb-o"></i>
+              <i *ngIf="binder.domains.indexOf('DESIGN_MODEL') >= 0" class="fa fa-cube"></i>
+              <i *ngIf="binder.domains.indexOf('COPYRIGHT') >= 0" class="fa fa-copyright"></i>
+              <i *ngIf="binder.domains.indexOf('UNFAIR_COMPETITION') >= 0" class="fa fa-compress"></i>
+              <span>({{binder.area}})</span>
           </p-header>
             <ul>
                 <li *ngFor="let party of binder.parties">

@@ -285,7 +285,7 @@
             </docket>
         </binder>
 
-        <binder reference="Copyright multi-domain binder 2,767,146" area="EUROPE" domains="COPYRIGHT,COPYRIGHT,UNFAIR_COMPETITION" firstAction="INFRINGEMENT">
+        <binder reference="Copyright multi-domain binder 2,767,146" area="EUROPE" domains="COPYRIGHT,TRADEMARK,UNFAIR_COMPETITION" firstAction="INFRINGEMENT">
             <party plaintiff="true" actor="a15"/>
             <party plaintiff="false" actor="a16"/>
             <copyright plaintiff="true" name="Mousserelle" images="2077714"/>
