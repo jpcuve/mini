@@ -63,9 +63,11 @@ public abstract class Right {
         this.descriptor = descriptor;
     }
 
-    public abstract Domain getDomain();
+    public Domain getDomain() {
+        return domain;
+    }
 
-    public void setDomain(Domain domain){
+    public void setDomain(Domain domain) {
         this.domain = domain;
     }
 

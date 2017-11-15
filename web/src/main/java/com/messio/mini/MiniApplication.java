@@ -205,6 +205,19 @@ public class MiniApplication extends SpringBootServletInitializer {
                                 }
                                 break;
                             }
+                            case "copyright":{
+                                if (currentBinder != null){
+                                    final Copyright copyright = facade.create(new Copyright(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name")));
+                                    if (attributes.getValue("images") != null){
+                                        updateImageIds(copyright, attributes.getValue("images").split(","));
+                                    }
+                                    final String ref = attributes.getValue("ref");
+                                    if (ref != null){
+                                        rightMap.put(String.format("%s-%s", currentBinder.getId(), ref), copyright);
+                                    }
+                                }
+                                break;
+                            }
                             case "honor":{
                                 if (currentDecision != null && currentBinder != null){
                                     facade.create(new Honor(currentDecision, rightMap.get(String.format("%s-%s", currentBinder.getId(), attributes.getValue("right"))), RightValidity.valueOf(attributes.getValue("validity"))));

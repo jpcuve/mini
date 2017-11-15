@@ -15,6 +15,7 @@
         <court ref="c12" path="World,Europe,France,Paris,TGI de Paris"/>
         <court ref="c13" path="World,Europe,United Kingdom,UKIPO,Hearing Officer"/>
         <court ref="c14" path="World,Europe,United Kingdom,UKIPO,Appointed Persons"/>
+        <court ref="c15" path="World,Europe,France,Bordeaux,Cour d'Appel de Bordeaux"/>
     </courts>
     <pols>
         <pol ref="pol0" path="10,10.1,10.1.1,10.1.1.1"/>
@@ -46,6 +47,7 @@
         <image ref="918669" asset="918669.png" mime="image/png"/>
         <image ref="918670" asset="918670.png" mime="image/png"/>
         <image ref="1794162" asset="1794162.png" mime="image/png"/>
+        <image ref="2077714" asset="2077714.png" mime="image/png"/>
     </images>
     <pdfs>
         <pdf ref="en" asset="en.pdf"/>
@@ -67,6 +69,8 @@
         <pdf ref="darts-855-985-D-fr" asset="darts-855-985-D-fr.pdf"/>
         <pdf ref="darts-842-516-D-en" asset="darts-842-516-D-en.pdf"/>
         <pdf ref="darts-011-253-E-en" asset="darts-011-253-E-en.pdf"/>
+        <pdf ref="darts-219-047-C-fr" asset="darts-219-047-C-fr.pdf"/>
+        <pdf ref="darts-460-037-D-fr" asset="darts-460-037-D-fr.pdf"/>
     </pdfs>
     <actors>
         <actor ref="jpc" name="jean-pierre" person="true"/>
@@ -86,6 +90,8 @@
         <actor ref="a12" name="Foundation Brakes France S.a.s." person="false"/>
         <actor ref="a13" name="Gareth Richard Evans" person="true"/>
         <actor ref="a14" name="Subli Blanks Ltd." person="false"/>
+        <actor ref="a15" name="Milco S.a.s." person="false"/>
+        <actor ref="a16" name="Jeca S.A." person="false"/>
     </actors>
     <binders>
         <binder reference="binder01" firstAction="OPPOSITION" area="EUROPE" domains="TRADEMARK,PATENT">
@@ -264,19 +270,37 @@
         <binder reference="Trademark binder 4,013,729" area="EUROPE" domains="TRADEMARK" firstAction="OPPOSITION">
             <party plaintiff="true" actor="a13"/>
             <party plaintiff="false" actor="a14"/>
-            <trademark name="galaxy PRINT FINISHING" images="1794162"/>
-            <trademark name="Galaxy"/>
+            <trademark plaintiff="true" name="galaxy PRINT FINISHING" images="1794162"/>
+            <trademark plaintiff="false" name="Galaxy"/>
             <docket reference="uk-ipo-O-159-17" court="c13">
                 <decision reference="uk-ipo-O-159-17" judgmentDate="2017-03-30" level="FIRST_INSTANCE" recordNature="ON_THE_MERITS">
                     <document locale="en" pdf="darts-842-516-D-en"/>
                 </decision>
-
             </docket>
             <docket reference="Opp:600000471" court="c14">
                 <decision reference="uk-Opp-600000471_20171016_Hearing_IS" judgmentDate="2017-10-16" level="APPEAL" recordNature="HEARING">
                     <document locale="en" pdf="darts-011-253-E-en"/>
                 </decision>
 
+            </docket>
+        </binder>
+
+        <binder reference="Copyright multi-domain binder 2,767,146" area="EUROPE" domains="COPYRIGHT,COPYRIGHT,UNFAIR_COMPETITION" firstAction="INFRINGEMENT">
+            <party plaintiff="true" actor="a15"/>
+            <party plaintiff="false" actor="a16"/>
+            <copyright plaintiff="true" name="Mousserelle" images="2077714"/>
+            <trademark plaintiff="true" name="MOUSSERELLE AUX TROIS SAVEURS"/>
+            <trademark plaintiff="true" name="MOUSSERELLE"/>
+            <trademark plaintiff="false" name="Mousse savourelle aux trois saveurs"/>
+            <docket reference="N10-19923" court="c11">
+                <decision reference="fr-N10-19923_20141210" judgmentDate="2014-12-10" level="JUDICIAL_REVIEW" recordNature="ON_THE_MERITS">
+                    <document locale="fr" pdf="darts-219-047-C-fr"/>
+                </decision>
+            </docket>
+            <docket reference="15/00268" court="c15">
+                <decision reference="fr-15-00268_20160616" judgmentDate="2016-06-16" level="APPEAL" recordNature="ON_THE_MERITS">
+                    <document locale="fr" pdf="darts-460-037-D-fr"/>
+                </decision>
             </docket>
 
         </binder>
