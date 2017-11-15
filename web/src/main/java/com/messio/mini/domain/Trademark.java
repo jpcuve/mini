@@ -16,18 +16,13 @@ public class Trademark extends Right {
     }
 
     public Trademark(Binder binder, boolean opponent, String name) {
-        super(binder, Domain.TRADEMARK, opponent);
+        super(binder, opponent, Domain.TRADEMARK);
         this.name = name;
     }
 
     @Override
     public String getDescriptor() {
         return String.format("%s", name);
-    }
-
-    @Override
-    public Domain getDomain() {
-        return Domain.TRADEMARK;
     }
 
     public String getName() {

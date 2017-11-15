@@ -16,18 +16,13 @@ public class Patent extends Right {
     }
 
     public Patent(Binder binder, boolean opponent, String application) {
-        super(binder, Domain.PATENT, opponent);
+        super(binder, opponent, Domain.PATENT);
         this.application = application;
     }
 
     @Override
     public String getDescriptor() {
         return String.format("%s", application);
-    }
-
-    @Override
-    public Domain getDomain() {
-        return Domain.PATENT;
     }
 
     public String getApplication() {

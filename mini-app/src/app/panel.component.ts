@@ -28,6 +28,11 @@ import {RemoteService} from "./remote.service";
                 </li>
             </ul>
             <ul>
+                <li *ngFor="let trademark of binder.trademarks">
+                    <app-trademark-panel [trademark]="trademark"></app-trademark-panel>
+                </li>
+            </ul>
+            <ul>
                 <li *ngFor="let docket of binder.dockets">
                     <app-docket-panel [docket]="docket"></app-docket-panel>
                 </li>

@@ -14,7 +14,8 @@ export interface Binder {
   domains: string[];
   dockets: Docket[];
   parties: Party[];
-  rights: Right[]
+  rights: Right[];
+
 }
 
 export interface Party {

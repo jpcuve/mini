@@ -16,18 +16,13 @@ public class DomainName extends Right {
     }
 
     public DomainName(Binder binder, boolean opponent, String name) {
-        super(binder, Domain.DOMAIN_NAME, opponent);
+        super(binder, opponent, Domain.DOMAIN_NAME);
         this.name = name;
     }
 
     @Override
     public String getDescriptor() {
         return String.format("%s", name);
-    }
-
-    @Override
-    public Domain getDomain() {
-        return Domain.DOMAIN_NAME;
     }
 
     public String getName() {

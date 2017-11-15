@@ -19,18 +19,13 @@ public class Copyright extends Right {
     }
 
     public Copyright(Binder binder, boolean opponent, String name) {
-        super(binder, Domain.COPYRIGHT, opponent);
+        super(binder, opponent, Domain.COPYRIGHT);
         this.name = name;
     }
 
     @Override
     public String getDescriptor() {
         return String.format("%s", name);
-    }
-
-    @Override
-    public Domain getDomain() {
-        return Domain.COPYRIGHT;
     }
 
     public String getName() {

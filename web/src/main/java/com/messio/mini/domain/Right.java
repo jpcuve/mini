@@ -51,10 +51,10 @@ public abstract class Right {
     public Right() {
     }
 
-    protected Right(Binder binder, Domain domain, boolean plaintiff) {
+    protected Right(Binder binder, boolean plaintiff, Domain domain) {
         this.binder = binder;
-        this.domain = domain;
         this.plaintiff = plaintiff;
+        this.domain = domain;
     }
 
     public abstract String getDescriptor();

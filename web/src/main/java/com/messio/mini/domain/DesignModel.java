@@ -16,18 +16,13 @@ public class DesignModel extends Right {
     }
 
     public DesignModel(Binder binder, boolean opponent, String name) {
-        super(binder, Domain.DESIGN_MODEL, opponent);
+        super(binder, opponent, Domain.DESIGN_MODEL);
         this.name = name;
     }
 
     @Override
     public String getDescriptor() {
         return String.format("%s", name);
-    }
-
-    @Override
-    public Domain getDomain() {
-        return Domain.DESIGN_MODEL;
     }
 
     public String getName() {
