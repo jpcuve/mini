@@ -15,7 +15,7 @@ export interface Binder {
   dockets: Docket[];
   parties: Party[];
   rights: Right[];
-
+  trademarks: Trademark[];
 }
 
 export interface Party {

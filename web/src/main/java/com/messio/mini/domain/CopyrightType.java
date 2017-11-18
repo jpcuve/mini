@@ -1,0 +1,16 @@
+package com.messio.mini.domain;
+
+public enum CopyrightType {
+    LITERARY_WORK,
+    MUSICAL_WORK,
+    WORK_OF_VISUAL_ART,
+    PHOTOGRAPHIC_WORK,
+    DRAMATIC_WORK,
+    AUDIOVISUAL_CINEMA_WORK,
+    DERIVATIVE_WORK,
+    UTILITARIAN_WORK,
+    APPLIED_ART,
+    COMPUTER_PROGRAM,
+    OTHER;
+
+}

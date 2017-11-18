@@ -1,7 +1,7 @@
 
 import {Component, OnInit} from "@angular/core";
 import {RemoteService} from "./remote.service";
-import {Binder, Decision, Docket, Party, Right} from "./domain.type";
+import {Binder, Decision, Docket, Party, Right, Trademark} from "./domain.type";
 import {QueryViewModel} from "./model.type";
 import {BinderQueryModel} from "./form.type";
 
@@ -32,6 +32,7 @@ export class QueryViewComponent implements OnInit {
                     binder.dockets = [];
                     binder.parties = [];
                     binder.rights = [];
+                    binder.trademarks = [];
                     this.binders.push(binder);
                 }
                 for (let id in m.dockets){
@@ -52,6 +53,10 @@ export class QueryViewComponent implements OnInit {
                 for (let id in m.rights){
                     let right: Right = m.rights[id];
                     m.binders[right.binderId].rights.push(right);
+                }
+                for (let id in m.trademarks){
+                    let trademark: Trademark = m.trademarks[id];
+                    m.binders[trademark.binderId].trademarks.push(trademark);
                 }
                 this.query = query;
             });

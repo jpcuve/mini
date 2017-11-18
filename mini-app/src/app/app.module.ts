@@ -9,7 +9,7 @@ import {HttpModule} from "@angular/http";
 import {
     ActorPanelComponent,
     BinderPanelComponent, CourtPanelComponent, DecisionPanelComponent,
-    DocketPanelComponent, ImagesPanelComponent, PartyPanelComponent, RightPanelComponent
+    DocketPanelComponent, ImagesPanelComponent, PartyPanelComponent, RightPanelComponent, TrademarkPanelComponent
 } from "./panel.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
@@ -33,6 +33,7 @@ const routes: Routes = [
         ActorPanelComponent,
         RightPanelComponent,
         ImagesPanelComponent,
+        TrademarkPanelComponent,
 
         BinderQueryFormComponent,
 

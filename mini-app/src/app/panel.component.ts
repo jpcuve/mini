@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {Actor, Binder, Court, Decision, Docket, Party, Right} from "./domain.type";
+import {Actor, Binder, Court, Decision, Docket, Party, Right, Trademark} from "./domain.type";
 import {RemoteService} from "./remote.service";
 
 @Component({
@@ -25,6 +25,11 @@ import {RemoteService} from "./remote.service";
             <ul>
                 <li *ngFor="let right of binder.rights">
                     <app-right-panel [right]="right"></app-right-panel>
+                </li>
+            </ul>
+            <ul>
+                <li *ngFor="let trademark of binder.trademarks">
+                    <app-trademark-panel [trademark]="trademark"></app-trademark-panel>
                 </li>
             </ul>
             <ul>
@@ -74,6 +79,18 @@ export class RightPanelComponent {
     right: Right;
 }
 
+@Component({
+    selector: 'app-trademark-panel',
+    template: `
+        <app-right-panel [right]="trademark"></app-right-panel>
+        <br/>
+        {{trademark.name}}
+    `
+})
+export class TrademarkPanelComponent {
+    @Input('trademark')
+    trademark: Trademark;
+}
 
 @Component({
     selector: 'app-actor-panel',
