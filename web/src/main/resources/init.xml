@@ -288,7 +288,7 @@
         <binder reference="Copyright multi-domain binder 2,767,146" area="EUROPE" domains="COPYRIGHT,TRADEMARK,UNFAIR_COMPETITION" firstAction="INFRINGEMENT">
             <party plaintiff="true" actor="a15"/>
             <party plaintiff="false" actor="a16"/>
-            <copyright plaintiff="true" name="Mousserelle" images="2077714" type="LITTERARY_WORK"/>
+            <copyright plaintiff="true" name="Mousserelle" images="2077714" type="LITERARY_WORK"/>
             <trademark plaintiff="true" type="FIGURATIVE" name="MOUSSERELLE AUX TROIS SAVEURS"/>
             <trademark plaintiff="true" type="VERBAL" name="MOUSSERELLE"/>
             <trademark plaintiff="false" type="VERBAL" name="Mousse savourelle aux trois saveurs"/>

@@ -16,6 +16,10 @@ export interface Binder {
   parties: Party[];
   rights: Right[];
   trademarks: Trademark[];
+  domainNames: DomainName[];
+  patents: Patent[];
+  designModels: DesignModel[];
+  copyrights: Copyright[];
 }
 
 export interface Party {
@@ -54,6 +58,12 @@ export interface Patent extends Right {
 
 export interface DesignModel extends Right {
   name: string;
+  registration: string;
+}
+
+export interface Copyright extends Right {
+    name: string;
+    type: string;h
 }
 
 export interface Pol {

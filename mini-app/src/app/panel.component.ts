@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {Actor, Binder, Court, Decision, Docket, Party, Right, Trademark} from "./domain.type";
+import {Actor, Binder, Court, Decision, DesignModel, Docket, Party, Right, Trademark} from "./domain.type";
 import {RemoteService} from "./remote.service";
 
 @Component({
@@ -90,6 +90,19 @@ export class RightPanelComponent {
 export class TrademarkPanelComponent {
     @Input('trademark')
     trademark: Trademark;
+}
+
+@Component({
+    selector: 'app-design-model-panel',
+    template: `
+        <app-right-panel [right]="designModel"></app-right-panel>
+        <br/>
+        {{designModel.registration}}:{{designModel.name}}
+    `
+})
+export class DesignModelPanelComponent {
+    @Input('designModel')
+    designModel: DesignModel;
 }
 
 @Component({

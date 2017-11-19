@@ -1,8 +1,9 @@
-
 import {Component, OnInit} from "@angular/core";
 import {RemoteService} from "./remote.service";
-import {Binder, Decision, Docket, Party, Right, Trademark} from "./domain.type";
-import {QueryViewModel} from "./model.type";
+import {
+    Binder, Copyright, Decision, DesignModel, Docket, DomainName, Party, Patent, Right,
+    Trademark
+} from "./domain.type";
 import {BinderQueryModel} from "./form.type";
 
 @Component({
@@ -54,9 +55,23 @@ export class QueryViewComponent implements OnInit {
                     let right: Right = m.rights[id];
                     m.binders[right.binderId].rights.push(right);
                 }
-                for (let id in m.trademarks){
-                    let trademark: Trademark = m.trademarks[id];
-                    m.binders[trademark.binderId].trademarks.push(trademark);
+                for (let id in m.binders) {
+                    let binder: Binder = m.binders[id];
+                    binder.trademarks = binder.rights
+                        .filter(r => r.domain ==='TRADEMARK')
+                        .reduce((ar: Trademark[], r: Trademark) => { ar.push(<Trademark>r); return ar; }, []);
+                    binder.domainNames = binder.rights
+                        .filter(r => r.domain ==='DOMAIN_NAME')
+                        .reduce((ar: DomainName[], r: DomainName) => { ar.push(<DomainName>r); return ar; }, []);
+                    binder.patents = binder.rights
+                        .filter(r => r.domain ==='PATENT')
+                        .reduce((ar: Patent[], r: Patent) => { ar.push(<Patent>r); return ar; }, []);
+                    binder.designModels = binder.rights
+                        .filter(r => r.domain ==='DESIGN_MODEL')
+                        .reduce((ar: DesignModel[], r: DesignModel) => { ar.push(<DesignModel>r); return ar; }, []);
+                    binder.copyrights = binder.rights
+                        .filter(r => r.domain ==='COPYRIGHT')
+                        .reduce((ar: Copyright[], r: Copyright) => { ar.push(<Copyright>r); return ar; }, []);
                 }
                 this.query = query;
             });
