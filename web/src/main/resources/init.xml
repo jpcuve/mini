@@ -97,7 +97,7 @@
         <binder reference="binder01" firstAction="OPPOSITION" area="EUROPE" domains="TRADEMARK,PATENT">
             <party plaintiff="true" actor="jpc"/>
             <party plaintiff="false" actor="fg"/>
-            <trademark plaintiff="true" name="trademark0101" images="paper-plane,eye"/>
+            <trademark plaintiff="true" name="trademark0101" type="FIGURATIVE" images="paper-plane,eye"/>
             <patent plaintiff="false" name="patent0102"/>
             <docket reference="docket01" court="ber">
                 <decision reference="decision01" judgmentDate="2013-10-20" level="FIRST_INSTANCE" recordNature="EVIDENCE">
@@ -120,8 +120,8 @@
             <party plaintiff="true" actor="jpc"/>
             <party plaintiff="false" actor="fg"/>
             <party plaintiff="false" actor="evz"/>
-            <trademark plaintiff="true" name="coca cola"/>
-            <trademark plaintiff="false" name="ariel"/>
+            <trademark plaintiff="true" type="VERBAL" name="coca cola"/>
+            <trademark plaintiff="false" type="VERBAL" name="ariel"/>
             <docket reference="docket03" court="was">
                 <decision reference="decision03" judgmentDate="2014-10-20" level="FIRST_INSTANCE" recordNature="EVIDENCE">
                     <document locale="en" pdf="en"/>
@@ -146,9 +146,9 @@
             <party plaintiff="true" actor="evz"/>
             <patent plaintiff="true" name="patent0501"/>
             <patent plaintiff="false" name="patent0502"/>
-            <trademark plaintiff="true" name="skull" images="skull"/>
-            <trademark plaintiff="false" name="rocket" images="rocket"/>
-            <trademark plaintiff="false" name="pizza" images="pizza,muffin,donut"/>
+            <trademark plaintiff="true" type="FIGURATIVE" name="skull" images="skull"/>
+            <trademark plaintiff="false" type="FIGURATIVE" name="rocket" images="rocket"/>
+            <trademark plaintiff="false" type="FIGURATIVE" name="pizza" images="pizza,muffin,donut"/>
             <docket reference="docket0501" court="was">
                 <decision reference="decision050101" judgmentDate="2014-10-22" level="PRELIMINARY_RULING" recordNature="HEARING">
                     <document locale="en" pdf="en"/>
@@ -270,8 +270,8 @@
         <binder reference="Trademark binder 4,013,729" area="EUROPE" domains="TRADEMARK" firstAction="OPPOSITION">
             <party plaintiff="true" actor="a13"/>
             <party plaintiff="false" actor="a14"/>
-            <trademark plaintiff="true" name="galaxy PRINT FINISHING" images="1794162"/>
-            <trademark plaintiff="false" name="Galaxy"/>
+            <trademark plaintiff="true" type="FIGURATIVE" name="galaxy PRINT FINISHING" images="1794162"/>
+            <trademark plaintiff="false" type="VERBAL" name="Galaxy"/>
             <docket reference="uk-ipo-O-159-17" court="c13">
                 <decision reference="uk-ipo-O-159-17" judgmentDate="2017-03-30" level="FIRST_INSTANCE" recordNature="ON_THE_MERITS">
                     <document locale="en" pdf="darts-842-516-D-en"/>
@@ -289,9 +289,9 @@
             <party plaintiff="true" actor="a15"/>
             <party plaintiff="false" actor="a16"/>
             <copyright plaintiff="true" name="Mousserelle" images="2077714"/>
-            <trademark plaintiff="true" name="MOUSSERELLE AUX TROIS SAVEURS"/>
-            <trademark plaintiff="true" name="MOUSSERELLE"/>
-            <trademark plaintiff="false" name="Mousse savourelle aux trois saveurs"/>
+            <trademark plaintiff="true" type="FIGURATIVE" name="MOUSSERELLE AUX TROIS SAVEURS"/>
+            <trademark plaintiff="true" type="VERBAL" name="MOUSSERELLE"/>
+            <trademark plaintiff="false" type="VERBAL" name="Mousse savourelle aux trois saveurs"/>
             <docket reference="N10-19923" court="c11">
                 <decision reference="fr-N10-19923_20141210" judgmentDate="2014-12-10" level="JUDICIAL_REVIEW" recordNature="ON_THE_MERITS">
                     <document locale="fr" pdf="darts-219-047-C-fr"/>

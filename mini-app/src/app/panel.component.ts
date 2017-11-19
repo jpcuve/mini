@@ -84,7 +84,7 @@ export class RightPanelComponent {
     template: `
         <app-right-panel [right]="trademark"></app-right-panel>
         <br/>
-        {{trademark.name}}
+        {{trademark.type}}:{{trademark.name}}
     `
 })
 export class TrademarkPanelComponent {

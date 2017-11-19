@@ -158,7 +158,7 @@ public class MiniApplication extends SpringBootServletInitializer {
                             }
                             case "trademark":{
                                 if (currentBinder != null){
-                                    final Trademark trademark = facade.create(new Trademark(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name")));
+                                    final Trademark trademark = facade.create(new Trademark(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name"), TrademarkType.valueOf(attributes.getValue("type"))));
                                     if (attributes.getValue("images") != null){
                                         updateImageIds(trademark, attributes.getValue("images").split(","));
                                     }

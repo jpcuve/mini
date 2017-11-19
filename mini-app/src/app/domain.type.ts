@@ -41,6 +41,7 @@ export interface Right {
 
 export interface Trademark extends Right {
   name: string;
+  type: string;
 }
 
 export interface DomainName extends Right {
