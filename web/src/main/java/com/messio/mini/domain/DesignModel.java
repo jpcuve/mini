@@ -11,13 +11,17 @@ public class DesignModel extends Right {
     @Basic
     @Column(name = "name", length = 255)
     private String name;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "registration")
+    private DesignRegistration registration;
 
     public DesignModel() {
     }
 
-    public DesignModel(Binder binder, boolean opponent, String name) {
+    public DesignModel(Binder binder, boolean opponent, String name, DesignRegistration registration) {
         super(binder, opponent, Domain.DESIGN_MODEL);
         this.name = name;
+        this.registration = registration;
     }
 
     @Override
@@ -31,5 +35,13 @@ public class DesignModel extends Right {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public DesignRegistration getRegistration() {
+        return registration;
+    }
+
+    public void setRegistration(DesignRegistration registration) {
+        this.registration = registration;
     }
 }

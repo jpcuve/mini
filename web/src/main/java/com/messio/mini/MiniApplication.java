@@ -194,7 +194,7 @@ public class MiniApplication extends SpringBootServletInitializer {
                             }
                             case "design-model":{
                                 if (currentBinder != null){
-                                    final DesignModel designModel = facade.create(new DesignModel(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name")));
+                                    final DesignModel designModel = facade.create(new DesignModel(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name"), DesignRegistration.valueOf(attributes.getValue("registration"))));
                                     if (attributes.getValue("images") != null){
                                         updateImageIds(designModel, attributes.getValue("images").split(","));
                                     }
@@ -207,7 +207,7 @@ public class MiniApplication extends SpringBootServletInitializer {
                             }
                             case "copyright":{
                                 if (currentBinder != null){
-                                    final Copyright copyright = facade.create(new Copyright(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name")));
+                                    final Copyright copyright = facade.create(new Copyright(currentBinder, Boolean.parseBoolean(attributes.getValue("plaintiff")), attributes.getValue("name"), CopyrightType.valueOf(attributes.getValue("type"))));
                                     if (attributes.getValue("images") != null){
                                         updateImageIds(copyright, attributes.getValue("images").split(","));
                                     }
