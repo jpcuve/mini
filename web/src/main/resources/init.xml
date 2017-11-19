@@ -213,7 +213,7 @@
             </docket>
         </binder>
 
-        <binder reference="Design &amp; model binder 2,525,424" area="EUROPE" domains="PATENT" firstAction="INFRINGEMENT">
+        <binder reference="Design &amp; model binder 2,525,424" area="EUROPE" domains="DESIGN_MODEL" firstAction="INFRINGEMENT">
             <party plaintiff="true" actor="a06"/>
             <party plaintiff="true" actor="a07"/>
             <design-model plaintiff="true" name="Mohican Moccasins" images="918661,918662,918663,918664,918665,918666,918667,918668,918669,918670" registration="REGISTERED"/>

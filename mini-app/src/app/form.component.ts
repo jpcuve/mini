@@ -26,7 +26,7 @@ import {BinderQueryModel} from './form.type';
   `
 })
 export class BinderQueryFormComponent {
-  model: BinderQueryModel = new BinderQueryModel('dec', 'male');
+  model: BinderQueryModel = new BinderQueryModel('i', 'male');
   @Output('handler')
   handler: EventEmitter<BinderQueryModel> = new EventEmitter();
   sexes: string[] = ['male', 'female'];
