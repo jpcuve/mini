@@ -8,8 +8,16 @@ import {RemoteService} from "./remote.service";
 import {HttpModule} from "@angular/http";
 import {
     ActorPanelComponent,
-    BinderPanelComponent, CourtPanelComponent, DecisionPanelComponent, DesignModelPanelComponent,
-    DocketPanelComponent, ImagesPanelComponent, PartyPanelComponent, RightPanelComponent, TrademarkPanelComponent
+    BinderPanelComponent,
+    CopyrightPanelComponent,
+    CourtPanelComponent,
+    DecisionPanelComponent,
+    DesignModelPanelComponent,
+    DocketPanelComponent, DomainNamePanelComponent,
+    ImagesPanelComponent,
+    PartyPanelComponent, PatentPanelComponent,
+    RightPanelComponent,
+    TrademarkPanelComponent
 } from "./panel.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
@@ -34,7 +42,10 @@ const routes: Routes = [
         RightPanelComponent,
         ImagesPanelComponent,
         TrademarkPanelComponent,
+        DomainNamePanelComponent,
+        PatentPanelComponent,
         DesignModelPanelComponent,
+        CopyrightPanelComponent,
 
         BinderQueryFormComponent,
 

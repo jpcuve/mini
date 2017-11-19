@@ -1,5 +1,8 @@
 import {Component, Input} from "@angular/core";
-import {Actor, Binder, Court, Decision, DesignModel, Docket, Party, Right, Trademark} from "./domain.type";
+import {
+    Actor, Binder, Copyright, Court, Decision, DesignModel, Docket, DomainName, Party, Patent, Right,
+    Trademark
+} from "./domain.type";
 import {RemoteService} from "./remote.service";
 
 @Component({
@@ -23,13 +26,28 @@ import {RemoteService} from "./remote.service";
                 </li>
             </ul>
             <ul>
-                <li *ngFor="let right of binder.rights">
-                    <app-right-panel [right]="right"></app-right-panel>
+                <li *ngFor="let trademark of binder.trademarks">
+                    <app-trademark-panel [trademark]="trademark"></app-trademark-panel>
                 </li>
             </ul>
             <ul>
-                <li *ngFor="let trademark of binder.trademarks">
-                    <app-trademark-panel [trademark]="trademark"></app-trademark-panel>
+                <li *ngFor="let domainName of binder.domainNames">
+                    <app-domain-name-panel [domainName]="domainName"></app-domain-name-panel>
+                </li>
+            </ul>
+            <ul>
+                <li *ngFor="let patent of binder.patents">
+                    <app-patent-panel [patent]="patent"></app-patent-panel>
+                </li>
+            </ul>
+            <ul>
+                <li *ngFor="let designModel of binder.designModels">
+                    <app-design-model-panel [designModel]="designModel"></app-design-model-panel>
+                </li>
+            </ul>
+            <ul>
+                <li *ngFor="let copyright of binder.copyrights">
+                    <app-copyright-panel [copyright]="copyright"></app-copyright-panel>
                 </li>
             </ul>
             <ul>
@@ -93,6 +111,32 @@ export class TrademarkPanelComponent {
 }
 
 @Component({
+    selector: 'app-domain-name-panel',
+    template: `
+        <app-right-panel [right]="domainName"></app-right-panel>
+        <br/>
+        {{domainName.name}}
+    `
+})
+export class DomainNamePanelComponent {
+    @Input('domainName')
+    domainName: DomainName;
+}
+
+@Component({
+    selector: 'app-patent-panel',
+    template: `
+        <app-right-panel [right]="patent"></app-right-panel>
+        <br/>
+        {{patent.application}}
+    `
+})
+export class PatentPanelComponent {
+    @Input('patent')
+    patent: Patent;
+}
+
+@Component({
     selector: 'app-design-model-panel',
     template: `
         <app-right-panel [right]="designModel"></app-right-panel>
@@ -103,6 +147,19 @@ export class TrademarkPanelComponent {
 export class DesignModelPanelComponent {
     @Input('designModel')
     designModel: DesignModel;
+}
+
+@Component({
+    selector: 'app-copyright-panel',
+    template: `
+        <app-right-panel [right]="copyright"></app-right-panel>
+        <br/>
+        {{copyright.type}}:{{copyright.name}}
+    `
+})
+export class CopyrightPanelComponent {
+    @Input('copyright')
+    copyright: Copyright;
 }
 
 @Component({
