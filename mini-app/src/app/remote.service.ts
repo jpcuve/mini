@@ -3,12 +3,12 @@
  */
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
-import {Http} from "@angular/http";
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {QueryViewModel} from "./model.type";
 import {BinderQueryModel} from "./form.type";
 import {Court, Pol} from "./domain.type";
+import {HttpClient} from "@angular/common/http";
 
 
 @Injectable()
@@ -16,7 +16,7 @@ export class RemoteService {
     server: string;
     base: string;
 
-    constructor(private http: Http) {
+    constructor(private httpClient: HttpClient) {
         const w: Window = <Window> window;
         const cs: string[] = (parseInt(w.location.port) < 8080 ? ['http://', w.location.hostname, ':8080'] : []);
         this.server = cs.join('');
@@ -25,18 +25,18 @@ export class RemoteService {
     }
 
     queryBinders(model: BinderQueryModel): Observable<number[]> {
-        return this.http.post(this.base + '/binders/query', model).map(m => m.json() as number[]);
+        return this.httpClient.post(this.base + '/binders/query', model).map(m => m as number[]);
     }
 
     getQueryViewModel(commaSeparatedIds: string): Observable<QueryViewModel> {
-        return this.http.get(this.base + '/binders/' + commaSeparatedIds).map(m => m.json() as QueryViewModel);
+        return this.httpClient.get(this.base + '/binders/' + commaSeparatedIds).map(m => m as QueryViewModel);
     }
 
     getCourts(): Observable<Court[]> {
-      return this.http.get(this.base + '/courts').map(r => r.json() as Court[]);
+      return this.httpClient.get(this.base + '/courts').map(r => r as Court[]);
     }
 
     getPols(): Observable<Pol[]> {
-      return this.http.get(this.base + '/pols').map(r => r.json() as Pol[]);
+      return this.httpClient.get(this.base + '/pols').map(r => r as Pol[]);
     }
 }

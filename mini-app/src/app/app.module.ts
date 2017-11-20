@@ -5,7 +5,6 @@ import {AppComponent} from './app.component';
 import {RouterModule, Routes} from "@angular/router";
 import {QueryViewComponent} from "./query-view.component";
 import {RemoteService} from "./remote.service";
-import {HttpModule} from "@angular/http";
 import {
     ActorPanelComponent,
     BinderPanelComponent,
@@ -23,6 +22,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
 import {BinderQueryFormComponent} from "./form.component";
 import {ButtonModule, InputTextModule, PanelModule, ToolbarModule} from "primeng/primeng";
+import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
     {path: '**', component: QueryViewComponent}
@@ -54,7 +54,7 @@ const routes: Routes = [
         BrowserModule,
         BrowserAnimationsModule,
         RouterModule.forRoot(routes),
-        HttpModule,
+        HttpClientModule,
         FormsModule,
 
         PanelModule,
