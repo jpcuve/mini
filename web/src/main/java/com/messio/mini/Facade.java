@@ -141,4 +141,12 @@ public class Facade {
         final String ref = String.format("%%%s%%", model.getReference());
         return em.createNamedQuery(Binder.BINDER_IDS_BY_ANY_REFERENCE, Long.class).setParameter("reference", ref).getResultList();
     }
+
+    public List<Court> findAllCourts(){
+        return em.createNamedQuery(Court.COURT_ALL, Court.class).getResultList();
+    }
+
+    public List<Pol> findAllPols(){
+        return em.createNamedQuery(Pol.POL_ALL, Pol.class).getResultList();
+    }
 }

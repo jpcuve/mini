@@ -11,6 +11,7 @@ import java.util.Collection;
  */
 @Table(name = "courts", uniqueConstraints = @UniqueConstraint(columnNames = { "parent_id", "name" }))
 @NamedQueries({
+        @NamedQuery(name = Court.COURT_ALL, query = "select c from Court c"),
         @NamedQuery(name = Court.COURT_BY_PARENT_BY_NAME, query = "select c from Court c where c.parent = :parent and c.name = :name"),
         @NamedQuery(name = Court.COURT_BY_IDS, query = "select c.id, c from Court c where c.id in (:ids)")
 })
@@ -19,6 +20,7 @@ import java.util.Collection;
 public class Court implements Node<Long, Court> {
     public static final String COURT_BY_PARENT_BY_NAME = "court.byParentByName";
     public static final String COURT_BY_IDS = "court.byIds";
+    public static final String COURT_ALL = "court.all";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +33,9 @@ public class Court implements Node<Long, Court> {
     private Court parent;
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     private Collection<Court> children;
+    @Basic
+    @Column(name = "parent_id", insertable = false, updatable = false)
+    private Long parentId;
 
     public Court() {
     }
@@ -70,5 +75,13 @@ public class Court implements Node<Long, Court> {
 
     public void setChildren(Collection<Court> children) {
         this.children = children;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 }

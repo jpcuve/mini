@@ -1,5 +1,6 @@
 package com.messio.mini.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.messio.mini.util.Node;
 
 import javax.persistence.*;
@@ -10,11 +11,14 @@ import java.util.Collection;
  */
 @Table(name = "pols", uniqueConstraints = @UniqueConstraint(columnNames = { "parent_id", "name" }))
 @NamedQueries({
+        @NamedQuery(name = Pol.POL_ALL, query = "select p from Pol p"),
         @NamedQuery(name = Pol.POL_BY_PARENT_BY_NAME, query = "select p from Pol p where p.parent = :parent and p.name = :name")
 })
 @Entity
+@JsonIgnoreProperties({"parent", "children"})
 public class Pol implements Node<Long, Pol> {
     public static final String POL_BY_PARENT_BY_NAME = "pol.byParentByName";
+    public static final String POL_ALL = "pol.all";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +31,10 @@ public class Pol implements Node<Long, Pol> {
     private Pol parent;
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     private Collection<Pol> children;
+    @Basic
+    @Column(name = "parent_id", insertable = false, updatable = false)
+    private Long parentId;
+
 
     public Pol() {
     }
@@ -66,5 +74,13 @@ public class Pol implements Node<Long, Pol> {
 
     public void setChildren(Collection<Pol> children) {
         this.children = children;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 }

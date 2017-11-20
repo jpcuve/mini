@@ -201,7 +201,7 @@ export class DocketPanelComponent {
     template: `
         <span title="{{decision.id}}">
           <i class="fa fa-balance-scale"></i>
-          {{decision.reference}} {{decision.judgmentDate.year}}
+          {{decision.reference}} ({{decision.judgmentDate.dayOfMonth}}-{{decision.judgmentDate.month}}-{{decision.judgmentDate.year}}) {{decision.level}}
         </span>
     `
 })

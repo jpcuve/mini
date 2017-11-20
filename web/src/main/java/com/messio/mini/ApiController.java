@@ -64,4 +64,15 @@ public class ApiController {
         LOGGER.debug("binder ids found: {}", binderIds);
         return binderIds;
     }
+
+    @GetMapping("/courts")
+    public List<Court> getCourts(){
+        return facade.findAllCourts();
+    }
+
+    @GetMapping("/pols")
+    public List<Pol> getAllPols(){
+        return facade.findAllPols();
+    }
+
 }

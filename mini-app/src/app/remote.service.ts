@@ -8,6 +8,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {QueryViewModel} from "./model.type";
 import {BinderQueryModel} from "./form.type";
+import {Court, Pol} from "./domain.type";
 
 
 @Injectable()
@@ -29,5 +30,13 @@ export class RemoteService {
 
     getQueryViewModel(commaSeparatedIds: string): Observable<QueryViewModel> {
         return this.http.get(this.base + '/binders/' + commaSeparatedIds).map(m => m.json() as QueryViewModel);
+    }
+
+    getCourts(): Observable<Court[]> {
+      return this.http.get(this.base + '/courts').map(r => r.json() as Court[]);
+    }
+
+    getPols(): Observable<Pol[]> {
+      return this.http.get(this.base + '/pols').map(r => r.json() as Pol[]);
     }
 }

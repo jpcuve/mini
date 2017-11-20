@@ -1,3 +1,9 @@
+export interface NamedNode {
+  id: number;
+  parentId?: number;
+  name: string;
+}
+
 export interface Actor {
   id: number;
   name: string;
@@ -86,6 +92,7 @@ export interface Decision {
   docketId: number;
   reference: string;
   judgmentDate: string;
+  level: string;
   recordNature?: string;
   refusal: boolean;
   citable: boolean;
