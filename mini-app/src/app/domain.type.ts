@@ -1,7 +1,5 @@
-export interface NamedNode {
-  id: number;
-  parentId?: number;
-  name: string;
+export interface TreeNode {
+  children: TreeNode[];
 }
 
 export interface Actor {
