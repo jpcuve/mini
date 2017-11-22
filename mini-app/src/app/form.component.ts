@@ -18,6 +18,7 @@ import {RemoteService} from "./remote.service";
           </span>
         </div>
         <div class="ui-g-12">
+            <label>Courts</label>
           <p-tree [value]="courts"></p-tree>
         </div>
         <div class="ui-g-12">
@@ -38,7 +39,7 @@ export class BinderQueryFormComponent implements OnInit {
   @Output('handler')
   handler: EventEmitter<BinderQueryModel> = new EventEmitter();
   sexes: string[] = ['male', 'female'];
-  courts: TreeNode[] = [{ label: 'A', children:[{ label: 'B'}, {label: 'C'}] }];
+  courts: TreeNode[] = [];
   pols: TreeNode[] = [];
 
   constructor(private remoteService: RemoteService){
@@ -55,6 +56,17 @@ export class BinderQueryFormComponent implements OnInit {
         }
       });
       pols.filter(n => n.parentId).forEach(n => map[n.parentId].children.push(map[n.id]));
+    });
+    this.remoteService.getCourts().subscribe(courts => {
+        let map: { [key: string]: TreeNode } = {};
+        courts.forEach(court => {
+            let node: TreeNode = {label: court.name, children: []};
+            map[court.id] = node;
+            if (!court.parentId){
+                this.courts.push(node);
+            }
+        });
+        courts.filter(c => c.parentId).forEach(c => map[c.parentId].children.push(map[c.id]));
     });
   }
 

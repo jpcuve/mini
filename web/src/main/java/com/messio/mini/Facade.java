@@ -93,10 +93,12 @@ public class Facade {
     }
 
     public List<Court> findCourtsByParentByName(Court parent, String name){
+        if (parent == null) return em.createNamedQuery(Court.COURT_ORPHAN_BY_NAME, Court.class).setParameter("name", name).getResultList();
         return em.createNamedQuery(Court.COURT_BY_PARENT_BY_NAME, Court.class).setParameter("parent", parent).setParameter("name", name).getResultList();
     }
 
     public List<Pol> findPolsByParentByName(Pol parent, String name){
+        if (parent == null) return em.createNamedQuery(Pol.POL_ORPHAN_BY_NAME, Pol.class).setParameter("name", name).getResultList();
         return em.createNamedQuery(Pol.POL_BY_PARENT_BY_NAME, Pol.class).setParameter("parent", parent).setParameter("name", name).getResultList();
     }
 

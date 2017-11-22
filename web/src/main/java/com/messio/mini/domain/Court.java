@@ -12,6 +12,7 @@ import java.util.Collection;
 @Table(name = "courts", uniqueConstraints = @UniqueConstraint(columnNames = { "parent_id", "name" }))
 @NamedQueries({
         @NamedQuery(name = Court.COURT_ALL, query = "select c from Court c"),
+        @NamedQuery(name = Court.COURT_ORPHAN_BY_NAME, query = "select c from Court c where c.parent is null and c.name = :name"),
         @NamedQuery(name = Court.COURT_BY_PARENT_BY_NAME, query = "select c from Court c where c.parent = :parent and c.name = :name"),
         @NamedQuery(name = Court.COURT_BY_IDS, query = "select c.id, c from Court c where c.id in (:ids)")
 })
@@ -21,6 +22,7 @@ public class Court implements Node<Long, Court> {
     public static final String COURT_BY_PARENT_BY_NAME = "court.byParentByName";
     public static final String COURT_BY_IDS = "court.byIds";
     public static final String COURT_ALL = "court.all";
+    public static final String COURT_ORPHAN_BY_NAME = "court.orphanByName";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

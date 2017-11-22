@@ -12,6 +12,7 @@ import java.util.Collection;
 @Table(name = "pols", uniqueConstraints = @UniqueConstraint(columnNames = { "parent_id", "name" }))
 @NamedQueries({
         @NamedQuery(name = Pol.POL_ALL, query = "select p from Pol p"),
+        @NamedQuery(name = Pol.POL_ORPHAN_BY_NAME, query = "select p from Pol p where p.parent is null and p.name = :name"),
         @NamedQuery(name = Pol.POL_BY_PARENT_BY_NAME, query = "select p from Pol p where p.parent = :parent and p.name = :name")
 })
 @Entity
@@ -19,6 +20,7 @@ import java.util.Collection;
 public class Pol implements Node<Long, Pol> {
     public static final String POL_BY_PARENT_BY_NAME = "pol.byParentByName";
     public static final String POL_ALL = "pol.all";
+    public static final String POL_ORPHAN_BY_NAME = "pol.orphanByName";
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
