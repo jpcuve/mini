@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {BinderQueryModel} from './form.type';
+import {TreeNode} from "primeng/primeng";
+import {RemoteService} from "./remote.service";
 
 @Component({
   selector: 'app-binder-query-form',
@@ -16,6 +18,12 @@ import {BinderQueryModel} from './form.type';
           </span>
         </div>
         <div class="ui-g-12">
+          <p-tree [value]="courts"></p-tree>
+        </div>
+        <div class="ui-g-12">
+          <p-tree [value]="pols"></p-tree>
+        </div>
+        <div class="ui-g-12">
           <button pButton type="button" label="Clear" icon="fa-cog" class="ui-button-secondary" (click)="clear()"></button>
           <button pButton type="button" *ngIf="queryForm.valid" (click)="emit()" label="Search"
                   icon="fa-search"></button>
@@ -25,11 +33,31 @@ import {BinderQueryModel} from './form.type';
     </form>
   `
 })
-export class BinderQueryFormComponent {
+export class BinderQueryFormComponent implements OnInit {
   model: BinderQueryModel = new BinderQueryModel('i', 'male');
   @Output('handler')
   handler: EventEmitter<BinderQueryModel> = new EventEmitter();
   sexes: string[] = ['male', 'female'];
+  courts: TreeNode[] = [{ label: 'A', children:[{ label: 'B'}, {label: 'C'}] }];
+  pols: TreeNode[] = [];
+
+  constructor(private remoteService: RemoteService){
+  }
+
+  ngOnInit(): void {
+    this.remoteService.getPols().subscribe(pols => {
+      let map: { [key: string]: TreeNode } = {};
+      pols.forEach(pol => {
+        let node: TreeNode = {label: pol.name, children: []};
+        map[pol.id] = node;
+        if (!pol.parentId){
+          this.pols.push(node);
+        }
+      });
+      pols.filter(n => n.parentId).forEach(n => map[n.parentId].children.push(map[n.id]));
+    });
+  }
+
 
   clear(): void {
       this.model.clear();

@@ -21,7 +21,7 @@ import {
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {FormsModule} from "@angular/forms";
 import {BinderQueryFormComponent} from "./form.component";
-import {ButtonModule, InputTextModule, PanelModule, ToolbarModule} from "primeng/primeng";
+import {ButtonModule, InputTextModule, PanelModule, ToolbarModule, TreeModule} from "primeng/primeng";
 import {HttpClientModule} from "@angular/common/http";
 
 const routes: Routes = [
@@ -60,7 +60,8 @@ const routes: Routes = [
         PanelModule,
         ButtonModule,
         InputTextModule,
-        ToolbarModule
+        ToolbarModule,
+      TreeModule,
 
     ],
     providers: [

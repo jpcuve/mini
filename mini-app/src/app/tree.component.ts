@@ -4,7 +4,7 @@ import {
 } from "@angular/core";
 import {AnchorDirective} from "./anchor.directive";
 import {TreeNodeComponent} from "./tree-node.component";
-import {TreeNode} from "./domain.type";
+import {TreeNode} from "primeng/primeng";
 
 @Component({
     selector: 'tree',

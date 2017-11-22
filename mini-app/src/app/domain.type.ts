@@ -1,6 +1,4 @@
-export interface TreeNode {
-  children?: TreeNode[];
-}
+import {TreeNode} from "primeng/primeng";
 
 export interface Actor {
   id: number;
