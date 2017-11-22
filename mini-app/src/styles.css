@@ -1,1 +1,98 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-muted: #636c72;
+  --color-primary: #0275d8;
+  --color-success: #5cb85c;
+  --color-info: #5bc0de;
+  --color-warning: #f0ad4e;
+  --color-danger: #d9534f;
+  --tree-gap: 20px;
+  --tree-dash-width: 10px;
+}
+
+* {
+  font-family: sans-serif;
+}
+
+h1 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+.active {
+  color: white;
+  background-color: black;
+}
+
+.ng-valid {
+  border-left: 5px solid var(--color-success);
+}
+
+.ng-invalid {
+  border-left: 5px solid var(--color-danger);
+}
+
+.bd-callout {
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid #eee;
+  border-left-width: .25rem;
+  border-radius: .25rem;
+}
+
+.bd-callout h4 {
+  margin-top: 0;
+  margin-bottom: .25rem;
+}
+
+.bd-callout-info {
+  border-left-color: var(--color-info);
+}
+
+.bd-callout-info h4 {
+  color: var(--color-info);
+}
+
+.tree-box ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+}
+
+.tree-box ul li {
+  position: relative;
+  padding-left: var(--tree-gap);
+}
+
+.tree-box ul li:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--tree-dash-width);
+  height: 0.5em;
+  content: '';
+  border-width: 0 0 1px 1px;
+  border-style: solid;
+  border-color: var(--color-muted);
+}
+
+.tree-box ul li:after {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: var(--tree-dash-width);
+  height: 100%;
+  content: '';
+  border-left: 1px solid var(--color-muted);
+}
+
+.tree-box ul li:last-child:after {
+  display: none;
+}
+
+.tree-box ul.root{
+  padding: 0;
+}

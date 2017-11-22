@@ -1,5 +1,5 @@
 export interface TreeNode {
-  children: TreeNode[];
+  children?: TreeNode[];
 }
 
 export interface Actor {
@@ -33,7 +33,7 @@ export interface Party {
   actor: Actor;
 }
 
-export interface Court {
+export interface Court extends TreeNode {
   id: number;
   parentId?: number;
   name: string;
@@ -70,7 +70,7 @@ export interface Copyright extends Right {
     type: string;h
 }
 
-export interface Pol {
+export interface Pol extends TreeNode {
   id: number;
   name: string;
   parentId?: number;

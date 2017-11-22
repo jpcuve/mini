@@ -261,11 +261,13 @@ public class MiniApplication extends SpringBootServletInitializer {
         return servletRegistrationBean;
     }
 
+/*
     @Bean
     ServletRegistrationBean h2servletRegistration(){
         final ServletRegistrationBean registrationBean = new ServletRegistrationBean(new WebServlet(), "/h2-console/*");
         return registrationBean;
     }
+*/
 
     public static void main(String[] args) {
 		SpringApplication.run(MiniApplication.class, args);
