@@ -75,4 +75,8 @@ public class ApiController {
         return facade.findAllPols();
     }
 
+    @GetMapping("/decision/{id}")
+    public Decision getDecision(@PathVariable("id") long id){
+        return facade.findOne(Decision.class, id);
+    }
 }
