@@ -1,4 +1,3 @@
-<html>
 <span>
         <i *ngIf="right.plaintiff" class="fa fa-forward" style="color: firebrick;"></i>
         <i *ngIf="!right.plaintiff" class="fa fa-backward" style="color: forestgreen;"></i>
@@ -8,7 +7,5 @@
         <i *ngIf="right.domain === 'DESIGN_MODEL'" class="fa fa-cube"></i>
         <i *ngIf="right.domain === 'COPYRIGHT'" class="fa fa-copyright"></i>
         <i *ngIf="right.domain === 'UNFAIR_COMPETITION'" class="fa fa-compress"></i>
-      </span>
+</span>
 <app-images-panel [ids]="right.imageIds"></app-images-panel>
-
-</html>
