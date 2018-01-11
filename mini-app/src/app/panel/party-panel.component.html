@@ -1,0 +1,3 @@
+<i *ngIf="party.plaintiff" class="fa fa-forward" style="color: firebrick;"></i>
+<i *ngIf="!party.plaintiff" class="fa fa-backward" style="color: forestgreen;"></i>
+<app-actor-panel [actor]="party.actor"></app-actor-panel>

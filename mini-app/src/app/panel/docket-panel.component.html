@@ -1,0 +1,9 @@
+<span title="{{docket.id}}">
+          <i class="fa fa-tag"></i>
+          {{docket.reference}} (<app-court-panel [court]="docket.court"></app-court-panel>)
+        </span>
+<ul>
+    <li *ngFor="let decision of docket.decisions">
+        <app-decision-panel [decision]="decision"></app-decision-panel>
+    </li>
+</ul>

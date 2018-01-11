@@ -17,10 +17,6 @@ export class QueryViewComponent implements OnInit {
     console.log('Main component starting now');
   }
 
-  json(arg: any) {
-    return JSON.stringify(arg);
-  }
-
   queryFormHandler(query: BinderQueryModel): void {
     this.remoteService.queryBinders(query).subscribe(ids => {
       console.log(JSON.stringify(ids));
