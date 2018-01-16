@@ -30,6 +30,7 @@ function openChanged(matchIndex, direction, check){
             }
         }
     }
+    adjust();
     updateDisplay();
 }
 
@@ -83,9 +84,18 @@ function adjust(){
             comps[i] = 0;
         }
     }
-    if (!(isAlignedLeft() || isAlignedRight())){
+    console.log("1.openLeft", value.one.openLeft, "1.openRight", value.one.openRight, "2.openLeft", value.two.openLeft, "2.openRight", value.two.openRight);
+    if (!(isCompLeftPossible() || isCompRightPossible())){
         value.compOpen = 0;
     }
+}
+
+function isCompLeftPossible(){
+    return isAlignedLeft() && value.one.openLeft && value.two.openLeft;
+}
+
+function  isCompRightPossible(){
+    return isAlignedRight() && value.one.openRight && value.two.openRight;
 }
 
 function isAlignedLeft(){
@@ -260,8 +270,8 @@ function updateDisplay(){
         tSpelling.rows[4].cells[col].textContent = i2 >= 0 ? label(value.two.openLeft, value.two.matches.length, i2) : "";
         createMatch(tSpelling.rows[3].cells[col], 2, i2);
     }
-    createComp(tSpelling.rows[2].cells[1], -1, isAlignedLeft());
-    createComp(tSpelling.rows[2].cells[2 + comps.length], -1, isAlignedRight());
+    createComp(tSpelling.rows[2].cells[1], -1, isCompLeftPossible());
+    createComp(tSpelling.rows[2].cells[2 + comps.length], -1, isCompRightPossible());
 }
 
 var value = {
@@ -351,7 +361,7 @@ function spellingInit(){
     value = eval("(" + jQuery("#advancedSpelling").val() + ")");
     adjust();
     updateDisplay();
-};
+}
 
 jQuery(document).click(function(event){
     "use strict";
