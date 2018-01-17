@@ -1,0 +1,48 @@
+<p-panel toggleable="[true]" collapsed="[true]">
+    <p-header>
+        <i class="fa fa-book"></i>
+        <span>{{binder.reference}}</span>
+        <i *ngIf="binder.domains.indexOf('TRADEMARK') >= 0" class="fa fa-trademark"></i>
+        <i *ngIf="binder.domains.indexOf('DOMAIN_NAME') >= 0" class="fa fa-at"></i>
+        <i *ngIf="binder.domains.indexOf('PATENT') >= 0" class="fa fa-lightbulb-o"></i>
+        <i *ngIf="binder.domains.indexOf('DESIGN_MODEL') >= 0" class="fa fa-cube"></i>
+        <i *ngIf="binder.domains.indexOf('COPYRIGHT') >= 0" class="fa fa-copyright"></i>
+        <i *ngIf="binder.domains.indexOf('UNFAIR_COMPETITION') >= 0" class="fa fa-compress"></i>
+        <span>({{binder.area}})</span>
+    </p-header>
+    <ul>
+        <li *ngFor="let party of binder.parties">
+            <app-party-panel [party]="party"></app-party-panel>
+        </li>
+    </ul>
+    <ul>
+        <li *ngFor="let trademark of binder.trademarks">
+            <app-trademark-panel [trademark]="trademark"></app-trademark-panel>
+        </li>
+    </ul>
+    <ul>
+        <li *ngFor="let domainName of binder.domainNames">
+            <app-domain-name-panel [domainName]="domainName"></app-domain-name-panel>
+        </li>
+    </ul>
+    <ul>
+        <li *ngFor="let patent of binder.patents">
+            <app-patent-panel [patent]="patent"></app-patent-panel>
+        </li>
+    </ul>
+    <ul>
+        <li *ngFor="let designModel of binder.designModels">
+            <app-design-model-panel [designModel]="designModel"></app-design-model-panel>
+        </li>
+    </ul>
+    <ul>
+        <li *ngFor="let copyright of binder.copyrights">
+            <app-copyright-panel [copyright]="copyright"></app-copyright-panel>
+        </li>
+    </ul>
+    <ul>
+        <li *ngFor="let docket of binder.dockets">
+            <app-docket-panel [docket]="docket"></app-docket-panel>
+        </li>
+    </ul>
+</p-panel>

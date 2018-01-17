@@ -1,0 +1,6 @@
+<span title="{{decision.id}}">
+      <i class="fa fa-balance-scale"></i>
+      <a [routerLink]="['/decision/', decision.id]">{{decision.reference}}</a>
+      (<app-day-panel [day]="decision.judgmentDate"></app-day-panel>)
+      {{decision.level}}
+    </span>

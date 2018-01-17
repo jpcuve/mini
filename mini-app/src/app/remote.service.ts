@@ -7,7 +7,7 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import {QueryViewModel} from "./model.type";
 import {BinderQueryModel} from "./form.type";
-import {Court, Pol} from "./domain.type";
+import {Court, Decision, Pol} from "./domain.type";
 import {HttpClient} from "@angular/common/http";
 
 
@@ -18,10 +18,10 @@ export class RemoteService {
 
     constructor(private httpClient: HttpClient) {
         const w: Window = <Window> window;
-        const cs: string[] = (parseInt(w.location.port) < 8080 ? ['http://', w.location.hostname, ':8080'] : []);
+        const cs: string[] = (+w.location.port < 8080 ? ['http://', w.location.hostname, ':8080'] : []);
         this.server = cs.join('');
         this.base = cs.concat(['/api']).join('');
-        console.info('base:', this.base);
+        window.console.info('base:', this.base);
     }
 
     queryBinders(model: BinderQueryModel): Observable<number[]> {
@@ -38,5 +38,9 @@ export class RemoteService {
 
     getPols(): Observable<Pol[]> {
       return this.httpClient.get(this.base + '/pols').map(r => r as Pol[]);
+    }
+
+    getDecision(id: number): Observable<Decision> {
+      return this.httpClient.get(this.base + '/decision/' + id).map(r => r as Decision);
     }
 }

@@ -1,6 +1,6 @@
 <app-binder-query-form (handler)="queryFormHandler($event)"></app-binder-query-form>
 <br/>
-{{json(query)}}
+{{query | json}}
 <div *ngFor="let binder of binders">
   <app-binder-panel [binder]="binder"></app-binder-panel>
 </div>

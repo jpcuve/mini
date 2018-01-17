@@ -1,0 +1,11 @@
+<span>
+        <i *ngIf="right.plaintiff" class="fa fa-forward" style="color: firebrick;"></i>
+        <i *ngIf="!right.plaintiff" class="fa fa-backward" style="color: forestgreen;"></i>
+        <i *ngIf="right.domain === 'TRADEMARK'" class="fa fa-trademark"></i>
+        <i *ngIf="right.domain === 'DOMAIN_NAME'" class="fa fa-at"></i>
+        <i *ngIf="right.domain === 'PATENT'" class="fa fa-lightbulb-o"></i>
+        <i *ngIf="right.domain === 'DESIGN_MODEL'" class="fa fa-cube"></i>
+        <i *ngIf="right.domain === 'COPYRIGHT'" class="fa fa-copyright"></i>
+        <i *ngIf="right.domain === 'UNFAIR_COMPETITION'" class="fa fa-compress"></i>
+</span>
+<app-images-panel [ids]="right.imageIds"></app-images-panel>

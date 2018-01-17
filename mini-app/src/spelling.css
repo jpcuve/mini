@@ -1,0 +1,61 @@
+* {
+    font-family: Sans-Serif;
+    font-size: small;
+}
+
+#spelling {
+    width: 650px;
+}
+
+#spelling table {
+    border-collapse: collapse;
+    /*border: 1px solid black;*/
+}
+
+#spelling td {
+    text-align: center;
+}
+
+#spelling td span {
+    display: inline-block;
+    cursor: pointer;
+}
+
+#spelling td input {
+    width: 2em;
+}
+
+#popup {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 200px;
+    z-index: 1;
+    /*background-color: lightyellow;*/
+    border: 1px #6a6b6c solid;
+    line-height: 16px;
+}
+
+#popup ul {
+    margin: 0;
+    padding: 0;
+}
+
+#popup li {
+    display: inline-block;
+    background: white;
+    text-align: center;
+    width: 2em;
+    margin: 0;
+    padding: 0;
+    border-right: 1px dotted #6a6b6c;
+    cursor: pointer;
+}
+
+#popup li:last-child {
+    border-right: none;
+}
+
+#popup li:hover {
+    background-color: #CBDEEA;
+}

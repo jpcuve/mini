@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="spelling.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="spelling">
+    <div id="popup">
+        <ul id="matchList">
+        </ul>
+        <div id="explanation" style="background-color: white; border-top: 1px solid #6a6b6c;">
+            ...
+        </div>
+    </div>
+    <table id="tSpelling">
+        <tbody>
+        <tr>
+            <td></td>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+        <tr>
+            <td>
+                <span>TM1</span>
+                <select id="cc1"></select>
+                <br/>
+                <button type="button" id="shl1">◀</button>
+                <button type="button" id="shr1">▶</button>
+            </td>
+            <td>
+                <input id="l1" type="checkbox" />
+            </td>
+            <td>
+                <input id="r1" type="checkbox" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                <span>TM2</span>
+                <select id="cc2"></select>
+                <br/>
+                <button type="button" id="shl2">◀</button>
+                <button type="button" id="shr2">▶</button>
+            </td>
+            <td>
+                <input id="l2" type="checkbox" />
+            </td>
+            <td>
+                <input id="r2" type="checkbox" />
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>...</td>
+            <td>...</td>
+        </tr>
+        </tbody>
+    </table>
+    <input style="width: 80em;" id="advancedSpelling" value="{'compOpen':0,'comps':[],'one':{'openLeft':false,'openRight':false,'matches':[]},'two':{'openLeft':false,'openRight':false,'matches':[]},'shiftPosition':0}"/>
+</div>
+<script src="spelling.js"></script>
+</body>
+</html>
