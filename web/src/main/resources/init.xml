@@ -94,6 +94,7 @@
         <actor ref="a16" name="Jeca S.A." person="false"/>
     </actors>
     <binders>
+<!--
         <binder reference="binder01" firstAction="OPPOSITION" area="EUROPE" domains="TRADEMARK,PATENT">
             <party plaintiff="true" actor="jpc"/>
             <party plaintiff="false" actor="fg"/>
@@ -169,6 +170,7 @@
                 </decision>
             </docket>
         </binder>
+-->
 
         <binder reference="Copyright binder 4,209,819" firstAction="INFRINGEMENT" firstActionDate="2014-10-21" area="CHINA" domains="COPYRIGHT">
             <party plaintiff="true" actor="a01"/>
