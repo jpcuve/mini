@@ -109,6 +109,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
                 .antMatchers("/h2-console").hasAuthority("ADMIN")
+                .antMatchers("/api").permitAll()
                 .anyRequest().authenticated()
 				.and()
                 .httpBasic()
