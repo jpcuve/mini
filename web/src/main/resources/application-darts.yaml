@@ -17,6 +17,3 @@ logging:
   level:
     org.hibernate: info
     com.messio: debug
-
-server:
-  port: 8080

@@ -30,7 +30,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
-@ServletComponentScan
 public class MiniApplication extends SpringBootServletInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MiniApplication.class);
     private final Facade facade;
@@ -255,11 +254,13 @@ public class MiniApplication extends SpringBootServletInitializer {
         }
     }
 
+/*
     @Bean
     public ServletRegistrationBean assetServlet(){
         final ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean(new AssetServlet(assetManager), "/asset");
         return servletRegistrationBean;
     }
+*/
 
 /*
     @Bean
