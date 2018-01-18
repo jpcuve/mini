@@ -7,7 +7,7 @@ import javax.persistence.*;
 /**
  * Created by jpc on 1/20/15.
  */
-@Table(name = "parties")
+@Table(name = "parties", uniqueConstraints = { @UniqueConstraint(columnNames = {"binder_id", "actor_id"})})
 @Entity
 @NamedQueries({
         @NamedQuery(name = Party.PARTY_BY_BINDER_IDS, query = "select distinct p.id, p from Party p where p.binder.id in (:ids)")
@@ -29,10 +29,10 @@ public class Party {
     @Column(name = "plaintiff")
     private boolean plaintiff;
     @Basic
-    @Column(name = "binder_id", insertable = false, updatable = false)
+    @Column(name = "binder_id", insertable = false, updatable = false, nullable = false)
     private Long binderId;
     @Basic
-    @Column(name = "actor_id", insertable = false, updatable = false)
+    @Column(name = "actor_id", insertable = false, updatable = false, nullable = false)
     private Long actorId;
 
     public Party() {

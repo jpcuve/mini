@@ -34,10 +34,10 @@ public class Docket {
     @JoinColumn(name = "binder_id")
     private Binder binder;
     @Basic
-    @Column(name = "court_id", insertable = false, updatable = false)
+    @Column(name = "court_id", insertable = false, updatable = false, nullable = false)
     private Long courtId;
     @Basic
-    @Column(name = "binder_id", insertable = false, updatable = false)
+    @Column(name = "binder_id", insertable = false, updatable = false, nullable = false)
     private Long binderId;
 
     public Docket() {

@@ -22,6 +22,9 @@ public class Document {
     @ManyToOne
     @JoinColumn(name = "decision_id")
     private Decision decision;
+    @Basic
+    @Column(name = "decision_id", insertable = false, updatable = false, nullable = false)
+    private Long decisionId;
 
     public Document() {
     }
@@ -62,5 +65,13 @@ public class Document {
 
     public void setDecision(Decision decision) {
         this.decision = decision;
+    }
+
+    public Long getDecisionId() {
+        return decisionId;
+    }
+
+    public void setDecisionId(Long decisionId) {
+        this.decisionId = decisionId;
     }
 }

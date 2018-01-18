@@ -21,6 +21,12 @@ public class Honor {
     @Column(name = "validity")
     @Enumerated(EnumType.STRING)
     private RightValidity rightValidity;
+    @Basic
+    @Column(name = "decision_id", insertable = false, updatable = false, nullable = false)
+    private Long decisionId;
+    @Basic
+    @Column(name = "right_id", insertable = false, updatable = false, nullable = false)
+    private Long rightId;
 
     public Honor() {
     }
@@ -63,4 +69,19 @@ public class Honor {
         this.rightValidity = rightValidity;
     }
 
+    public Long getDecisionId() {
+        return decisionId;
+    }
+
+    public void setDecisionId(Long decisionId) {
+        this.decisionId = decisionId;
+    }
+
+    public Long getRightId() {
+        return rightId;
+    }
+
+    public void setRightId(Long rightId) {
+        this.rightId = rightId;
+    }
 }

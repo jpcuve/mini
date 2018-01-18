@@ -5,7 +5,7 @@ import javax.persistence.*;
 /**
  * Created by jpc on 1/20/15.
  */
-@Table(name = "analyses")
+@Table(name = "analyses", uniqueConstraints = { @UniqueConstraint(columnNames = {"decision_id", "pol_id"})})
 @Entity
 public class Analysis {
     @Id
@@ -18,6 +18,13 @@ public class Analysis {
     @ManyToOne
     @JoinColumn(name = "pol_id")
     private Pol pol;
+    @Basic
+    @Column(name = "decision_id", insertable = false, updatable = false, nullable = false)
+    private Long decisionId;
+    @Basic
+    @Column(name = "pol_id", insertable = false, updatable = false, nullable = false)
+    private Long polId;
+
 
     public Analysis() {
     }
@@ -49,5 +56,21 @@ public class Analysis {
 
     public void setPol(Pol pol) {
         this.pol = pol;
+    }
+
+    public Long getDecisionId() {
+        return decisionId;
+    }
+
+    public void setDecisionId(Long decisionId) {
+        this.decisionId = decisionId;
+    }
+
+    public Long getPolId() {
+        return polId;
+    }
+
+    public void setPolId(Long polId) {
+        this.polId = polId;
     }
 }

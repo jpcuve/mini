@@ -38,7 +38,7 @@ public abstract class Right {
     @JoinColumn(name = "binder_id")
     private Binder binder;
     @Basic
-    @Column(name = "binder_id", insertable = false, updatable = false)
+    @Column(name = "binder_id", insertable = false, updatable = false, nullable = false)
     private Long binderId;
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "right_images", joinColumns = { @JoinColumn(name = "right_id")})

@@ -45,7 +45,7 @@ public class Decision {
     @JoinColumn(name = "docket_id")
     private Docket docket;
     @Basic
-    @Column(name = "docket_id", insertable = false, updatable = false)
+    @Column(name = "docket_id", insertable = false, updatable = false, nullable = false)
     private Long docketId;
 
     public Decision() {
