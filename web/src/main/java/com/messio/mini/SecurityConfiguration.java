@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -104,12 +105,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
     private final Map<String, User> users = new HashMap<>();
+    @Value("${app.realm}")
+    private String realm;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
                 .antMatchers("/h2-console").hasAuthority("ADMIN")
-                .antMatchers("/api").permitAll()
+                .antMatchers("/api/**").permitAll()
                 .anyRequest().authenticated()
 				.and()
                 .httpBasic()
@@ -154,7 +157,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public AuthenticationEntryPoint authenticationEntryPoint(){
         final BasicAuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
-        authenticationEntryPoint.setRealmName("mini");
+        authenticationEntryPoint.setRealmName(realm);
         return authenticationEntryPoint;
     }
 }
