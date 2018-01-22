@@ -15,10 +15,12 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -135,13 +137,27 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public UserDetailsService userDetailsService(){
         try{
-            User[] miniUsers = mapper.readValue(ClassLoader.getSystemResourceAsStream("users.yaml"), User[].class);
-            users.putAll(Arrays.stream(miniUsers).collect(Collectors.toMap(User::getUsername, Function.identity())));
-        } catch(IOException e){
-            LOGGER.error("Cannot read user resource", e);
+            final User[] us = mapper.readValue(ClassLoader.getSystemResourceAsStream("users.yaml"), User[].class);
+            Arrays.stream(us).forEach(u -> users.put(u.getUsername(), u));
+
+        } catch (IOException e){
+            LOGGER.error("Cannot read users file", e);
         }
         return users::get;
     }
+
+/*
+    @Bean
+    public AuthenticationManager authenticationManager(){
+        final AuthenticationManager authenticationManager = new AuthenticationManager() {
+            @Override
+            public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+                return null;
+            }
+        };
+        return authenticationManager;
+    }
+*/
 
     @Bean
     public PasswordEncoder passwordEncoder(){
